@@ -8,6 +8,5 @@ namespace GudangPintarKPL.Models
     {
         Admin,
         User,
-        Karyawan,
     }
 }
