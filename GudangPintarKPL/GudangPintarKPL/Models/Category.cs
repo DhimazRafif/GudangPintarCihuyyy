@@ -1,6 +1,13 @@
-﻿namespace GudangPintarKPL.Models
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace GudangPintar.Model
 {
-    public class Category
+    public enum Category
     {
+        ATK,
+        Sembako,
+        Jajanan
     }
 }
