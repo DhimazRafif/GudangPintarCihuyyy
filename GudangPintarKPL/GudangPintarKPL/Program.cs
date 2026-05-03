@@ -1,23 +1,32 @@
+using GudangPintar.Controllers;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
 builder.Services.AddControllers();
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-builder.Services.AddOpenApi();
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
+builder.Services.AddSingleton<StockService>();
+builder.Services.AddSingleton<UserService>();
+builder.Services.AddSingleton<HistoryService>();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.MapOpenApi();
-}
-
-app.UseHttpsRedirection();
-
-app.UseAuthorization();
+app.UseSwagger();
+app.UseSwaggerUI();
 
 app.MapControllers();
 
-app.Run();
+// jalanin API async
+var api = app.RunAsync();
+
+// jalanin console
+var console = new ConsoleApp(
+    app.Services.GetRequiredService<StockService>(),
+    app.Services.GetRequiredService<UserService>(),
+    app.Services.GetRequiredService<HistoryService>()
+);
+
+console.Run();
+
+await api;
