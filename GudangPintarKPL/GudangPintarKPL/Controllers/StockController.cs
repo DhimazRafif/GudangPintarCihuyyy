@@ -1,5 +1,6 @@
 ﻿using GudangPintar.Controllers;
 using GudangPintar.Model;
+using GudangPintarKPL.Models;
 using Microsoft.AspNetCore.Mvc;
 
 [ApiController]
@@ -11,4 +12,7 @@ public class StockController : ControllerBase
 
     [HttpGet] public IActionResult Get() => Ok(s.GetAll());
     [HttpPost] public IActionResult Post(Stock x) { s.Add(x); return Ok(); }
+
+
+   
 }

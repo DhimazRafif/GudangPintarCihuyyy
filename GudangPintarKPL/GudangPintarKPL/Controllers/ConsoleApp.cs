@@ -176,7 +176,7 @@ namespace GudangPintar.Controllers
         {
             while (true)
             {
-                TablePrinter.Print(user.GetAll(),"Daftar Akun");
+                TablePrinter.Print(User.GetAll(),"Daftar Akun");
 
                 Console.WriteLine("\n1. Tambah");
                 Console.WriteLine("2. Edit");
