@@ -44,43 +44,14 @@ namespace GudangPintar.Controllers
             Get(nama)?.KurangiStok(jumlah);
         }
 
-        // tambahan 
-        public object GetFiltered(object parameters)
+        internal void Delete(int id)
         {
-            // Dynamic unwrap parameters
-            var nama = parameters.GetType().GetProperty("Nama")?.GetValue(parameters) as string;
-            var minStok = (int?)parameters.GetType().GetProperty("MinStok")?.GetValue(parameters);
-            var maxStok = (int?)parameters.GetType().GetProperty("MaxStok")?.GetValue(parameters);
-            var kategori = parameters.GetType().GetProperty("Kategori")?.GetValue(parameters) as string;
-
-            var query = stocks.AsEnumerable();
-
-            if (!string.IsNullOrEmpty(nama))
-                query = query.Where(s => s.NamaBarang.Contains(nama, StringComparison.OrdinalIgnoreCase));
-
-            if (minStok.HasValue)
-                query = query.Where(s => s.Jumlah >= minStok.Value);
-
-            if (maxStok.HasValue)
-                query = query.Where(s => s.Jumlah <= maxStok.Value);
-
-            if (!string.IsNullOrEmpty(kategori) && Enum.TryParse<Category>(kategori, true, out var cat))
-                query = query.Where(s => s.Kategori == cat);
-
-            return query.ToList();
+            throw new NotImplementedException();
         }
 
-        public bool UpdateStock(int id, int jumlah)
+        internal object Login(string username, string password)
         {
-            // Cari stock berdasarkan id (asumsi ada properti Id, jika tidak pakai indeks)
-            if (id >= 0 && id < stocks.Count)
-            {
-                stocks[id].TambahStok(jumlah);
-                return true;
-            }
-
-            // Alternatif: cari berdasarkan posisi atau tambahkan properti Id ke class Stock
-            return false;
+            throw new NotImplementedException();
         }
     }
 }
