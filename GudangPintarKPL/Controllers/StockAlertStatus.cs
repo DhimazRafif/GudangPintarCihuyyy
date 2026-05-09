@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace GudangPintar.Model
 {
@@ -23,28 +21,17 @@ namespace GudangPintar.Model
                 return AlertState.Aman;
         }
 
-        public static void HandleState(Stock stock)
+        public static string GetMessage(Stock stock)
         {
-            AlertState state = GetState(stock.Jumlah);
+            var state = GetState(stock.Jumlah);
 
-            switch (state)
+            return state switch
             {
-                case AlertState.Aman:
-                    Console.WriteLine($"[AMAN] {stock.NamaBarang} : {stock.Jumlah}");
-                    break;
-
-                case AlertState.Menipis:
-                    Console.WriteLine($"[PERINGATAN] {stock.NamaBarang} menipis! Sisa: {stock.Jumlah}");
-                    break;
-
-                case AlertState.Habis:
-                    Console.WriteLine($"[KRITIS] {stock.NamaBarang} HABIS!");
-                    break;
-
-                default:
-                    Console.WriteLine("Status tidak diketahui");
-                    break;
-            }
+                AlertState.Aman => "[AMAN]",
+                AlertState.Menipis => "[MENIPIS]",
+                AlertState.Habis => "[HABIS]",
+                _ => "[UNKNOWN]"
+            };
         }
     }
 }

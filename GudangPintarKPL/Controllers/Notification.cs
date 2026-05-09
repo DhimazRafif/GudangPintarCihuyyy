@@ -1,14 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace GudangPintar.Model
 {
     public class Notification
     {
-        public static void TampilkanNotifikasi(Stock stock)
+        public static string GetNotifikasi(Stock stock)
         {
-            StockAlertStatus.HandleState(stock);
+            return StockAlertStatus.GetMessage(stock);
         }
     }
 }
