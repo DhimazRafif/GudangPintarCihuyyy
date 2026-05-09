@@ -16,5 +16,7 @@ namespace GudangPintarKPL.Models
             new[] {"ID", "Username", "Email", "Role"};
 
         public string[] getRowData() => new[] { Id.ToString(), Username, Email,RoleUser.ToString()};
+
+
     }
 }

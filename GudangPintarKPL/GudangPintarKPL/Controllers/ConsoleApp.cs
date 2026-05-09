@@ -74,7 +74,7 @@ namespace GudangPintar.Controllers
                     LihatStok();
 
                 else if (input == "3")
-                    KelolaStok(u.Username);
+                    KelolaStok(u.username);
 
                 else if (input == "4")
                     LihatHistory();

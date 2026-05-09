@@ -48,7 +48,7 @@ public class UserController : ControllerBase
     }
 }
 
-// DTO Classes (bisa taruh di file terpisah atau dalam controller ini,malas mindahin)
+// DTO Classes ( dalam controller ini, malas mindahin)
 public class RegisterRequest
 {
     public string Username { get; set; }

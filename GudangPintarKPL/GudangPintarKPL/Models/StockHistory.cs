@@ -10,6 +10,7 @@ namespace GudangPintar.Model
         public int Jumlah { get; set; }
         public string UserPelaku { get; set; }
         public DateTime Tanggal { get; set; }
+        public int Stockid { get; internal set; }
 
         public StockHistory(string namaBarang, string aksi, int jumlah, string user)
         {

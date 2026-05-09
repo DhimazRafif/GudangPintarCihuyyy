@@ -1,5 +1,4 @@
 ﻿using GudangPintar.Controllers;
-using GudangPintarKPL.Controllers;
 using GudangPintarKPL.Models;
 using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.AspNetCore.Mvc;
