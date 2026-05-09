@@ -8,7 +8,7 @@ namespace GudangPintarKPL.Models
 
         public static GudangConfig LoadConfigFile()
         {
-            string filename = "config_gudang.json";
+            string filename = @"ConfigGudang\config_gudang.json";
 
             try
             {
@@ -21,8 +21,8 @@ namespace GudangPintarKPL.Models
                 Console.WriteLine($"Gagal memuat konfigurasi: {ex.Message}");
                 return new GudangConfig
                 {
-                    mata_uang = "Akses ditolak.",
-                    format_harga = "Akses diterima"
+                    mata_uang = "IDR",
+                    format_harga = "Rp{0:N2}"
                 };
 
             }   

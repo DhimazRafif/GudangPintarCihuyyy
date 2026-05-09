@@ -35,7 +35,8 @@ namespace GudangPintar.Controllers
             {
                 Id = nextId++,
                 Username = username,
-                Email = email
+                Email = email,
+                RoleUser = role
             });
 
             auth[username] = (password, role);
@@ -60,6 +61,7 @@ namespace GudangPintar.Controllers
 
                 u.Username = username;
                 u.Email = email;
+                u.RoleUser = role;
 
                 auth[username] = (password, role);
             }

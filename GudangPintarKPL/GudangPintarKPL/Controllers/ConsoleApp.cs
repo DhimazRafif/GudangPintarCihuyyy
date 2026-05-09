@@ -1,5 +1,6 @@
 ﻿using GudangPintar.Model;
 using GudangPintarKPL.Models;
+using GudangPintarKPL.Printer;
 using System;
 
 namespace GudangPintar.Controllers
@@ -82,24 +83,7 @@ namespace GudangPintar.Controllers
 
         private void LihatStok()
         {
-            Console.WriteLine("\n=== DATA STOK ===\n");
-
-            Console.WriteLine("{0,-15} {1,-10} {2,-8} {3,-10} {4}",
-                "Nama", "Kategori", "Jumlah", "Harga", "Status");
-
-            Console.WriteLine("-------------------------------------------------------------");
-
-            foreach (var s in stock.GetAll())
-            {
-                var notif = Notification.GetNotifikasi(s);
-
-                Console.WriteLine("{0,-15} {1,-10} {2,-8} {3,-10} {4}",
-                    s.NamaBarang, s.Kategori, s.Jumlah, s.Harga, notif);
-            }
-
-            Console.WriteLine("\nTekan ENTER untuk kembali...");
-            Console.ReadLine();
-            Console.WriteLine();
+            TablePrinter.Print(stock.GetAll(),"Data Stok Barang");
         }
 
         private void KelolaStok(string userLogin)
@@ -192,12 +176,7 @@ namespace GudangPintar.Controllers
         {
             while (true)
             {
-                Console.WriteLine("\n=== KELOLA AKUN ===\n");
-
-                foreach (var u in user.GetAll())
-                {
-                    Console.WriteLine($"{u.Id} | {u.Username} | {u.Email} | {user.GetRole(u.Username)}");
-                }
+                TablePrinter.Print(user.GetAll(),"Daftar Akun");
 
                 Console.WriteLine("\n1. Tambah");
                 Console.WriteLine("2. Edit");
@@ -271,14 +250,7 @@ namespace GudangPintar.Controllers
 
         private void LihatHistory()
         {
-            Console.WriteLine("\n=== HISTORI ===\n");
-
-            foreach (var h in history.GetAll())
-                h.Tampilkan();
-
-            Console.WriteLine("\nTekan ENTER untuk kembali...");
-            Console.ReadLine();
-            Console.WriteLine();
+            TablePrinter.Print(history.GetAll(),"Histori Transaksi");
         }
     }
 }

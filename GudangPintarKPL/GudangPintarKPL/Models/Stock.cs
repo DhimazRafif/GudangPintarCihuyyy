@@ -1,10 +1,11 @@
-﻿using System;
+﻿using GudangPintarKPL.Models;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace GudangPintar.Model
 {
-    public class Stock
+    public class Stock : ITablePrint
     {
         public string NamaBarang { get; set; }
         public Category Kategori { get; set; }
@@ -37,6 +38,20 @@ namespace GudangPintar.Model
             NamaBarang = nama;
             Kategori = kategori;
             Harga = harga;
+        }
+
+        public static string[] getHeader() => 
+            new[] { "Nama", "Kategori", "Jumlah", "Harga", "Status"};
+
+        public string[] getRowData() {
+
+            string hargaFormatted = string.Format(GudangConfig.LoadConfigFile().format_harga, Harga);
+
+            return new[] { NamaBarang, 
+                Kategori.ToString(), 
+                Jumlah.ToString(), 
+                hargaFormatted, 
+                Notification.GetNotifikasi(this) };
         }
     }
 }

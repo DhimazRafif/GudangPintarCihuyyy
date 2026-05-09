@@ -1,8 +1,9 @@
-﻿using System;
+﻿using GudangPintarKPL.Models;
+using System;
 
 namespace GudangPintar.Model
 {
-    public class StockHistory
+    public class StockHistory : ITablePrint
     {
         public string NamaBarang { get; set; }
         public string Aksi { get; set; }
@@ -23,5 +24,16 @@ namespace GudangPintar.Model
         {
             Console.WriteLine($"{Tanggal} | {NamaBarang} | {Aksi} {Jumlah} | Oleh: {UserPelaku}");
         }
+
+        public static string[] getHeader() => 
+            new[] { "Waktu", "Barang", "Aksi", "Jumlah", "User"};
+
+        public string[] getRowData() => new[]{
+            Tanggal.ToString("dd/MM/yyyy HH:mm"),
+            NamaBarang,
+            Aksi,
+            Jumlah.ToString(),
+            UserPelaku
+        };
     }
 }

@@ -1,6 +1,9 @@
 using GudangPintar.Controllers;
+using GudangPintarKPL.Models;
 
 var builder = WebApplication.CreateBuilder(args);
+
+GudangConfig.LoadConfigFile();
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
