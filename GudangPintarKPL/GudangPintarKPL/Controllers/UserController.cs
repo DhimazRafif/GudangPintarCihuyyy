@@ -1,5 +1,4 @@
 ﻿using GudangPintar.Controllers;
-using GudangPintar.Model;
 using GudangPintarKPL.Controllers; 
 using GudangPintarKPL.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -14,21 +13,17 @@ public class UserController : ControllerBase
     [HttpGet]
     public IActionResult GetAll() => Ok(s.GetAll());
 
-    // PARAMETERIZED: Gunakan DTO/Model sebagai parameter, bukan string individu
     [HttpPost("register")]
-    public IActionResult Add([FromBody] RegisterRequest request)
+    public IActionResult Add(string username, string email, string password, Role role)
     {
-        if (string.IsNullOrEmpty(request.Username) || string.IsNullOrEmpty(request.Password))
-            return BadRequest("Username dan password wajib diisi");
-
-        s.Add(request.Username, request.Email, request.Password, request.Role);
+        s.Add(username, email, password, role);
         return Ok(new { message = "User berhasil ditambahkan" });
     }
 
     [HttpPost("login")]
-    public IActionResult Login([FromBody] LoginRequest request)
+    public IActionResult Login(string username, string password)
     {
-        var result = s.Login(request.Username, request.Password);
+        var result = s.Login(username, password);
         if (result == null) return Unauthorized("Username atau password salah");
         return Ok(result);
     }
@@ -39,36 +34,10 @@ public class UserController : ControllerBase
         s.Delete(id);
         return Ok(new { message = "User berhasil dihapus" });
     }
-
     [HttpPost("update")]
-    public IActionResult Update([FromBody] UpdateUserRequest request)
+    public IActionResult Update(int id, string username, string email, string password, Role role)
     {
-        s.Update(request.Id, request.Username, request.Email, request.Password, request.Role);
+        s.Update(id, username, email, password, role);
         return Ok(new { message = "User berhasil diupdate" });
     }
-}
-
-// DTO Classes (bisa taruh di file terpisah atau dalam controller ini,malas mindahin)
-public class RegisterRequest
-{
-    public string Username { get; set; }
-    public string Email { get; set; }
-    public string Password { get; set; }
-    public Role Role { get; set; }
-}
-
-public class LoginRequest
-{
-    public string Username { get; set; }
-    public string Password { get; set; }
-}
-
-public class UpdateUserRequest
-{
-    public int Id { get; set; }
-    public string Username { get; set; }
-    public string Email { get; set; }
-    public string Password { get; set; }
-    public Role Role { get; set; }
-
 }

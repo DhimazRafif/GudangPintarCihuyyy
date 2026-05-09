@@ -43,15 +43,5 @@ namespace GudangPintar.Controllers
         {
             Get(nama)?.KurangiStok(jumlah);
         }
-
-        internal void Delete(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        internal object Login(string username, string password)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
