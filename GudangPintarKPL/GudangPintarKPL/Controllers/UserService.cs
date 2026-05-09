@@ -1,4 +1,5 @@
 ﻿using GudangPintarKPL.Models;
+using System.Diagnostics;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -13,24 +14,44 @@ namespace GudangPintar.Controllers
 
         public UserService()
         {
-            Add("admin", "admin@mail.com", "admin", Role.Admin);
-            Add("user", "user@mail.com", "user", Role.User);
+            Add("admin", "admin@mail.com", "admin123", Role.Admin);
+            Add("user", "user@mail.com", "user123", Role.User);
         }
 
         public List<User> GetAll() => users;
 
         public (User, Role)? Login(string username, string password)
         {
-            if (auth.ContainsKey(username) && auth[username].password == password)
+            Debug.Assert(username != null, "Username tidak boleh null");
+            Debug.Assert(password != null, "Password tidak boleh null");
+
+            if (auth.ContainsKey(username) &&
+                auth[username].password == password)
             {
                 var user = users.First(u => u.Username == username);
                 return (user, auth[username].role);
             }
+
             return null;
         }
 
-        public void Add(string username, string email, string password, Role role)
+        public bool Add(string username, string email, string password, Role role)
         {
+            if (users.Any(u => u.Username == username))
+            {
+                Console.WriteLine("Username sudah digunakan!");
+                return false;
+            }
+
+            if (password.Length < 6)
+            {
+                Console.WriteLine("Password minimal 6 karakter!");
+                return false;
+            }
+
+            Debug.Assert(!string.IsNullOrWhiteSpace(username));
+            Debug.Assert(password.Length >= 6);
+
             users.Add(new User
             {
                 Id = nextId++,
@@ -40,21 +61,42 @@ namespace GudangPintar.Controllers
             });
 
             auth[username] = (password, role);
+
+            return true;
         }
 
-        public void Delete(int id)
+        public bool Delete(int id)
         {
             var u = users.FirstOrDefault(x => x.Id == id);
-            if (u != null)
+
+            if (u == null)
             {
-                users.Remove(u);
-                auth.Remove(u.Username);
+                Console.WriteLine("User tidak ditemukan!");
+                return false;
             }
+
+            if (u.Username == "admin")
+            {
+                Console.WriteLine("Tidak dapat menghapus akun admin utama!");
+                return false;
+            }
+
+            users.Remove(u);
+            auth.Remove(u.Username);
+
+            return true;
         }
 
         public void Update(int id, string username, string email, string password, Role role)
         {
             var u = users.FirstOrDefault(x => x.Id == id);
+
+            if (users.Any(x => x.Username == username && x.Id != id))
+            {
+                Console.WriteLine("Username sudah digunakan!");
+                return;
+            }
+
             if (u != null)
             {
                 auth.Remove(u.Username);

@@ -1,4 +1,5 @@
 ﻿using GudangPintarKPL.Models;
+using System.Diagnostics;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -14,6 +15,9 @@ namespace GudangPintar.Model
 
         public Stock(string nama, Category kategori, int jumlah, double harga)
         {
+            Debug.Assert(jumlah >= 0, "Jumlah stok tidak boleh negatif");
+            Debug.Assert(harga >= 0, "Harga tidak boleh negatif");
+
             NamaBarang = nama;
             Kategori = kategori;
             Jumlah = jumlah;
