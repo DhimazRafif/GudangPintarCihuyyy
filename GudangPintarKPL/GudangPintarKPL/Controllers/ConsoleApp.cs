@@ -1,6 +1,7 @@
 ﻿using GudangPintar.Model;
 using GudangPintarKPL.Models;
 using GudangPintarKPL.Printer;
+using Microsoft.AspNetCore.Components.Sections;
 using System;
 
 namespace GudangPintar.Controllers
@@ -26,6 +27,8 @@ namespace GudangPintar.Controllers
 
                 Console.Write("Username: ");
                 var uname = Console.ReadLine();
+
+                if (uname == "exit" || uname == null) break;
 
                 Console.Write("Password: ");
                 var pass = Console.ReadLine();
@@ -73,7 +76,7 @@ namespace GudangPintar.Controllers
                 var input = Console.ReadLine();
                 Console.WriteLine();
 
-                if (input == "0") break;
+                if (input == null || input == "0") break;
 
                 if (input == "1" && role == Role.Admin)
                     KelolaAkun();
@@ -86,12 +89,21 @@ namespace GudangPintar.Controllers
 
                 else if (input == "4")
                     LihatHistory();
+                else
+                    Console.WriteLine("Input Tidak Valid!");
             }
         }
 
         private void LihatStok()
         {
-            TablePrinter.Print(stock.GetAll(),"Data Stok Barang");
+            var dataStock = stock.GetAll();
+
+            if (dataStock.Count == 0)
+            {
+                Console.WriteLine("\n[ INFO: Belum ada barang yang ditambahkan ]");
+            }
+
+            TablePrinter.Print(dataStock, "Data Stok Barang");
         }
 
         private void KelolaStok(string userLogin)
@@ -231,7 +243,7 @@ namespace GudangPintar.Controllers
                 var i = Console.ReadLine();
                 Console.WriteLine();
 
-                if (i == "0") break;
+                if (i == null || i == "0") break;
 
                 if (i == "1")
                 {
@@ -311,16 +323,15 @@ namespace GudangPintar.Controllers
         }
 
         private void LihatHistory()
-        {
-            if (history.GetAll().Count == 0)
+        { 
+            var dataHistory = history.GetAll();
+
+            if (dataHistory.Count == 0)
             {
-                Console.WriteLine("\nHistory kosong");
-                Console.WriteLine("\nTekan ENTER untuk kembali...");
-                Console.ReadLine();
-                return;
+                Console.WriteLine("\n[ INFO: Belum ada transaksi / History kosong ]");
             }
 
-            TablePrinter.Print(history.GetAll(), "Histori Transaksi");
+            TablePrinter.Print(dataHistory, "Histori Transaksi");
         }
     }
 }

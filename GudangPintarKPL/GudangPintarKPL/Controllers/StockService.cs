@@ -1,4 +1,5 @@
 ﻿using GudangPintar.Model;
+using GudangPintarKPL.Models;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -10,6 +11,12 @@ namespace GudangPintar.Controllers
         private List<Stock> stocks = new();
 
         public List<Stock> GetAll() => stocks;
+
+        public StockService()
+        {
+            Add(new Stock("Buku Tulis", Category.ATK, 20, 5000));
+            Add(new Stock("Pulpen", Category.ATK, 20, 2000));
+        }
 
         public bool Add(Stock s)
         {

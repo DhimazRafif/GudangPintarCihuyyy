@@ -1,3 +1,4 @@
 <Solution>
   <Project Path="GudangPintarKPL/GudangPintarKPL.csproj" />
+  <Project Path="TestGudangPintar/TestGudangPintar.csproj" Id="d3c67411-f9aa-45c3-ae69-191805f45f43" />
 </Solution>
