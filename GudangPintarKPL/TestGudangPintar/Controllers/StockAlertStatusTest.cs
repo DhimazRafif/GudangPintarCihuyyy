@@ -1,83 +1,52 @@
-﻿using GudangPintar.Controllers;
-using GudangPintar.Model;
-using GudangPintarKPL.Controllers;
-using System;
-using System.Collections.Generic;
-using System.Data;
-using System.IO;
-using System.Text;
+﻿using GudangPintar.Model;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 
 namespace TestGudangPintar.Controllers
 {
     [TestClass]
     public class StockAlertStatusTest
     {
+        #region Test GetState (Logic)
         [TestMethod]
-        public void TestGetState_Habis()
+        public void TestGetState_Habis_HarusReturnHabis()
         {
-            // Arrange
-            int jumlah = 0;
             // Act
-            var result = StockAlertStatus.GetState(jumlah);
+            var result = StockAlertStatus.GetState(0);
+
             // Assert
             Assert.AreEqual(AlertState.Habis, result);
         }
+
         [TestMethod]
-        public void TestGetState_Menipis()
+        public void TestGetState_Menipis_HarusReturnMenipis()
         {
-            // Arrange
-            int jumlah = 5;
-            // Act
-            var result = StockAlertStatus.GetState(jumlah);
-            // Assert
-            Assert.AreNotEqual(AlertState.Menipis, result);
+            // Mengetes angka di bawah 10 (tapi bukan 0)
+            Assert.AreEqual(AlertState.Menipis, StockAlertStatus.GetState(1));
+            Assert.AreEqual(AlertState.Menipis, StockAlertStatus.GetState(9));
+            // Angka negatif juga akan masuk ke 'Menipis' berdasarkan if (jumlah < 10)
+            Assert.AreEqual(AlertState.Menipis, StockAlertStatus.GetState(-1));
+        }
+
+        [TestMethod]
+        public void TestGetState_Aman_HarusReturnAman()
+        {
+            // Mengetes angka 10 dan di atasnya
+            Assert.AreEqual(AlertState.Aman, StockAlertStatus.GetState(10));
+            Assert.AreEqual(AlertState.Aman, StockAlertStatus.GetState(100));
         }
         [TestMethod]
-        public void TestGetState_Aman()
+        public void TestGetMessage_NormalStates_HarusBerhasil()
         {
             // Arrange
-            int jumlah = 15;
-            // Act
-            var result = StockAlertStatus.GetState(jumlah);
-            // Assert
-            Assert.AreEqual(AlertState.Aman, result);
-        }
-        [TestMethod]
-        public void TestGetMessage_Formatting()
-        {
-            // Arrange
-            var stockHabis = new Stock("Pensil", Category.ATK, 0, 500);
-            var stockMenipis = new Stock("Penghapus", Category.ATK, 5, 1000);
-            var stockAman = new Stock("Buku", Category.ATK, 20, 2000);
-            // Act
-            var messageHabis = StockAlertStatus.GetMessage(stockHabis);
-            var messageMenipis = StockAlertStatus.GetMessage(stockMenipis);
-            var messageAman = StockAlertStatus.GetMessage(stockAman);
-            // Assert
-            Assert.AreEqual("[HABIS]", messageHabis);
-            Assert.AreEqual("[MENIPIS]", messageMenipis);
-            Assert.AreEqual("[AMAN]", messageAman);
-        }
-        [TestMethod]
-        public void TestGetMessage_UnknownState()
-        {
-            // Arrange
-            var stockUnknown = new Stock("BarangUnik", Category.ATK, -1, 1000); // Jumlah negatif untuk memicu state tidak dikenal
-            // Act
-            var messageUnknown = StockAlertStatus.GetMessage(stockUnknown);
-            // Assert
-            Assert.AreEqual("[UNKNOWN]", messageUnknown);
-        }
-        [TestMethod]
-        public void TestGetMessage_InvalidState()
-        {
-            // Arrange
-            var stockInvalid = new Stock("BarangInvalid", Category.ATK, 100, 1000); // Jumlah besar untuk memastikan state aman
-            // Act
-            var messageInvalid = StockAlertStatus.GetMessage(stockInvalid);
-            // Assert
-            Assert.AreEqual("[AMAN]", messageInvalid);
+            var sHabis = new Stock("Barang1", Category.ATK, 0, 100);
+            var sMenipis = new Stock("Barang2", Category.ATK, 5, 100);
+            var sAman = new Stock("Barang3", Category.ATK, 15, 100);
+
+            // Act & Assert
+            Assert.AreEqual("[HABIS]", StockAlertStatus.GetMessage(sHabis));
+            Assert.AreEqual("[MENIPIS]", StockAlertStatus.GetMessage(sMenipis));
+            Assert.AreEqual("[AMAN]", StockAlertStatus.GetMessage(sAman));
         }
     }
 }

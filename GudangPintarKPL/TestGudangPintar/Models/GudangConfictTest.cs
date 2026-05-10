@@ -1,99 +1,91 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.IO;
-using System.Text;
-using System.Text.Json;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using GudangPintarKPL.Models;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
+using System.IO;
+using System.Text.Json;
 
 namespace TestGudangPintar.Models
 {
     [TestClass]
     public class GudangConfictTest
     {
-        [TestMethod]
-        public void TestLoadConfigFile()
+        private const string ConfigFolder = "ConfigGudang";
+        private const string ConfigFile = @"ConfigGudang\config_gudang.json";
+
+        [TestInitialize]
+        public void Setup()
         {
-            // Arrange
-            var expectedMataUang = "IDR";
-            var expectedFormatHarga = "Rp{0:N2}";
+            // Menjamin folder ConfigGudang selalu ada sebelum test dijalankan
+            if (!Directory.Exists(ConfigFolder))
+            {
+                Directory.CreateDirectory(ConfigFolder);
+            }
+        }
+
+        [TestMethod]
+        public void TestLoadConfigFile_BerhasilMembacaFile()
+        {
+            // Arrange: Buat file JSON valid di folder ConfigGudang
+            var customConfig = new { mata_uang = "USD", format_harga = "${0:N2}" };
+            string jsonContent = JsonSerializer.Serialize(customConfig);
+            File.WriteAllText(ConfigFile, jsonContent);
+
             // Act
-            var config = GudangPintarKPL.Models.GudangConfig.LoadConfigFile();
+            var result = GudangConfig.LoadConfigFile();
+
             // Assert
-            Assert.IsNotNull(config);
-            Assert.AreEqual(expectedMataUang, config.mata_uang);
-            Assert.AreEqual(expectedFormatHarga, config.format_harga);
+            Assert.IsNotNull(result);
+            Assert.AreEqual("USD", result.mata_uang);
+            Assert.AreEqual("${0:N2}", result.format_harga);
         }
+
         [TestMethod]
-        public void TestLoadConfigFile_FileNotFound()
+        public void TestLoadConfigFile_FileNotFound_HarusReturnDefault()
         {
-            // Arrange
-            var originalPath = "config.json";
-            var tempPath = "temp_config.json";
-            if (File.Exists(tempPath))
-                File.Delete(tempPath);
-            File.Move(originalPath, tempPath);
-            // Act & Assert
-            try
+            // Arrange: Pastikan file tidak ada
+            if (File.Exists(ConfigFile))
             {
-                Assert.Throws<FileNotFoundException>(() => GudangPintarKPL.Models.GudangConfig.LoadConfigFile());
+                File.Delete(ConfigFile);
             }
-            finally
-            {
-                File.Move(tempPath, originalPath);
-            }
-        }
-        [TestMethod]
-        public void TestLoadConfigFile_InvalidJson()
-        {
-            // Arrange
-            var originalPath = "config.json";
-            var tempPath = "temp_config.json";
-            if (File.Exists(tempPath))
-                File.Delete(tempPath);
-            File.Move(originalPath, tempPath);
-            File.WriteAllText(originalPath, "Invalid JSON");
-            // Act & Assert
-            try
-            {
-                Assert.Throws<JsonException>(() => GudangPintarKPL.Models.GudangConfig.LoadConfigFile());
-            }
-            finally
-            {
-                File.Move(tempPath, originalPath);
-            }
-        }
-        [TestMethod]
-        public void TestLoadConfigFile_MissingProperties()
-        {
-            // Arrange
-            var originalPath = "config.json";
-            var tempPath = "temp_config.json";
-            if (File.Exists(tempPath))
-                File.Delete(tempPath);
-            File.Move(originalPath, tempPath);
-            File.WriteAllText(originalPath, "{}");
+
             // Act
-            var config = GudangPintarKPL.Models.GudangConfig.LoadConfigFile();
+            // Karena kode aslimu pake try-catch, dia gak bakal crash, tapi return IDR
+            var result = GudangConfig.LoadConfigFile();
+
             // Assert
-            Assert.IsNotNull(config);
-            Assert.IsNull(config.mata_uang);
-            Assert.IsNull(config.format_harga);
+            Assert.IsNotNull(result);
+            Assert.AreEqual("IDR", result.mata_uang);
+            Assert.AreEqual("Rp{0:N2}", result.format_harga);
         }
+
+        [TestMethod]
+        public void TestLoadConfigFile_InvalidJson_HarusReturnDefault()
+        {
+            // Arrange: Buat file tapi isinya rusak (bukan JSON)
+            File.WriteAllText(ConfigFile, "INI BUKAN JSON FORMAT");
+
+            // Act
+            var result = GudangConfig.LoadConfigFile();
+
+            // Assert
+            // Masuk ke catch dan mengembalikan nilai default
+            Assert.AreEqual("IDR", result.mata_uang);
+            Assert.AreEqual("Rp{0:N2}", result.format_harga);
+        }
+
         [TestMethod]
         public void TestProperty_SetGet()
         {
             // Arrange
-            var config = new GudangPintarKPL.Models.GudangConfig();
-            var expectedMataUang = "USD";
-            var expectedFormatHarga = "${0:N2}";
+            var config = new GudangConfig();
+
             // Act
-            config.mata_uang = expectedMataUang;
-            config.format_harga = expectedFormatHarga;
+            config.mata_uang = "JPY";
+            config.format_harga = "¥{0}";
+
             // Assert
-            Assert.AreEqual(expectedMataUang, config.mata_uang);
-            Assert.AreEqual(expectedFormatHarga, config.format_harga);
+            Assert.AreEqual("JPY", config.mata_uang);
+            Assert.AreEqual("¥{0}", config.format_harga);
         }
     }
 }

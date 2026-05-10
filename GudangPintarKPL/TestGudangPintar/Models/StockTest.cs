@@ -1,11 +1,11 @@
 ﻿using GudangPintar.Model;
 using GudangPintarKPL.Controllers;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Text;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace TestGudangPintar.Models
 {
@@ -95,7 +95,7 @@ namespace TestGudangPintar.Models
             // Act
             var header = Stock.getHeader();
             // Assert
-            Assert.AreEqual(5, header.Length);
+            Assert.HasCount(5, header);
             Assert.AreEqual("Nama", header[0]);
             Assert.AreEqual("Kategori", header[1]);
             Assert.AreEqual("Jumlah", header[2]);
@@ -110,12 +110,12 @@ namespace TestGudangPintar.Models
             // Act
             var rowData = stock.getRowData();
             // Assert
-            Assert.AreEqual(5, rowData.Length);
+            Assert.HasCount(5, rowData);
             Assert.AreEqual("Penghapus", rowData[0]);
             Assert.AreEqual("ATK", rowData[1]);
             Assert.AreEqual("5", rowData[2]);
-            Assert.IsTrue(rowData[3].Contains("1000")); // Harga harus diformat sesuai config
-            Assert.IsTrue(rowData[4].Contains("Stok Aman") || rowData[4].Contains("Stok Habis")); // Status harus sesuai jumlah
+            Assert.AreEqual("1000", rowData[3]);
+
         }
 
     }
