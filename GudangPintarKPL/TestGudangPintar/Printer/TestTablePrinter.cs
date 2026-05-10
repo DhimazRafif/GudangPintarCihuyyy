@@ -6,6 +6,7 @@ using System.Data;
 using System.IO;
 using System.Text;
 
+
 namespace TestGudangPintar.Printer
 {
     [TestClass]
@@ -27,7 +28,8 @@ namespace TestGudangPintar.Printer
 
             string judul = "Test Data Akun";
 
-            TablePrinter.Print(DummyData, judul);
+            TablePrinter.Print(DummyData,judul);
+
 
             var hasilLayar = monitorPalsu.ToString();
 
@@ -49,3 +51,5 @@ namespace TestGudangPintar.Printer
         }
     }
 }
+
+
