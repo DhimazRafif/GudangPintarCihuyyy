@@ -1,6 +1,7 @@
 ﻿using GudangPintar.Model;
 using GudangPintarKPL.Models;
 using GudangPintarKPL.Printer;
+using GudangPintarKPL.Controllers;
 using System;
 
 namespace GudangPintar.Controllers
@@ -31,6 +32,14 @@ namespace GudangPintar.Controllers
                 var pass = Console.ReadLine();
 
                 Console.WriteLine();
+
+                if (string.IsNullOrWhiteSpace(uname) || string.IsNullOrWhiteSpace(pass))
+                    {
+                        Console.WriteLine("Username dan password tidak boleh kosong!");
+                        Console.WriteLine("\nTekan ENTER...");
+                        Console.ReadLine();
+                        continue;
+                    }
 
                 var login = user.Login(uname, pass);
 
@@ -114,19 +123,35 @@ namespace GudangPintar.Controllers
                 var kat = (Category)Enum.Parse(typeof(Category), Console.ReadLine());
 
                 Console.Write("Jumlah: ");
-                int j = int.Parse(Console.ReadLine());
+                if (!int.TryParse(Console.ReadLine(), out int j))
+                {
+                    Console.WriteLine("Jumlah harus berupa angka!");
+                    return;
+                }
 
                 Console.Write("Harga: ");
-                double h = double.Parse(Console.ReadLine());
+                if (!double.TryParse(Console.ReadLine(), out double h))
+                {
+                    Console.WriteLine("Harga harus berupa angka!");
+                    return;
+                }
 
-                stock.Add(new Stock(nama, kat, j, h));
-                history.Add(new StockHistory(nama, "Tambah Barang", j, userLogin));
+                bool berhasil = stock.Add(new Stock(nama, kat, j, h));
+
+                if (berhasil)
+                {
+                    history.Add(new StockHistory(nama, "Tambah Barang", j, userLogin));
+                }
             }
 
             else if (i == "2")
             {
-                stock.Delete(nama);
-                history.Add(new StockHistory(nama, "Hapus Barang", 0, userLogin));
+                bool berhasil = stock.Delete(nama);
+
+                if (berhasil)
+                {
+                    history.Add(new StockHistory(nama, "Hapus Barang", 0, userLogin));
+                }
             }
 
             else if (i == "3")
@@ -142,7 +167,11 @@ namespace GudangPintar.Controllers
                 var kat = (Category)Enum.Parse(typeof(Category), Console.ReadLine());
 
                 Console.Write("Harga baru: ");
-                double h = double.Parse(Console.ReadLine());
+                if (!double.TryParse(Console.ReadLine(), out double h))
+                {
+                    Console.WriteLine("Harga harus berupa angka!");
+                    return;
+                }
 
                 stock.Update(nama, newNama, kat, h);
                 history.Add(new StockHistory(nama, "Edit Barang", 0, userLogin));
@@ -151,19 +180,35 @@ namespace GudangPintar.Controllers
             else if (i == "4")
             {
                 Console.Write("Jumlah: ");
-                int j = int.Parse(Console.ReadLine());
+                if (!int.TryParse(Console.ReadLine(), out int j))
+                {
+                    Console.WriteLine("Jumlah harus berupa angka!");
+                    return;
+                }
 
-                stock.TambahStok(nama, j);
-                history.Add(new StockHistory(nama, "Tambah Stok", j, userLogin));
+                bool berhasil = stock.TambahStok(nama, j);
+
+                if (berhasil)
+                {
+                    history.Add(new StockHistory(nama, "Tambah Stok", j, userLogin));
+                }
             }
 
             else if (i == "5")
             {
                 Console.Write("Jumlah: ");
-                int j = int.Parse(Console.ReadLine());
+                if (!int.TryParse(Console.ReadLine(), out int j))
+                {
+                    Console.WriteLine("Jumlah harus berupa angka!");
+                    return;
+                }
 
-                stock.KurangiStok(nama, j);
-                history.Add(new StockHistory(nama, "Kurangi Stok", j, userLogin));
+                bool berhasil = stock.KurangiStok(nama, j);
+
+                if (berhasil)
+                {
+                    history.Add(new StockHistory(nama, "Kurangi Stok", j, userLogin));
+                }
             }
 
             Console.WriteLine("\nOperasi selesai!");
@@ -207,13 +252,22 @@ namespace GudangPintar.Controllers
                     Console.Write("\nPilih role: ");
                     var role = (Role)Enum.Parse(typeof(Role), Console.ReadLine());
 
-                    user.Add(uname, email, pass, role);
+                    bool berhasil = user.Add(uname, email, pass, role);
+
+                    if (berhasil)
+                    {
+                        Console.WriteLine("Akun berhasil ditambahkan!");
+                    }
                 }
 
                 else if (i == "2")
                 {
                     Console.Write("ID: ");
-                    int id = int.Parse(Console.ReadLine());
+                    if (!int.TryParse(Console.ReadLine(), out int id))
+                    {
+                        Console.WriteLine("ID harus berupa angka!");
+                        return;
+                    }
 
                     Console.Write("Username: ");
                     var uname = Console.ReadLine();
@@ -237,8 +291,17 @@ namespace GudangPintar.Controllers
                 else if (i == "3")
                 {
                     Console.Write("ID: ");
-                    int id = int.Parse(Console.ReadLine());
-                    user.Delete(id);
+                    if (!int.TryParse(Console.ReadLine(), out int id))
+                    {
+                        Console.WriteLine("ID harus berupa angka!");
+                        return;
+                    }
+                    bool berhasil = user.Delete(id);
+
+                    if (berhasil)
+                    {
+                        Console.WriteLine("Akun berhasil dihapus!");
+                    }
                 }
 
                 Console.WriteLine("\nOperasi selesai!");
@@ -250,7 +313,15 @@ namespace GudangPintar.Controllers
 
         private void LihatHistory()
         {
-            TablePrinter.Print(history.GetAll(),"Histori Transaksi");
+            if (history.GetAll().Count == 0)
+            {
+                Console.WriteLine("\nHistory kosong");
+                Console.WriteLine("\nTekan ENTER untuk kembali...");
+                Console.ReadLine();
+                return;
+            }
+
+            TablePrinter.Print(history.GetAll(), "Histori Transaksi");
         }
     }
 }
