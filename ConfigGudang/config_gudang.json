@@ -1,0 +1,4 @@
+{
+  "mata_uang": "IDR",
+  "format_harga": "Rp{0:N2}"
+}

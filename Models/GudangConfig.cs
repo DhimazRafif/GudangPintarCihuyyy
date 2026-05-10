@@ -3,12 +3,12 @@ namespace GudangPintarKPL.Models
 {
     public class GudangConfig
     {
-        public string mata_uang { get; set; }
-        public string format_harga { get; set; }
+        public string mata_uang {  get; set; }
+        public string format_harga {  get; set; }
 
         public static GudangConfig LoadConfigFile()
         {
-            string filename = @"ConfigGudang\config_gudang.json";
+            string filename = "config_gudang.json";
 
             try
             {
@@ -21,11 +21,11 @@ namespace GudangPintarKPL.Models
                 Console.WriteLine($"Gagal memuat konfigurasi: {ex.Message}");
                 return new GudangConfig
                 {
-                    mata_uang = "IDR",
-                    format_harga = "Rp{0:N2}"
+                    mata_uang = "Akses ditolak.",
+                    format_harga = "Akses diterima"
                 };
 
-            }
+            }   
         }
     }
 }

@@ -1,7 +1,11 @@
 ﻿using GudangPintar.Model;
 using GudangPintarKPL.Models;
 using GudangPintarKPL.Printer;
+<<<<<<< HEAD
 using Microsoft.AspNetCore.Components.Sections;
+=======
+using GudangPintarKPL.Controllers;
+>>>>>>> f971d42849468f9a3ed40ebf06dd2c1cdff7fb36
 using System;
 
 namespace GudangPintar.Controllers

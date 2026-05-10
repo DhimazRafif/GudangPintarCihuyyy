@@ -1,9 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using GudangPintarKPL.Models;
-using System.Text;
-using System.IO;
+﻿using GudangPintarKPL.Models;
 using GudangPintarKPL.Printer;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.IO;
+using System.Text;
+
 
 namespace TestGudangPintar.Printer
 {
@@ -28,6 +30,7 @@ namespace TestGudangPintar.Printer
 
             TablePrinter.Print(DummyData,judul);
 
+
             var hasilLayar = monitorPalsu.ToString();
 
             Assert.IsTrue(hasilLayar.Contains("=== TEST DATA AKUN ==="));
@@ -48,3 +51,5 @@ namespace TestGudangPintar.Printer
         }
     }
 }
+
+

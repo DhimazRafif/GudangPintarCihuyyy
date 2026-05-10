@@ -229,7 +229,7 @@ namespace TestGudangPintar.Controllers
                 var skenarioTest =
                     "admin\n" +        
                     "admin123\n" +
-                    "99\n" +         //inputmenu 99(tidak ada) tetap berada di menu        
+                    "99\n" +         //input menu 99(tidak ada) tetap berada di menu        
                     "0\n" +          //Kembali ke halaman login     
                     "exit\n";
 
