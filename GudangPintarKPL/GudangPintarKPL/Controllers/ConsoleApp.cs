@@ -1,6 +1,7 @@
 ﻿using GudangPintar.Model;
 using GudangPintarKPL.Models;
 using GudangPintarKPL.Printer;
+using GudangPintarKPL.Controllers;
 using System;
 
 namespace GudangPintar.Controllers
