@@ -1,5 +1,6 @@
 ﻿using GudangPintar.Model;
 using System.Collections.Generic;
+using System.Data;
 using System.Diagnostics;
 using System.Linq;
 
@@ -114,5 +115,7 @@ namespace GudangPintar.Controllers
             s.KurangiStok(jumlah);
             return true;
         }
+
+
     }
 }
