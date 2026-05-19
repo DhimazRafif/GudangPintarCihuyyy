@@ -1,4 +1,4 @@
-﻿using GudangPintar.Models;
+﻿using GudangPintar.Model;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
@@ -75,21 +75,20 @@ namespace TestGudangPintar.Models
         [TestMethod]
         public void GetRowData_MengembalikanDataHistoryDalamArray()
         {
-            // Arrange
-            var fixedTime = new DateTime(2024, 1, 15, 10, 30, 0);
-            var history = new StockHistory("Keyboard", "Tambah", 3, "budi");
+            // 1. Tentukan tanggal pasti untuk testing
+            var tanggalTes = new DateTime(2024, 1, 15, 10, 30, 0);
 
-            // Gunakan reflection untuk mengganti Tanggal (atau buat properti setter)
-            typeof(StockHistory).GetProperty(nameof(StockHistory.Tanggal))
-                ?.SetValue(history, fixedTime);
+            // 2. Buat objek history dengan tanggal tersebut
+            var history = new StockHistory("Buku Tulis", "Tambah Barang", 10, "admin", tanggalTes);
 
-            string[] expected = { "15/01/2024 10:30", "Keyboard", "Tambah", "3", "budi" };
+            // 3. Data yang diharapkan (harus sesuai format ToString di model)
+            var expected = new string[] { "Buku Tulis", "Tambah Barang", "10", "admin", "15/01/2024 10:30" };
 
-            // Act
-            string[] actual = history.getRowData();
+            // 4. Act
+            var actual = history.getRowData();
 
-            // Assert
-            CollectionAssert.AreEquivalent(expected, actual);
+            // 5. Assert
+            CollectionAssert.AreEquivalent(expected, actual); ;
         }
 
         [TestMethod]

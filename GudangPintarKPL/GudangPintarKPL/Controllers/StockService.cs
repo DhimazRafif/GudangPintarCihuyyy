@@ -17,6 +17,19 @@ namespace GudangPintar.Controllers
         {
             Add(new Stock("Buku Tulis", Category.ATK, 20, 5000));
             Add(new Stock("Pulpen", Category.ATK, 20, 2000));
+
+            
+            Add(new Stock("Buku Gambar", Category.ATK, 100, 5000));
+            Add(new Stock("Pulpen Gel Black", Category.ATK, 200, 3500));
+            Add(new Stock("Penghapus Putih", Category.ATK, 50, 2000));
+            Add(new Stock("Penggaris 30cm", Category.ATK, 30, 7500));
+
+            Add(new Stock("Beras Premium 5kg", Category.Sembako, 40, 75000));
+            Add(new Stock("Minyak Goreng 2L", Category.Sembako, 60, 34000));
+            Add(new Stock("Gula Pasir 1kg", Category.Sembako, 100, 17500));
+            Add(new Stock("Telur Ayam 1kg", Category.Sembako, 30, 28000));
+            Add(new Stock("Tepung Terigu 1kg", Category.Sembako, 80, 12000));
+            Add(new Stock("Susu Kental Manis", Category.Sembako, 120, 11500));
         }
 
         public bool Add(Stock s)
