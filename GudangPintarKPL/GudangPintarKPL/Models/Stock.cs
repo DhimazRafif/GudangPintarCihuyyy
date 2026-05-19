@@ -45,6 +45,13 @@ namespace GudangPintar.Model
             Harga = harga;
         }
 
+        //Method untuk bagian Testing
+        public static string[] getHeader()
+        {
+            return new[] { "Nama", "Kategori", "Jumlah", "Harga", "Status" };
+        }
+
+
         public string[] getRowData() {
 
             string hargaFormatted = string.Format(GudangConfig.LoadConfigFile().format_harga, Harga);
