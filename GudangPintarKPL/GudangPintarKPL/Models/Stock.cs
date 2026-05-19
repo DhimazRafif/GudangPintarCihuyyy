@@ -6,6 +6,7 @@ using System.Text;
 
 namespace GudangPintar.Model
 {
+    [TableHeader("Nama", "Kategori", "Jumlah", "Harga", "Status")]
     public class Stock : ITablePrint
     {
         public string NamaBarang { get; set; }
@@ -43,9 +44,6 @@ namespace GudangPintar.Model
             Kategori = kategori;
             Harga = harga;
         }
-
-        public static string[] getHeader() => 
-            new[] { "Nama", "Kategori", "Jumlah", "Harga", "Status"};
 
         public string[] getRowData() {
 
