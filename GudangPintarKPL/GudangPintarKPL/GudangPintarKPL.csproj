@@ -13,9 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Update="ConfigGudang\config_gudang.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <Folder Include="ConfigGudang\" />
   </ItemGroup>
 
 </Project>

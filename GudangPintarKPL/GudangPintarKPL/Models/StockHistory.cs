@@ -3,6 +3,7 @@ using System;
 
 namespace GudangPintar.Model
 {
+    [TableHeader("Tanggal ubah", "Nama Barang", "Aksi", "Jumlah", "User")]
     public class StockHistory : ITablePrint
     {
         public string NamaBarang { get; set; }
@@ -33,9 +34,6 @@ namespace GudangPintar.Model
         {
             Console.WriteLine($"{Tanggal} | {NamaBarang} | {Aksi} {Jumlah} | Oleh: {UserPelaku}");
         }
-
-        public static string[] getHeader() => 
-            new[] { "Waktu", "Barang", "Aksi", "Jumlah", "User"};
 
         public string[] getRowData() => new[]{
             Tanggal.ToString("dd/MM/yyyy HH:mm"),
