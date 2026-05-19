@@ -1,5 +1,6 @@
 ﻿using GudangPintar.Controllers;
-using GudangPintar.Models;
+using GudangPintar.Model;
+using GudangPintar;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Linq;

@@ -333,6 +333,8 @@ namespace TestGudangPintar.Controllers
                 var uService = new UserService();
                 var hService = new HistoryService();
 
+                int jumlahAwal = sService.GetAll().Count;
+
                 var app = new ConsoleApp(sService, uService, hService);
 
                 var skenarioTest =
@@ -361,7 +363,7 @@ namespace TestGudangPintar.Controllers
 
                     var semuaStok = sService.GetAll();
 
-                    Assert.AreEqual(3, semuaStok.Count, "Data barang gagal ditambahkan ke dalam List StockService!");
+                    Assert.AreEqual(jumlahAwal+1, semuaStok.Count, "Data barang gagal ditambahkan ke dalam List StockService!");
 
                     var barangBaru = semuaStok.FirstOrDefault(b => b.NamaBarang == "Pensil");
                     Assert.IsNotNull(barangBaru, "Barang 'Pensil' gagal ditambahkan ke dalam memori!");

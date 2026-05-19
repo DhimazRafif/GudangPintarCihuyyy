@@ -16,6 +16,14 @@ namespace GudangPintar.Controllers
         {
             Add("admin", "admin@mail.com", "admin123", Role.Admin);
             Add("user", "user@mail.com", "user123", Role.User);
+            Add("budi_staf", "budi.s@mail.com", "BudiGudang01", Role.User);
+            Add("iwan_gudang", "iwan.logistik@gmail.com", "IwanSafety1st", Role.User);
+            Add("ani_logistik", "ani.l@mail.com", "AniLog2026", Role.User);
+            Add("eko_kurir", "eko.kurir@gudang.com", "EkoCepat123", Role.User);
+            Add("rina_admin_stok", "rina.stok@mail.com", "RinaPintar456", Role.User);
+            Add("joko_petugas", "joko.p@gmail.com", "JokoCheck99", Role.User);
+            Add("maya_inventori", "maya.inv@mail.com", "MayaInv88", Role.User);
+            Add("tedi_checker", "tedi.c@gudang.com", "TediCheck2026", Role.User);
         }
 
         public List<User> GetAll() => users;

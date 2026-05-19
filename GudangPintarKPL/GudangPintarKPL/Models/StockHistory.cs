@@ -20,6 +20,15 @@ namespace GudangPintar.Model
             Tanggal = DateTime.Now;
         }
 
+        public StockHistory(string nama, string aksi, int jumlah, string pengguna, DateTime tanggal)
+        {
+            NamaBarang = nama;
+            Aksi = aksi;
+            Jumlah = jumlah;
+            UserPelaku = pengguna;
+            Tanggal = tanggal;
+        }
+
         public void Tampilkan()
         {
             Console.WriteLine($"{Tanggal} | {NamaBarang} | {Aksi} {Jumlah} | Oleh: {UserPelaku}");

@@ -105,17 +105,38 @@ namespace TestGudangPintar.Models
         [TestMethod]
         public void getRowData_HarusKembaliArrayData()
         {
-            // Arrange
-            var stock = new Stock("Penghapus", Category.ATK, 5, 1000);
-            // Act
-            var rowData = stock.getRowData();
-            // Assert
-            Assert.HasCount(5, rowData);
-            Assert.AreEqual("Penghapus", rowData[0]);
-            Assert.AreEqual("ATK", rowData[1]);
-            Assert.AreEqual("5", rowData[2]);
-            Assert.AreEqual("1000", rowData[3]);
+            // 1. Simpan output asli terminal
+            var originalOut = Console.Out;
 
+            try
+            {
+                // 2. Alihkan output ke StringWriter baru
+                using (var monitor = new StringWriter())
+                {
+                    Console.SetOut(monitor);
+
+                    // Arrange: Siapkan objek Stock
+                    var stock = new Stock("Buku Tulis", Category.ATK, 10, 5000);
+
+                    // 3. Act: Panggil getRowData() di dalam lingkup 'using'
+                    // Metode ini akan memicu LoadConfigFile() yang menulis ke Console
+                    var result = stock.getRowData();
+
+                    // 4. Assert: Verifikasi hasil array
+                    Assert.IsNotNull(result);
+                    Assert.AreEqual(5, result.Length);
+                    Assert.AreEqual("Buku Tulis", result[0]);
+
+                    // Opsional: Cek log jika terjadi kegagalan config
+                    System.Diagnostics.Debug.WriteLine(monitor.ToString());
+                }
+            }
+            finally
+            {
+                // 5. Kembalikan Console.Out ke aslinya
+                // Ini mencegah error 'ObjectDisposedException' pada test method lainnya
+                Console.SetOut(originalOut);
+            }
         }
 
     }

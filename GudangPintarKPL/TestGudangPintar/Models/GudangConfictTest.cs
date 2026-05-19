@@ -1,11 +1,13 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using GudangPintar.Model;
 using GudangPintarKPL.Models;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.IO;
 using System.Text.Json;
 
 namespace TestGudangPintar.Models
 {
+    [DoNotParallelize]
     [TestClass]
     public class GudangConfictTest
     {
@@ -42,35 +44,71 @@ namespace TestGudangPintar.Models
         [TestMethod]
         public void TestLoadConfigFile_FileNotFound_HarusReturnDefault()
         {
-            // Arrange: Pastikan file tidak ada
-            if (File.Exists(ConfigFile))
+            var originalOut = Console.Out;
+
+            try
             {
-                File.Delete(ConfigFile);
+                // Arrange: Hapus File jika ada
+                if (File.Exists(ConfigFile))
+                {
+                    File.Delete(ConfigFile);
+                }
+
+                using (var monitor = new StringWriter())
+                {
+                    // Alihkan output ke monitor
+                    Console.SetOut(monitor);
+
+                    // Act: Panggil fungsi di dalam lingkup 'using'
+                    // Ini akan memicu catch di LoadConfigFile dan Console.WriteLine
+                    var result = GudangConfig.LoadConfigFile();
+
+                    // Assert
+                    Assert.IsNotNull(result);
+                    Assert.AreEqual("IDR", result.mata_uang);
+                    Assert.AreEqual("Rp{0:N2}", result.format_harga);
+
+                    // Verifikasi pesan error muncul di monitor
+                    Assert.IsTrue(monitor.ToString().Contains("Gagal memuat konfigurasi"));
+                }
             }
-
-            // Act
-            // Karena kode aslimu pake try-catch, dia gak bakal crash, tapi return IDR
-            var result = GudangConfig.LoadConfigFile();
-
-            // Assert
-            Assert.IsNotNull(result);
-            Assert.AreEqual("IDR", result.mata_uang);
-            Assert.AreEqual("Rp{0:N2}", result.format_harga);
+            finally
+            {
+                Console.SetOut(originalOut);
+            }
         }
 
         [TestMethod]
         public void TestLoadConfigFile_InvalidJson_HarusReturnDefault()
         {
-            // Arrange: Buat file tapi isinya rusak (bukan JSON)
-            File.WriteAllText(ConfigFile, "INI BUKAN JSON FORMAT");
+            var originalOut = Console.Out;
 
-            // Act
-            var result = GudangConfig.LoadConfigFile();
+            try
+            {
+                
+                File.WriteAllText(ConfigFile, "{ invalid json }");
 
-            // Assert
-            // Masuk ke catch dan mengembalikan nilai default
-            Assert.AreEqual("IDR", result.mata_uang);
-            Assert.AreEqual("Rp{0:N2}", result.format_harga);
+                using (var monitor = new StringWriter())
+                {
+                    //  Alihkan output ke monitor
+                    Console.SetOut(monitor);
+
+                    //  Panggil fungsi yang akan memicu error dan menulis ke Console
+                    var result = GudangConfig.LoadConfigFile();
+
+                    //  Verifikasi hasil default
+                    Assert.IsNotNull(result);
+                    Assert.AreEqual("IDR", result.mata_uang);
+
+                    // Opsional: Cek apakah pesan gagal muncul di layar palsu
+                    Assert.IsTrue(monitor.ToString().Contains("Gagal memuat konfigurasi"),
+    $"\n--- DEBUG LOG ---\nIsi monitor kosong atau berbeda!\nIsi layar: [{monitor.ToString()}]\n-----------------");
+                }
+            }
+            finally
+            {
+                Console.SetOut(originalOut);
+            }
         }
 
         [TestMethod]
