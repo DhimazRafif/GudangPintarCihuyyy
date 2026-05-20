@@ -27,12 +27,7 @@ namespace GudangPintarKPL.Models
         }
 
         // Menthod untuk bagian testing
-        public static string[] getHeader()
-        {
-            return new[] { "ID", "Username", "Email", "Role" };
-        }
-
-
+   
         public string[] getRowData() => new[] { Id.ToString(), Username, Email,RoleUser.ToString()};
     }
 }

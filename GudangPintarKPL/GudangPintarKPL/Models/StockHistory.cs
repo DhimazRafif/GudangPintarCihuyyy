@@ -36,12 +36,6 @@ namespace GudangPintar.Model
         }
 
         //Method untuk bagian Testing 
-        public static string[] getHeader()
-        {
-            return new[] { "Waktu", "Barang", "Aksi", "Jumlah", "User" };
-        }
-
-
         public string[] getRowData() => new[]{
             Tanggal.ToString("dd/MM/yyyy HH:mm"),
             NamaBarang,
