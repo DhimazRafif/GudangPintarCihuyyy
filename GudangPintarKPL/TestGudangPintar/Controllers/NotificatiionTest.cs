@@ -1,12 +1,4 @@
-﻿using GudangPintar.Controllers;
-using GudangPintar.Model;
-using GudangPintarKPL.Controllers;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
-using System.Data;
-using System.IO;
-using System.Text;
+﻿using GudangPintar.Model;
 
 namespace TestGudangPintar.Controllers
 {

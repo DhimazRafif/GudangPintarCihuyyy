@@ -1,11 +1,4 @@
 ﻿using GudangPintar.Model;
-using GudangPintarKPL.Controllers;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
-using System.Data;
-using System.IO;
-using System.Text;
 
 namespace TestGudangPintar.Models
 {
@@ -114,8 +107,7 @@ namespace TestGudangPintar.Models
             Assert.AreEqual("Penghapus", rowData[0]);
             Assert.AreEqual("ATK", rowData[1]);
             Assert.AreEqual("5", rowData[2]);
-            Assert.AreEqual("1000", rowData[3]);
-
+            Assert.AreEqual("Rp1.000,00", rowData[3]);
         }
 
     }

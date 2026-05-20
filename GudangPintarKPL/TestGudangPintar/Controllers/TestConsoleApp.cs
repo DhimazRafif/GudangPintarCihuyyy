@@ -1,8 +1,4 @@
-﻿using System;
-using GudangPintarKPL.Controllers;
-using System.Text;
-using System.IO;
-using GudangPintar.Controllers;
+﻿using GudangPintar.Controllers;
 
 namespace TestGudangPintar.Controllers
 {
@@ -61,7 +57,7 @@ namespace TestGudangPintar.Controllers
                 var app = new ConsoleApp(new StockService(), new UserService(), new HistoryService());
 
                 //Login tanpa input apapun
-                var skenarioTest = "\n"+"\n"+"\n"+"exit"+"\n";
+                var skenarioTest = "\n" + "\n" + "\n" + "exit" + "\n";
 
                 using (var keyboardPalsu = new StringReader(skenarioTest))
                 using (var monitorPalsu = new StringWriter())
@@ -97,7 +93,7 @@ namespace TestGudangPintar.Controllers
                 var app = new ConsoleApp(new StockService(), new UserService(), new HistoryService());
 
                 //Login dengan username dan password salah
-                var skenarioTest = "salah\n"+"salah123\n"+"\n"+"exit\n";
+                var skenarioTest = "salah\n" + "salah123\n" + "\n" + "exit\n";
 
                 using (var keyboardPalsu = new StringReader(skenarioTest))
                 using (var monitorPalsu = new StringWriter())
@@ -173,12 +169,12 @@ namespace TestGudangPintar.Controllers
             {
                 // Menggunakan HistoryService kosong
                 var app = new ConsoleApp(new StockService(), new UserService(), new HistoryService());
-                var skenario = 
-                    "admin\n"+      //username
-                    "admin123\n"+   //password
-                    "4\n"+          //menu history
-                    "\n"+           //Kembali ke menu
-                    "0\n"+          //Kembali ke halaman login
+                var skenario =
+                    "admin\n" +      //username
+                    "admin123\n" +   //password
+                    "4\n" +          //menu history
+                    "\n" +           //Kembali ke menu
+                    "0\n" +          //Kembali ke halaman login
                     "exit\n";       //Keluar program
 
                 using (var keyboard = new StringReader(skenario))
@@ -227,7 +223,7 @@ namespace TestGudangPintar.Controllers
                 var app = new ConsoleApp(new StockService(), new UserService(), new HistoryService());
 
                 var skenarioTest =
-                    "admin\n" +        
+                    "admin\n" +
                     "admin123\n" +
                     "99\n" +         //input menu 99(tidak ada) tetap berada di menu        
                     "0\n" +          //Kembali ke halaman login     
@@ -290,7 +286,7 @@ namespace TestGudangPintar.Controllers
 
                 var semuaBarang = sService.GetAll();
                 //mengosongkan data dummy
-                foreach (var barang in semuaBarang.ToList()) 
+                foreach (var barang in semuaBarang.ToList())
                 {
                     sService.Delete(barang.NamaBarang);
                 }
@@ -306,9 +302,9 @@ namespace TestGudangPintar.Controllers
                 using (var keyboard = new StringReader(skenario))
                 using (var monitor = new StringWriter())
                 {
-                    Console.SetIn(keyboard); 
-                    Console.SetOut(monitor); 
-                    
+                    Console.SetIn(keyboard);
+                    Console.SetOut(monitor);
+
                     app.Run();
 
                     var hasilLayar = monitor.ToString();
@@ -490,11 +486,11 @@ namespace TestGudangPintar.Controllers
 
                 var skenario =
                     "admin\nadmin123\n" +
-                    "3\n" +                 
-                    "2\n" +                 
+                    "3\n" +
+                    "2\n" +
                     "Buku Tulis\n" +       //Nama barang yang dihapus 
-                    "\n" +                  
-                    "0\nexit\n";            
+                    "\n" +
+                    "0\nexit\n";
 
                 using (var keyboard = new StringReader(skenario))
                 using (var monitor = new StringWriter())
@@ -519,14 +515,14 @@ namespace TestGudangPintar.Controllers
                 var app = new ConsoleApp(new StockService(), new UserService(), new HistoryService());
                 var skenario =
                     "admin\nadmin123\n" +
-                    "3\n" +                 
-                    "3\n" +                 
+                    "3\n" +
+                    "3\n" +
                     "Buku Tulis\n" +        //Nama barang yang diubah
                     "Buku Gambar\n" +       //Nama baru
                     "ATK\n" +               //Category
                     "6000\n" +              //Harga Baru
-                    "\n" +                                 
-                    "0\nexit\n";            
+                    "\n" +
+                    "0\nexit\n";
 
                 using (var keyboard = new StringReader(skenario))
                 using (var monitor = new StringWriter())
@@ -577,8 +573,8 @@ namespace TestGudangPintar.Controllers
                     "4\n" +                 // Tambah stock
                     "Buku Tulis\n" +        // Nama Barang
                     "10\n" +                // Jumlah yang ditambah
-                    "\n" +                  
-                    "0\nexit\n";           
+                    "\n" +
+                    "0\nexit\n";
 
                 using (var keyboard = new StringReader(skenario))
                 using (var monitor = new StringWriter())
@@ -603,8 +599,8 @@ namespace TestGudangPintar.Controllers
                     "5\n" +                 // Kurangi Stok
                     "Buku Tulis\n" +        // Nama barang
                     "5\n" +                 // Jumlah yang dikurangi
-                    "\n" +                  
-                    "0\nexit\n";            
+                    "\n" +
+                    "0\nexit\n";
 
                 using (var keyboard = new StringReader(skenario))
                 using (var monitor = new StringWriter())
@@ -706,9 +702,9 @@ namespace TestGudangPintar.Controllers
                     "admin\n" +
                     "admin123\n" +
                     "1\n" +          //Kelola Akun
-                    "\n" +          
-                    "0\n" +          
-                    "0\n" + 
+                    "\n" +
+                    "0\n" +
+                    "0\n" +
                     "exit\n";
 
                 using (var keyboard = new StringReader(skenario))
@@ -721,7 +717,7 @@ namespace TestGudangPintar.Controllers
 
                     var hasilLayar = monitor.ToString();
 
-                   
+
                     Assert.IsTrue(hasilLayar.Contains("KELOLA AKUN") || hasilLayar.Contains("Kelola Akun"),
                         $"\n--- DEBUG LOG ---\nGagal memuat halaman Kelola Akun! Layar:\n[{hasilLayar}]\n-----------------");
                 }
@@ -743,18 +739,18 @@ namespace TestGudangPintar.Controllers
                 var app = new ConsoleApp(new StockService(), new UserService(), new HistoryService());
 
                 var skenario =
-                    "admin\n"+
-                    "admin123\n" +      
-                    "1\n" +                     
+                    "admin\n" +
+                    "admin123\n" +
+                    "1\n" +
                     "\n" +
-                    "1\n" + 
-                    "pegawai_baru\n" +      
-                    "pegawai@mail.com\n" +  
-                    "rahasia123\n" +        
-                    "User\n" +              
-                    "\n" +                  
-                    "\n" +                 
-                    "0\n0\nexit\n";            
+                    "1\n" +
+                    "pegawai_baru\n" +
+                    "pegawai@mail.com\n" +
+                    "rahasia123\n" +
+                    "User\n" +
+                    "\n" +
+                    "\n" +
+                    "0\n0\nexit\n";
 
                 using (var keyboardPalsu = new StringReader(skenario))
                 using (var monitorPalsu = new StringWriter())
@@ -768,10 +764,10 @@ namespace TestGudangPintar.Controllers
                         $"\n--- DEBUG LOG ---\nPesan error tidak ditemukan! Layar:\n[{hasilLayar}]\n-----------------");
                 }
             }
-            finally 
-            { 
-                Console.SetOut(originalOut); 
-                Console.SetIn(originalIn); 
+            finally
+            {
+                Console.SetOut(originalOut);
+                Console.SetIn(originalIn);
             }
         }
 
@@ -790,7 +786,7 @@ namespace TestGudangPintar.Controllers
                     "1\n" +                 // Tambah
                     "admin\n" + "a@m.com\n" + "p\n" + "Admin\n" +
                     "\n" +
-                    "\n" + 
+                    "\n" +
                     "0\n0\nexit\n";
 
                 using (var keyboard = new StringReader(skenario))
@@ -813,11 +809,11 @@ namespace TestGudangPintar.Controllers
 
                 var skenarioTest =
                     "admin\nadmin123\n" +
-                    "1\n" +                 
+                    "1\n" +
                     "\n" +
-                    "2\n"+
+                    "2\n" +
                     "BukanAngka\n" +       //ID dipilih berupa huruf                  
-                    "0\n" +                                  
+                    "0\n" +
                     "exit\n";
 
                 using (var keyboardPalsu = new StringReader(skenarioTest))
@@ -832,10 +828,10 @@ namespace TestGudangPintar.Controllers
                         $"\n--- DEBUG LOG ---\nPesan error tidak ditemukan! Layar:\n[{hasilLayar}]\n-----------------");
                 }
             }
-            finally 
-            { 
-                Console.SetOut(originalOut); 
-                Console.SetIn(originalIn); 
+            finally
+            {
+                Console.SetOut(originalOut);
+                Console.SetIn(originalIn);
             }
         }
 
@@ -878,16 +874,16 @@ namespace TestGudangPintar.Controllers
                     "admin123\n" +          // Input password baru
                     "Admin\n" +             // Input role baru
                     "\n" +
-                    "\n" +                  
+                    "\n" +
                     "0\n" +                 // Kembali ke menu 
                     "0\nexit\n";            // Logout & Exit
 
                 using (var keyboard = new StringReader(skenario))
                 using (var monitor = new StringWriter())
                 {
-                    Console.SetIn(keyboard); 
-                    Console.SetOut(monitor); 
-                    
+                    Console.SetIn(keyboard);
+                    Console.SetOut(monitor);
+
                     app.Run();
                 }
             }
@@ -905,7 +901,7 @@ namespace TestGudangPintar.Controllers
                 var skenario =
                     "admin\nadmin123\n" +
                     "1\n" +                 // Kelola akun
-                    "\n" + 
+                    "\n" +
                     "99\n" +                // Pilih 99 
                     "\n" +
                     "\n" +
@@ -914,7 +910,7 @@ namespace TestGudangPintar.Controllers
                     "\n" +
                     "\n" +
                     "0\n" +                 // Kembali ke menu
-                    "0\nexit\n";            
+                    "0\nexit\n";
 
                 using (var keyboard = new StringReader(skenario))
                 using (var monitor = new StringWriter())

@@ -1,7 +1,4 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using GudangPintarKPL.Models;
-using System;
-using System.IO;
+﻿using GudangPintarKPL.Models;
 using System.Text.Json;
 
 namespace TestGudangPintar.Models

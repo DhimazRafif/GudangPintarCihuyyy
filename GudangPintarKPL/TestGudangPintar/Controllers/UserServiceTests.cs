@@ -1,8 +1,5 @@
 ﻿using GudangPintar.Controllers;
 using GudangPintarKPL.Models;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Linq;
-using System.Collections.Generic; 
 
 namespace TestGudangPintar.Controllers
 {
@@ -104,7 +101,7 @@ namespace TestGudangPintar.Controllers
             // Assert
             Assert.IsTrue(result, "Add user valid harus return true");
             Assert.AreEqual(initialCount + 1, _userService.GetAll().Count, "Jumlah user harus bertambah 1");
-            
+
             var addedUser = _userService.GetAll().FirstOrDefault(u => u.Username == username);
             Assert.IsNotNull(addedUser, "User harus ada di list");
             Assert.AreEqual(email, addedUser.Email);

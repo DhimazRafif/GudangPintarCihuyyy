@@ -1,5 +1,4 @@
 ﻿using GudangPintarKPL.Models;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace TestGudangPintar.Models
 {

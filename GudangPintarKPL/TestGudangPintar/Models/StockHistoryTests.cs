@@ -1,6 +1,4 @@
-﻿using GudangPintar.Models;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
+﻿using GudangPintar.Model;
 
 namespace TestGudangPintar.Models
 {

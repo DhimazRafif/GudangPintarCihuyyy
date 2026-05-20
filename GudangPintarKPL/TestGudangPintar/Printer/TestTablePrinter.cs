@@ -1,10 +1,5 @@
 ﻿using GudangPintarKPL.Models;
 using GudangPintarKPL.Printer;
-using System;
-using System.Collections.Generic;
-using System.Data;
-using System.IO;
-using System.Text;
 
 
 namespace TestGudangPintar.Printer
@@ -28,7 +23,7 @@ namespace TestGudangPintar.Printer
 
             string judul = "Test Data Akun";
 
-            TablePrinter.Print(DummyData,judul);
+            TablePrinter.Print(DummyData, judul);
 
 
             var hasilLayar = monitorPalsu.ToString();

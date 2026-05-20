@@ -49,4 +49,5 @@ namespace TestGudangPintar.Controllers
             Assert.AreEqual("[AMAN]", StockAlertStatus.GetMessage(sAman));
         }
     }
+        #endregion
 }
