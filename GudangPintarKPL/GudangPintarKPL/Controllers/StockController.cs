@@ -30,7 +30,8 @@ public class StockController : ControllerBase
             namaBarang,
             kategori,
             jumlah,
-            harga
+            harga,
+            null
         );
 
         bool berhasil = s.Add(stock);

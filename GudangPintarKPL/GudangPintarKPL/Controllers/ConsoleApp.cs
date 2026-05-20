@@ -1,9 +1,10 @@
 ﻿using GudangPintar.Model;
+using GudangPintarKPL.Controllers;
 using GudangPintarKPL.Models;
 using GudangPintarKPL.Printer;
 using Microsoft.AspNetCore.Components.Sections;
-using GudangPintarKPL.Controllers;
 using System;
+using System.Globalization;
 
 namespace GudangPintar.Controllers
 {
@@ -148,7 +149,21 @@ namespace GudangPintar.Controllers
                     return;
                 }
 
-                bool berhasil = stock.Add(new Stock(nama, kat, j, h));
+                Console.Write("Tanggal kadaluarsa (yyyy-MM-dd) [kosong jika tidak ada]: ");
+                var kadInput = Console.ReadLine();
+                DateTime? kadaluarsa = null;
+                if (!string.IsNullOrWhiteSpace(kadInput))
+                {
+                    if (DateTime.TryParseExact(kadInput, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime parsed))
+                        kadaluarsa = parsed;
+                    else
+                    {
+                        Console.WriteLine("Format tanggal salah. Gunakan yyyy-MM-dd.");
+                        return;
+                    }
+                }
+
+                bool berhasil = stock.Add(new Stock(nama, kat, j, h, kadaluarsa));
 
                 if (berhasil)
                 {
@@ -185,7 +200,21 @@ namespace GudangPintar.Controllers
                     return;
                 }
 
-                stock.Update(nama, newNama, kat, h);
+                Console.Write("Tanggal kadaluarsa (yyyy-MM-dd) [kosong jika tidak ada]: ");
+                var kadInput = Console.ReadLine();
+                DateTime? kadaluarsa = null;
+                if (!string.IsNullOrWhiteSpace(kadInput))
+                {
+                    if (DateTime.TryParseExact(kadInput, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime parsed))
+                        kadaluarsa = parsed;
+                    else
+                    {
+                        Console.WriteLine("Format tanggal salah. Gunakan yyyy-MM-dd.");
+                        return;
+                    }
+                }
+
+                stock.Update(nama, newNama, kat, h, kadaluarsa);
                 history.Add(new StockHistory(nama, "Edit Barang", 0, userLogin));
             }
 
