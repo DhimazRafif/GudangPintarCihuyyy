@@ -1,4 +1,5 @@
 ﻿using System;
+using GudangPintarKPL.Models;
 
 namespace GudangPintar.Model
 {
@@ -6,30 +7,45 @@ namespace GudangPintar.Model
     {
         Aman,
         Menipis,
-        Habis
+        Habis,
+        AkanKadaluarsa,
+        Kadaluarsa
     }
 
-    public class StockAlertStatus
+    public static class StockAlertStatus
     {
-        public static AlertState GetState(int jumlah)
+        public static AlertState GetState(Stock stock)
         {
-            if (jumlah == 0)
-                return AlertState.Habis;
-            else if (jumlah < 10)
-                return AlertState.Menipis;
-            else
-                return AlertState.Aman;
+            var cfg = GudangConfig.LoadConfigFile();
+
+            int ambangMenipis = cfg.AmbangMenipis;
+            int ambangHabis = cfg.AmbangHabis;
+            int hariPeringatan = cfg.PeringatanKadaluarsa;
+
+            var now = DateTime.Now;
+
+            if (stock.Kadaluarsa.HasValue)
+            {
+                var tgl = stock.Kadaluarsa.Value.Date;
+                if (tgl < now.Date) return AlertState.Kadaluarsa;
+                if (tgl <= now.Date.AddDays(hariPeringatan)) return AlertState.AkanKadaluarsa;
+            }
+
+            if (stock.Jumlah <= ambangHabis) return AlertState.Habis;
+            if (stock.Jumlah < ambangMenipis) return AlertState.Menipis;
+            return AlertState.Aman;
         }
 
         public static string GetMessage(Stock stock)
         {
-            var state = GetState(stock.Jumlah);
-
+            var state = GetState(stock);
             return state switch
             {
                 AlertState.Aman => "[AMAN]",
                 AlertState.Menipis => "[MENIPIS]",
                 AlertState.Habis => "[HABIS]",
+                AlertState.AkanKadaluarsa => "[AKAN KADALUARSA]",
+                AlertState.Kadaluarsa => "[KADALUARSA]",
                 _ => "[UNKNOWN]"
             };
         }

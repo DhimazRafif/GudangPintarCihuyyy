@@ -1,5 +1,6 @@
 ﻿using GudangPintar.Model;
 using GudangPintarKPL.Models;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
@@ -15,21 +16,20 @@ namespace GudangPintar.Controllers
 
         public StockService()
         {
-            Add(new Stock("Buku Tulis", Category.ATK, 20, 5000));
-            Add(new Stock("Pulpen", Category.ATK, 20, 2000));
+            Add(new Stock("Buku Tulis", Category.ATK, 20, 5000, null));
+            Add(new Stock("Pulpen", Category.ATK, 20, 2000, null));
 
-            
-            Add(new Stock("Buku Gambar", Category.ATK, 100, 5000));
-            Add(new Stock("Pulpen Gel Black", Category.ATK, 200, 3500));
-            Add(new Stock("Penghapus Putih", Category.ATK, 50, 2000));
-            Add(new Stock("Penggaris 30cm", Category.ATK, 30, 7500));
+            Add(new Stock("Buku Gambar", Category.ATK, 100, 5000, null));
+            Add(new Stock("Pulpen Gel Black", Category.ATK, 200, 3500, null));
+            Add(new Stock("Penghapus Putih", Category.ATK, 50, 2000, null));
+            Add(new Stock("Penggaris 30cm", Category.ATK, 30, 7500, null));
 
-            Add(new Stock("Beras Premium 5kg", Category.Sembako, 40, 75000));
-            Add(new Stock("Minyak Goreng 2L", Category.Sembako, 60, 34000));
-            Add(new Stock("Gula Pasir 1kg", Category.Sembako, 100, 17500));
-            Add(new Stock("Telur Ayam 1kg", Category.Sembako, 30, 28000));
-            Add(new Stock("Tepung Terigu 1kg", Category.Sembako, 80, 12000));
-            Add(new Stock("Susu Kental Manis", Category.Sembako, 120, 11500));
+            Add(new Stock("Beras Premium 5kg", Category.Sembako, 40, 75000, null));
+            Add(new Stock("Minyak Goreng 2L", Category.Sembako, 60, 34000, null));
+            Add(new Stock("Gula Pasir 1kg", Category.Sembako, 100, 17500, null));
+            Add(new Stock("Telur Ayam 1kg", Category.Sembako, 30, 28000, null));
+            Add(new Stock("Tepung Terigu 1kg", Category.Sembako, 80, 12000, null));
+            Add(new Stock("Susu Kental Manis", Category.Sembako, 120, 11500, null));
         }
 
         public bool Add(Stock s)
@@ -70,7 +70,8 @@ namespace GudangPintar.Controllers
             return stocks.FirstOrDefault(s => s.NamaBarang == nama);
         }
 
-        public void Update(string nama, string newNama, Category kategori, double harga)
+        // Update sekarang menerima tanggal kadaluarsa
+        public void Update(string nama, string newNama, Category kategori, double harga, DateTime? kadaluarsa)
         {
             var s = Get(nama);
 
@@ -82,7 +83,7 @@ namespace GudangPintar.Controllers
 
             if (s != null)
             {
-                s.EditStock(newNama, kategori, harga);
+                s.EditStock(newNama, kategori, harga, kadaluarsa);
             }
         }
 

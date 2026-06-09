@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 
 namespace GudangPintarKPL.Models
@@ -13,6 +14,20 @@ namespace GudangPintarKPL.Models
         public string Email { get; set; }
         public Role RoleUser { get; set; }
 
+
+        //Constructor default (untuk testing dan object initializer)
+        public User() { }
+
+        public User(int id, string username, string email, Role role)
+        {
+            Id = id;
+            Username = username;
+            Email = email;
+            RoleUser = role;
+        }
+
+        // Menthod untuk bagian testing
+   
         public string[] getRowData() => new[] { Id.ToString(), Username, Email,RoleUser.ToString()};
     }
 }

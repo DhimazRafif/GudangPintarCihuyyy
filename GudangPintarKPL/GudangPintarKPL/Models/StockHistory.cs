@@ -35,6 +35,7 @@ namespace GudangPintar.Model
             Console.WriteLine($"{Tanggal} | {NamaBarang} | {Aksi} {Jumlah} | Oleh: {UserPelaku}");
         }
 
+        //Method untuk bagian Testing 
         public string[] getRowData() => new[]{
             Tanggal.ToString("dd/MM/yyyy HH:mm"),
             NamaBarang,
