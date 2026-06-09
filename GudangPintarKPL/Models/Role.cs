@@ -8,5 +8,12 @@ namespace GudangPintarKPL.Models
     {
         Admin,
         User,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+        Karyawan,
+>>>>>>> main
+>>>>>>> 0befa517fd67ab1b05564b2334ef1276f04c4a37
     }
 }
