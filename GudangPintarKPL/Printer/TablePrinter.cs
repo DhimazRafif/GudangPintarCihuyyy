@@ -1,4 +1,6 @@
 ﻿using GudangPintarKPL.Models;
+using System.Linq;
+using System.Reflection;
 
 namespace GudangPintarKPL.Printer
 {
@@ -8,17 +10,27 @@ namespace GudangPintarKPL.Printer
         {
             Console.WriteLine($"\n=== {judul.ToUpper()} ===");
 
-            string[] headers = T.getHeader();
+            if (data == null || !data.Any())
+            {
+                Console.WriteLine("[ INFO: Data kosong atau belum tersedia ]");
+                Console.WriteLine("\nTekan ENTER untuk kembali");
+                Console.ReadLine();
+                return;
+            }
+            //menambil atribut 
+            var attribute = (TableHeaderAttribute)Attribute.GetCustomAttribute(typeof(T), typeof(TableHeaderAttribute));
+
+            string[] headers = attribute.Headers;
 
             List<string> formatParts = new List<string>();
             for (int i = 0; i < headers.Length; i++)
             {
-                formatParts.Add("{" + i + ",-18}");
+                formatParts.Add("{" + i + ",-25}");
             }
             string format = string.Join(" ", formatParts);
 
-            Console.WriteLine(format,headers);
-            Console.WriteLine(new string('-',headers.Length * 19));
+            Console.WriteLine(format, headers);
+            Console.WriteLine(new string('-', headers.Length * 23));
 
             foreach (var item in data)
             {
@@ -27,6 +39,6 @@ namespace GudangPintarKPL.Printer
 
             Console.WriteLine("Tekan ENTER untuk kembali");
             Console.ReadLine();
-        } 
+        }
     }
 }
