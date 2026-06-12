@@ -1,12 +1,9 @@
 ﻿using GudangPintar.Model;
 using GudangPintarKPL.Models;
-using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
 using System.Linq;
-using MySql.Data.MySqlClient;
-using GudangPintarKPL.ConfigDatabase;
 
 namespace GudangPintar.Controllers
 {
@@ -14,45 +11,25 @@ namespace GudangPintar.Controllers
     {
         private List<Stock> stocks = new();
 
-        public List<Stock> GetAll()
+        public List<Stock> GetAll() => stocks;
+
+        public StockService()
         {
-            List<Stock> listBarang = new List<Stock>();
+            Add(new Stock("Buku Tulis", Category.ATK, 20, 5000));
+            Add(new Stock("Pulpen", Category.ATK, 20, 2000));
 
-            using (MySqlConnection connection = DBConnection.GetInstance().GetConnection())
-            {
-                string query = "SELECT b.barangid,b.name,c.name AS 'Category Name',b.quantity,b.price\r\n" +
-                    "FROM barang b\r\n" +
-                    "JOIN category c ON b.categoryid = c.categoryid";
 
-                using (MySqlCommand command = new MySqlCommand(query,connection))
-                {
-                    try
-                    {
-                        connection.Open();
-                        using (MySqlDataReader reader = command.ExecuteReader())
-                        {
-                            while (reader.Read())
-                            {
-                                int id = Convert.ToInt32(reader["barangid"]);
-                                string nama = reader["name"].ToString();
-                                int kuantitas = Convert.ToInt32(reader["quantity"]);
-                                double harga = Convert.ToDouble(reader["price"]);
-                                string categoryName = reader["Category Name"].ToString();
+            Add(new Stock("Buku Gambar", Category.ATK, 100, 5000));
+            Add(new Stock("Pulpen Gel Black", Category.ATK, 200, 3500));
+            Add(new Stock("Penghapus Putih", Category.ATK, 50, 2000));
+            Add(new Stock("Penggaris 30cm", Category.ATK, 30, 7500));
 
-                                Stock newStock = new Stock(id, nama, categoryName, harga, kuantitas); ;
-
-                                listBarang.Add(newStock);
-                            }
-                        }
-                    }
-                    catch(MySqlException ex)
-                    {
-                        System.Diagnostics.Debug.WriteLine("Database Error: " + ex.Message);
-                    }
-                }
-            }
-
-            return listBarang;
+            Add(new Stock("Beras Premium 5kg", Category.Sembako, 40, 75000));
+            Add(new Stock("Minyak Goreng 2L", Category.Sembako, 60, 34000));
+            Add(new Stock("Gula Pasir 1kg", Category.Sembako, 100, 17500));
+            Add(new Stock("Telur Ayam 1kg", Category.Sembako, 30, 28000));
+            Add(new Stock("Tepung Terigu 1kg", Category.Sembako, 80, 12000));
+            Add(new Stock("Susu Kental Manis", Category.Sembako, 120, 11500));
         }
 
         public bool Add(Stock s)
@@ -93,8 +70,7 @@ namespace GudangPintar.Controllers
             return stocks.FirstOrDefault(s => s.NamaBarang == nama);
         }
 
-        // Update sekarang menerima tanggal kadaluarsa
-        public void Update(string nama, string newNama, Category kategori, double harga, DateTime? kadaluarsa)
+        public void Update(string nama, string newNama, Category kategori, double harga)
         {
             var s = Get(nama);
 
