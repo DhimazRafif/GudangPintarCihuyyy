@@ -1,12 +1,14 @@
 ﻿using GudangPintar.Controllers;
+using GudangPintar.Controllers;
 using GudangPintarGui.ControllerGui;
 using GudangPintarKPL.Controllers;
-using GudangPintarKPL.Models;
+using GudangPintarGui.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Reflection.Emit;
 using System.Text;
 using System.Windows.Forms;
 
@@ -14,26 +16,35 @@ namespace GudangPintarGui.View
 {
     public partial class DashboardPegawai : Form
     {
-        private readonly User _currentUser;
-        private readonly StockService _stockService;
-        private readonly UserService _userService;
-        private readonly HistoryService _historyService;
         private readonly DashboardController _dashboardController;
-        public DashboardPegawai(User user, StockService s, HistoryService h)
+        public DashboardPegawai(User user)
         {
-            InitializeComponent();
-
-            _currentUser = user;
-
-            _dashboardController = new DashboardController(s, h);
+            try
+            {
+                InitializeComponent();
+                _dashboardController = new DashboardController();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Gagal inisialisasi komponen di Constructor:\n{ex.Message}",
+                            "Fatal Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void DashboardPegawai_Load(object sender, EventArgs e)
         {
-            _dashboardController.LoadDataBarang(dgvBarangPegawai);
-
-            _dashboardController.UpdateSummaryCards(lblTotalBarangPegawai, lblTotalStokPegawai);
+            try
+            {
+                _dashboardController.LoadDataBarang(dgvBarangPegawai);
+                _dashboardController.UpdateSummaryCards(lblTotalBarangPegawai, lblTotalStokPegawai);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Terjadi eror saat mengambil data Barang:\n\nPesan: {ex.Message}\n\nDetail: {ex.StackTrace}",
+                            "Database Error di Load Event", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
+
         private void btnLogout_Click(object sender, EventArgs e)
         {
             this.Close();
