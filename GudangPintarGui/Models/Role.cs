@@ -11,6 +11,9 @@ namespace GudangPintarGui.Models
 
         // Konstanta dipusatkan di RoleService.ROLE_ADMIN dan RoleService.ROLE_PEGAWAI
         // untuk menghindari duplikasi definisi (DRY Principle)
+
+        public const int ADMIN = 1;
+        public const int PEDAWAI = 2;
+
     }
 }
-

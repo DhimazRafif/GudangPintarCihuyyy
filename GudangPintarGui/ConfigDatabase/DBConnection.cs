@@ -1,6 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 
-namespace GudangPintarKPL.ConfigDatabase
+namespace GudangPintarGui.ConfigDatabase
 {
     public class DBConnection
     {
@@ -16,7 +16,6 @@ namespace GudangPintarKPL.ConfigDatabase
             {
                 _instance = new DBConnection();
             }
-
             return _instance;
         }
 

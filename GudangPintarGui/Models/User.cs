@@ -1,6 +1,8 @@
+
 ﻿using GudangPintarGui.ServiceGUI;
 using System;
 using System.Diagnostics;
+﻿using GudangPintarKPL.Models;
 
 namespace GudangPintarGui.Models
 {
@@ -12,6 +14,8 @@ namespace GudangPintarGui.Models
         public string Username { get; set; }
         public string Password { get; set; }
         public int Role { get; set; }
+ 
+        public string RoleUser {  get; set; } // Penyimpanan data nama berdasarkan foreign key role
         public bool IsActive { get; set; } = true;
         public DateTime CreatedAt { get; set; } = DateTime.Now;
         public DateTime UpdatedAt { get; set; } = DateTime.Now;
@@ -54,5 +58,6 @@ namespace GudangPintarGui.Models
 
         public string RoleName => Role == RoleService.ROLE_ADMIN ? "Admin" : "Pegawai";
         public string StatusText => IsActive ? "Aktif" : "Nonaktif";
+        public static string[] getHeader() => new[] { "ID", "Nama", "Username", "Role", "Status" };
     }
 }

@@ -214,7 +214,7 @@ namespace GudangPintar.Controllers
                     }
                 }
 
-                stock.Update(nama, newNama, kat, h, kadaluarsa);
+                stock.Update(nama, newNama, kat, h);
                 history.Add(new StockHistory(nama, "Edit Barang", 0, userLogin));
             }
 
