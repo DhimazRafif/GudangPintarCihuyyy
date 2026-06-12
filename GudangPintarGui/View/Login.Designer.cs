@@ -120,7 +120,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = SystemColors.ActiveBorder;
+            BackColor = Color.Honeydew;
             ClientSize = new Size(1262, 753);
             Controls.Add(panel1);
             MinimumSize = new Size(1100, 656);

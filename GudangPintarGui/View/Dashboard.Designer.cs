@@ -51,7 +51,7 @@
             // 
             // panel1
             // 
-            panel1.BackColor = Color.PaleGreen;
+            panel1.BackColor = Color.LimeGreen;
             panel1.Controls.Add(btnLogout);
             panel1.Controls.Add(button4);
             panel1.Controls.Add(button3);
@@ -76,7 +76,7 @@
             // 
             // button4
             // 
-            button4.BackColor = Color.GreenYellow;
+            button4.BackColor = Color.LightGreen;
             button4.FlatStyle = FlatStyle.Flat;
             button4.Location = new Point(60, 323);
             button4.Name = "button4";
@@ -87,7 +87,7 @@
             // 
             // button3
             // 
-            button3.BackColor = Color.GreenYellow;
+            button3.BackColor = Color.LightGreen;
             button3.FlatStyle = FlatStyle.Flat;
             button3.Location = new Point(60, 261);
             button3.Name = "button3";
@@ -98,7 +98,7 @@
             // 
             // button2
             // 
-            button2.BackColor = Color.GreenYellow;
+            button2.BackColor = Color.LightGreen;
             button2.FlatStyle = FlatStyle.Flat;
             button2.Location = new Point(60, 202);
             button2.Name = "button2";
@@ -109,7 +109,7 @@
             // 
             // button1
             // 
-            button1.BackColor = Color.GreenYellow;
+            button1.BackColor = Color.LightGreen;
             button1.FlatStyle = FlatStyle.Flat;
             button1.Location = new Point(60, 140);
             button1.Name = "button1";
@@ -120,7 +120,7 @@
             // 
             // panel2
             // 
-            panel2.BackColor = Color.PaleGreen;
+            panel2.BackColor = Color.LimeGreen;
             panel2.Controls.Add(lblTotalBarang);
             panel2.Controls.Add(label1);
             panel2.Location = new Point(242, 3);
@@ -150,7 +150,7 @@
             // 
             // panel3
             // 
-            panel3.BackColor = Color.PaleGreen;
+            panel3.BackColor = Color.LimeGreen;
             panel3.Controls.Add(lblTotalStok);
             panel3.Controls.Add(label2);
             panel3.Location = new Point(762, 3);
