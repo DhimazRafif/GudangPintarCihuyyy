@@ -1,26 +1,29 @@
-﻿using GudangPintarGui.ServiceGui;
-using GudangPintarGui.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Text;
+using GudangPintar.Controllers;
+using GudangPintarKPL.Controllers;
 
 namespace GudangPintarGui.ControllerGui
 {
     internal class DashboardController
     {
-        private readonly BarangService _barangService;
+        private readonly StockService _stockService;
+        private readonly HistoryService _historyService;
 
-        public DashboardController()
+        public DashboardController(StockService stockService, HistoryService historyService)
         {
-            _barangService = new BarangService();
+            _stockService = stockService;
+            _historyService = historyService;
         }
 
         public void LoadDataBarang(DataGridView dgv)
         {
+            var dataBarang = _stockService.GetAll();
+
             dgv.DataSource = null;
 
-            dgv.DataSource = _barangService.GetDaftarBarang();
+            dgv.DataSource = dataBarang;
 
             FormatTable(dgv);
         }
@@ -34,19 +37,18 @@ namespace GudangPintarGui.ControllerGui
 
         public void UpdateSummaryCards(Label lblTotalBarang, Label lblTotalStok)
         {
-            List<Barang> dataBarang = _barangService.GetDaftarBarang();
+            var data = _stockService.GetAll();
 
-            int totalJenis = dataBarang.Count;
+            int totalJenis = data.Count;
             int totalStok = 0;
 
-            foreach(var barang in dataBarang)
+            foreach (var item in data)
             {
-                totalStok += barang.Jumlah;
+                totalStok += item.Jumlah; // Menghitung total seluruh kuantitas stok
             }
 
             lblTotalBarang.Text = totalJenis.ToString();
             lblTotalStok.Text = totalStok.ToString();
-
         }
     }
 }

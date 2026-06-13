@@ -214,7 +214,11 @@ namespace GudangPintar.Controllers
                     }
                 }
 
+<<<<<<< HEAD:GudangPintarKPL/GudangPintarKPL/Controllers/ConsoleApp.cs
+                stock.Update(nama, newNama, kat, h, kadaluarsa);
+=======
                 stock.Update(nama, newNama, kat, h);
+>>>>>>> a8b62e2d6144355e4b71cb7d24b87ec53897866e:GudangPintarKPL/Controllers/ConsoleApp.cs
                 history.Add(new StockHistory(nama, "Edit Barang", 0, userLogin));
             }
 

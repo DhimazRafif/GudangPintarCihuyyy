@@ -1,11 +1,27 @@
 ﻿using GudangPintarKPL.Models;
+<<<<<<< HEAD
+=======
 using System.Diagnostics;
+>>>>>>> a8b62e2d6144355e4b71cb7d24b87ec53897866e
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace GudangPintar.Model
 {
+<<<<<<< HEAD
+    public class Stock : ITablePrint
+    {
+        public string NamaBarang { get; set; }
+        public Category Kategori { get; set; }
+        public int Jumlah { get; set; }
+        public double Harga { get; set; }
+
+        public Stock(string nama, Category kategori, int jumlah, double harga)
+        {
+            NamaBarang = nama;
+            Kategori = kategori;
+=======
     [TableHeader("Nama", "Kategori", "Jumlah", "Harga", "Status")]
     public class Stock : ITablePrint
     {
@@ -31,6 +47,7 @@ namespace GudangPintar.Model
             int Id = 0;
             NamaBarang = nama;
             this.Kategori = kategori.ToString();
+>>>>>>> a8b62e2d6144355e4b71cb7d24b87ec53897866e
             Jumlah = jumlah;
             Harga = harga;
         }
@@ -51,6 +68,27 @@ namespace GudangPintar.Model
         public void EditStock(string nama, Category kategori, double harga)
         {
             NamaBarang = nama;
+<<<<<<< HEAD
+            Kategori = kategori;
+            Harga = harga;
+        }
+
+        public static string[] getHeader() => 
+            new[] { "Nama", "Kategori", "Jumlah", "Harga", "Status"};
+
+        public string[] getRowData() {
+
+            string hargaFormatted = string.Format(GudangConfig.LoadConfigFile().format_harga, Harga);
+
+            return new[] { NamaBarang, 
+                Kategori.ToString(), 
+                Jumlah.ToString(), 
+                hargaFormatted, 
+                Notification.GetNotifikasi(this) };
+        }
+    }
+}
+=======
             Kategori = kategori.ToString();
             Harga = harga;
         }
@@ -74,3 +112,4 @@ namespace GudangPintar.Model
         }
     }
 }
+>>>>>>> a8b62e2d6144355e4b71cb7d24b87ec53897866e

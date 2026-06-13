@@ -1,7 +1,7 @@
 ﻿using GudangPintar.Controllers;
 using GudangPintarGui.ControllerGui;
 using GudangPintarKPL.Controllers;
-using GudangPintarGui.Models;
+using GudangPintarKPL.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,20 +15,21 @@ namespace GudangPintarGui
 {
     public partial class Dashboard : Form
     {
+        private readonly User _currentUser;
+        private readonly StockService _stockService;
+        private readonly UserService _userService;
+        private readonly HistoryService _historyService;
         private readonly DashboardController _dashboardController;
-
-        public Dashboard(User user)
+        public Dashboard(User user, StockService s, UserService u, HistoryService h)
         {
-            try
-            {
-                InitializeComponent();
-                _dashboardController = new DashboardController();
-            }catch(Exception ex)
-            {
-                MessageBox.Show($"Gagal inisialisasi komponen di Constructor:\n{ex.Message}",
-                            "Fatal Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-           
+            InitializeComponent();
+
+            _currentUser = user;
+            _stockService = s;
+            _userService = u;
+            _historyService = h;
+
+            _dashboardController = new DashboardController(s, h);
         }
 
         private void btnLogout_Click(object sender, EventArgs e)
@@ -38,16 +39,8 @@ namespace GudangPintarGui
 
         private void Dashboard_Load(object sender, EventArgs e)
         {
-            try
-            {
-                _dashboardController.LoadDataBarang(dgvBarang);
-                _dashboardController.UpdateSummaryCards(lblTotalBarang, lblTotalStok);
-            }catch(Exception ex)
-            {
-                MessageBox.Show($"Terjadi eror saat mengambil data Barang:\n\nPesan: {ex.Message}\n\nDetail: {ex.StackTrace}",
-                            "Database Error di Load Event", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            
+            _dashboardController.LoadDataBarang(dgvBarang);
+            _dashboardController.UpdateSummaryCards(lblTotalBarang, lblTotalStok);
         }
     }
 }

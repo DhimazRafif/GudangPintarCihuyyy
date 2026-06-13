@@ -1,7 +1,13 @@
+<<<<<<< HEAD
 
 ﻿using GudangPintarKPL.Models;
 using System.Diagnostics;
 using System;
+=======
+﻿using GudangPintarGui.ServiceGUI;
+using System;
+using System.Diagnostics;
+>>>>>>> b0efac4adebeb458b52d3afe22d7479eb22ab63d
 
 namespace GudangPintarGui.Models
 {
@@ -11,9 +17,14 @@ namespace GudangPintarGui.Models
         public int UserId { get; set; }
         public string Name { get; set; }
         public string Username { get; set; }
+<<<<<<< HEAD
         public string Password { get; set; }  // Store as SHA256 hash
         public int Role { get; set; }
         public string RoleUser {  get; set; } // Penyimpanan data nama berdasarkan foreign key role
+=======
+        public string Password { get; set; }
+        public int Role { get; set; }
+>>>>>>> b0efac4adebeb458b52d3afe22d7479eb22ab63d
         public bool IsActive { get; set; } = true;
         public DateTime CreatedAt { get; set; } = DateTime.Now;
         public DateTime UpdatedAt { get; set; } = DateTime.Now;
@@ -39,8 +50,12 @@ namespace GudangPintarGui.Models
         // Default constructor untuk GUI binding
         public User() { }
 
+<<<<<<< HEAD
         public string[] getRowData() => new[] {
 
+=======
+        public string[] GetRowData() => new[] {
+>>>>>>> b0efac4adebeb458b52d3afe22d7479eb22ab63d
             UserId.ToString(),
             Name,
             Username,
@@ -48,6 +63,18 @@ namespace GudangPintarGui.Models
             IsActive ? "Aktif" : "Nonaktif"
         };
 
+<<<<<<< HEAD
         public static string[] getHeader() => new[] { "ID", "Nama", "Username", "Role", "Status" };
+=======
+        // Implementasi GetHeader() dari ITablePrint — sumber kebenaran tunggal via TableHeaderAttribute
+        public string[] GetHeader()
+        {
+            var attr = (TableHeaderAttribute)Attribute.GetCustomAttribute(typeof(User), typeof(TableHeaderAttribute));
+            return attr?.Headers ?? new[] { "ID", "Nama", "Username", "Role", "Status" };
+        }
+
+        public string RoleName => Role == RoleService.ROLE_ADMIN ? "Admin" : "Pegawai";
+        public string StatusText => IsActive ? "Aktif" : "Nonaktif";
+>>>>>>> b0efac4adebeb458b52d3afe22d7479eb22ab63d
     }
 }

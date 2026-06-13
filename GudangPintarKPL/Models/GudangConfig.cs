@@ -3,6 +3,26 @@ namespace GudangPintarKPL.Models
 {
     public class GudangConfig
     {
+<<<<<<< HEAD
+<<<<<<< HEAD
+        public string mata_uang { get; set; }
+        public string format_harga { get; set; }
+
+        public static GudangConfig LoadConfigFile()
+        {
+            string filename = @"ConfigGudang\config_gudang.json";
+=======
+        public string mata_uang {  get; set; }
+        public string format_harga {  get; set; }
+
+        public static GudangConfig LoadConfigFile()
+        {
+            string filename = "config_gudang.json";
+>>>>>>> 0befa517fd67ab1b05564b2334ef1276f04c4a37
+
+            try
+            {
+=======
         public string mata_uang { get; set; }
         public string format_harga { get; set; }
 
@@ -29,6 +49,7 @@ namespace GudangPintarKPL.Models
                     Console.WriteLine("\n[ INFO: File konfigurasi tidak ditemukan. Sistem menginisialisasi file default");
                     return GenerateDefaultJsonFile(folderPath, filename);
                 }
+>>>>>>> a8b62e2d6144355e4b71cb7d24b87ec53897866e
                 string jsonString = File.ReadAllText(filename);
 
                 return JsonSerializer.Deserialize<GudangConfig>(jsonString);
@@ -36,6 +57,29 @@ namespace GudangPintarKPL.Models
             catch (Exception ex)
             {
                 Console.WriteLine($"Gagal memuat konfigurasi: {ex.Message}");
+<<<<<<< HEAD
+                return new GudangConfig
+                {
+<<<<<<< HEAD
+                    mata_uang = "IDR",
+                    format_harga = "Rp{0:N2}"
+                };
+
+            }
+        }
+    }
+}
+=======
+                    mata_uang = "Akses ditolak.",
+                    format_harga = "Akses diterima"
+                };
+
+            }   
+        }
+    }
+}
+>>>>>>> 0befa517fd67ab1b05564b2334ef1276f04c4a37
+=======
                 return GenerateDefaultJsonFile(folderPath, filename);
             }
         }
@@ -65,3 +109,4 @@ namespace GudangPintarKPL.Models
         }
     }
 }
+>>>>>>> a8b62e2d6144355e4b71cb7d24b87ec53897866e

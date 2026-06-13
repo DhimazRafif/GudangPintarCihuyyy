@@ -51,7 +51,6 @@
             // 
             // panel1
             // 
-            panel1.BackColor = Color.LimeGreen;
             panel1.Controls.Add(btnLogout);
             panel1.Controls.Add(button4);
             panel1.Controls.Add(button3);
@@ -59,14 +58,13 @@
             panel1.Controls.Add(button1);
             panel1.Location = new Point(2, 3);
             panel1.Name = "panel1";
-            panel1.Size = new Size(234, 749);
+            panel1.Size = new Size(234, 615);
             panel1.TabIndex = 0;
             // 
             // btnLogout
             // 
-            btnLogout.BackColor = Color.DarkSeaGreen;
-            btnLogout.FlatStyle = FlatStyle.Flat;
-            btnLogout.Location = new Point(60, 640);
+            btnLogout.BackColor = Color.Red;
+            btnLogout.Location = new Point(60, 558);
             btnLogout.Name = "btnLogout";
             btnLogout.Size = new Size(94, 29);
             btnLogout.TabIndex = 4;
@@ -76,105 +74,91 @@
             // 
             // button4
             // 
-            button4.BackColor = Color.LightGreen;
-            button4.FlatStyle = FlatStyle.Flat;
-            button4.Location = new Point(60, 323);
+            button4.Location = new Point(47, 323);
             button4.Name = "button4";
             button4.Size = new Size(94, 29);
             button4.TabIndex = 3;
             button4.Text = "Akun";
-            button4.UseVisualStyleBackColor = false;
+            button4.UseVisualStyleBackColor = true;
             // 
             // button3
             // 
-            button3.BackColor = Color.LightGreen;
-            button3.FlatStyle = FlatStyle.Flat;
-            button3.Location = new Point(60, 261);
+            button3.Location = new Point(47, 261);
             button3.Name = "button3";
             button3.Size = new Size(94, 29);
             button3.TabIndex = 2;
             button3.Text = "Riwayat";
-            button3.UseVisualStyleBackColor = false;
+            button3.UseVisualStyleBackColor = true;
             // 
             // button2
             // 
-            button2.BackColor = Color.LightGreen;
-            button2.FlatStyle = FlatStyle.Flat;
-            button2.Location = new Point(60, 202);
+            button2.Location = new Point(47, 204);
             button2.Name = "button2";
             button2.Size = new Size(94, 29);
             button2.TabIndex = 1;
             button2.Text = "Barang";
-            button2.UseVisualStyleBackColor = false;
+            button2.UseVisualStyleBackColor = true;
             // 
             // button1
             // 
-            button1.BackColor = Color.LightGreen;
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.Location = new Point(60, 140);
+            button1.Location = new Point(47, 140);
             button1.Name = "button1";
             button1.Size = new Size(94, 29);
             button1.TabIndex = 0;
             button1.Text = "Dashboard";
-            button1.UseVisualStyleBackColor = false;
+            button1.UseVisualStyleBackColor = true;
             // 
             // panel2
             // 
-            panel2.BackColor = Color.LimeGreen;
             panel2.Controls.Add(lblTotalBarang);
             panel2.Controls.Add(label1);
-            panel2.Location = new Point(242, 3);
+            panel2.Location = new Point(245, 12);
             panel2.Name = "panel2";
-            panel2.Size = new Size(514, 145);
+            panel2.Size = new Size(427, 125);
             panel2.TabIndex = 2;
             // 
             // lblTotalBarang
             // 
             lblTotalBarang.AutoSize = true;
-            lblTotalBarang.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblTotalBarang.Location = new Point(187, 71);
+            lblTotalBarang.Location = new Point(179, 71);
             lblTotalBarang.Name = "lblTotalBarang";
-            lblTotalBarang.Size = new Size(104, 41);
+            lblTotalBarang.Size = new Size(50, 20);
             lblTotalBarang.TabIndex = 1;
             lblTotalBarang.Text = "label3";
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label1.Location = new Point(161, 18);
             label1.Name = "label1";
-            label1.Size = new Size(105, 23);
+            label1.Size = new Size(93, 20);
             label1.TabIndex = 0;
             label1.Text = "Total Barang";
             // 
             // panel3
             // 
-            panel3.BackColor = Color.LimeGreen;
             panel3.Controls.Add(lblTotalStok);
             panel3.Controls.Add(label2);
-            panel3.Location = new Point(762, 3);
+            panel3.Location = new Point(678, 12);
             panel3.Name = "panel3";
-            panel3.Size = new Size(499, 145);
+            panel3.Size = new Size(398, 125);
             panel3.TabIndex = 3;
             // 
             // lblTotalStok
             // 
             lblTotalStok.AutoSize = true;
-            lblTotalStok.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblTotalStok.Location = new Point(179, 71);
+            lblTotalStok.Location = new Point(173, 71);
             lblTotalStok.Name = "lblTotalStok";
-            lblTotalStok.Size = new Size(104, 41);
+            lblTotalStok.Size = new Size(50, 20);
             lblTotalStok.TabIndex = 1;
             lblTotalStok.Text = "label4";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label2.Location = new Point(163, 18);
             label2.Name = "label2";
-            label2.Size = new Size(83, 23);
+            label2.Size = new Size(75, 20);
             label2.TabIndex = 0;
             label2.Text = "Total Stok";
             // 
@@ -183,31 +167,28 @@
             panel5.Controls.Add(dgvBarang);
             panel5.Location = new Point(245, 154);
             panel5.Name = "panel5";
-            panel5.Size = new Size(1016, 598);
+            panel5.Size = new Size(831, 452);
             panel5.TabIndex = 5;
             // 
             // dgvBarang
             // 
-            dgvBarang.BackgroundColor = SystemColors.ControlLightLight;
             dgvBarang.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvBarang.Dock = DockStyle.Fill;
             dgvBarang.Location = new Point(0, 0);
             dgvBarang.Name = "dgvBarang";
-            dgvBarang.RowHeadersVisible = false;
             dgvBarang.RowHeadersWidth = 51;
-            dgvBarang.Size = new Size(1016, 598);
+            dgvBarang.Size = new Size(831, 452);
             dgvBarang.TabIndex = 0;
             // 
             // Dashboard
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1262, 753);
+            ClientSize = new Size(1082, 609);
             Controls.Add(panel5);
             Controls.Add(panel3);
             Controls.Add(panel2);
             Controls.Add(panel1);
-            MinimumSize = new Size(1100, 656);
             Name = "Dashboard";
             Text = "Form1";
             Load += Dashboard_Load;
