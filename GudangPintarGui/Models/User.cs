@@ -50,12 +50,16 @@ namespace GudangPintarGui.Models
         // Default constructor untuk GUI binding
         public User() { }
 
+<<<<<<< Updated upstream
 <<<<<<< HEAD
         public string[] getRowData() => new[] {
 
 =======
         public string[] GetRowData() => new[] {
 >>>>>>> b0efac4adebeb458b52d3afe22d7479eb22ab63d
+=======
+        public string[] GetRowData() => new[] {
+>>>>>>> Stashed changes
             UserId.ToString(),
             Name,
             Username,
@@ -63,6 +67,7 @@ namespace GudangPintarGui.Models
             IsActive ? "Aktif" : "Nonaktif"
         };
 
+<<<<<<< Updated upstream
 <<<<<<< HEAD
         public static string[] getHeader() => new[] { "ID", "Nama", "Username", "Role", "Status" };
 =======
@@ -76,5 +81,8 @@ namespace GudangPintarGui.Models
         public string RoleName => Role == RoleService.ROLE_ADMIN ? "Admin" : "Pegawai";
         public string StatusText => IsActive ? "Aktif" : "Nonaktif";
 >>>>>>> b0efac4adebeb458b52d3afe22d7479eb22ab63d
+=======
+        public string[] GetHeader() => new[] { "ID", "Nama", "Username", "Role", "Status" };
+>>>>>>> Stashed changes
     }
 }
