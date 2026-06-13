@@ -36,13 +36,14 @@
             tbPassword = new TextBox();
             panel1 = new Panel();
             label4 = new Label();
+            panel1.SuspendLayout();
             SuspendLayout();
             // 
             // btnLogin
             // 
-            btnLogin.Location = new Point(731, 363);
+            btnLogin.Location = new Point(27, 376);
             btnLogin.Name = "btnLogin";
-            btnLogin.Size = new Size(328, 29);
+            btnLogin.Size = new Size(347, 29);
             btnLogin.TabIndex = 0;
             btnLogin.Text = "Login";
             btnLogin.UseVisualStyleBackColor = true;
@@ -52,7 +53,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.Location = new Point(803, 23);
+            label1.Location = new Point(99, 36);
             label1.Name = "label1";
             label1.Size = new Size(208, 41);
             label1.TabIndex = 1;
@@ -61,7 +62,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(723, 146);
+            label2.Location = new Point(27, 143);
             label2.Name = "label2";
             label2.Size = new Size(75, 20);
             label2.TabIndex = 2;
@@ -70,7 +71,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(723, 190);
+            label3.Location = new Point(27, 203);
             label3.Name = "label3";
             label3.Size = new Size(70, 20);
             label3.TabIndex = 3;
@@ -78,30 +79,38 @@
             // 
             // tbUsername
             // 
-            tbUsername.Location = new Point(834, 143);
+            tbUsername.Location = new Point(27, 166);
             tbUsername.Name = "tbUsername";
-            tbUsername.Size = new Size(225, 27);
+            tbUsername.Size = new Size(347, 27);
             tbUsername.TabIndex = 4;
             // 
             // tbPassword
             // 
-            tbPassword.Location = new Point(834, 190);
+            tbPassword.Location = new Point(27, 226);
             tbPassword.Name = "tbPassword";
-            tbPassword.Size = new Size(225, 27);
+            tbPassword.Size = new Size(347, 27);
             tbPassword.TabIndex = 5;
+            tbPassword.UseSystemPasswordChar = true;
             // 
             // panel1
             // 
-            panel1.BackColor = Color.Lime;
-            panel1.Location = new Point(12, 6);
+            panel1.BackColor = Color.LightGreen;
+            panel1.Controls.Add(label4);
+            panel1.Controls.Add(tbPassword);
+            panel1.Controls.Add(btnLogin);
+            panel1.Controls.Add(label1);
+            panel1.Controls.Add(tbUsername);
+            panel1.Controls.Add(label2);
+            panel1.Controls.Add(label3);
+            panel1.Location = new Point(436, 105);
             panel1.Name = "panel1";
-            panel1.Size = new Size(705, 602);
+            panel1.Size = new Size(398, 442);
             panel1.TabIndex = 6;
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(787, 84);
+            label4.Location = new Point(83, 97);
             label4.Name = "label4";
             label4.Size = new Size(238, 20);
             label4.TabIndex = 7;
@@ -111,19 +120,15 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1082, 609);
-            Controls.Add(label4);
+            BackColor = Color.Honeydew;
+            ClientSize = new Size(1262, 753);
             Controls.Add(panel1);
-            Controls.Add(tbPassword);
-            Controls.Add(tbUsername);
-            Controls.Add(label3);
-            Controls.Add(label2);
-            Controls.Add(label1);
-            Controls.Add(btnLogin);
+            MinimumSize = new Size(1100, 656);
             Name = "Login";
             Text = "Form1";
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion

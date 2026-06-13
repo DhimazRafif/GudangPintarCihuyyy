@@ -4,13 +4,14 @@ using System.Text;
 
 namespace GudangPintarGui.Models
 {
-    public class Role
+    internal class Role
     {
-        public int RoleId { get; set; }
-        public string Name { get; set; }
+        public int roleid {  get; set; }
+        public string name { get; set; }
 
-        // Konstanta dipusatkan di RoleService.ROLE_ADMIN dan RoleService.ROLE_PEGAWAI
-        // untuk menghindari duplikasi definisi (DRY Principle)
+        public const int ADMIN = 1;
+        public const int PEDAWAI = 2;
+
     }
 }
 

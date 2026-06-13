@@ -1,6 +1,7 @@
-﻿using GudangPintarGui.ServiceGUI;
-using System;
+
+﻿using GudangPintarKPL.Models;
 using System.Diagnostics;
+using System;
 
 namespace GudangPintarGui.Models
 {
@@ -10,8 +11,9 @@ namespace GudangPintarGui.Models
         public int UserId { get; set; }
         public string Name { get; set; }
         public string Username { get; set; }
-        public string Password { get; set; }
+        public string Password { get; set; }  // Store as SHA256 hash
         public int Role { get; set; }
+        public string RoleUser {  get; set; } // Penyimpanan data nama berdasarkan foreign key role
         public bool IsActive { get; set; } = true;
         public DateTime CreatedAt { get; set; } = DateTime.Now;
         public DateTime UpdatedAt { get; set; } = DateTime.Now;
@@ -37,7 +39,8 @@ namespace GudangPintarGui.Models
         // Default constructor untuk GUI binding
         public User() { }
 
-        public string[] GetRowData() => new[] {
+        public string[] getRowData() => new[] {
+
             UserId.ToString(),
             Name,
             Username,
@@ -45,14 +48,6 @@ namespace GudangPintarGui.Models
             IsActive ? "Aktif" : "Nonaktif"
         };
 
-        // Implementasi GetHeader() dari ITablePrint — sumber kebenaran tunggal via TableHeaderAttribute
-        public string[] GetHeader()
-        {
-            var attr = (TableHeaderAttribute)Attribute.GetCustomAttribute(typeof(User), typeof(TableHeaderAttribute));
-            return attr?.Headers ?? new[] { "ID", "Nama", "Username", "Role", "Status" };
-        }
-
-        public string RoleName => Role == RoleService.ROLE_ADMIN ? "Admin" : "Pegawai";
-        public string StatusText => IsActive ? "Aktif" : "Nonaktif";
+        public static string[] getHeader() => new[] { "ID", "Nama", "Username", "Role", "Status" };
     }
 }
