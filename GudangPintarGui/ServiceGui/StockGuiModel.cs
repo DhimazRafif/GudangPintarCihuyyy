@@ -2,26 +2,27 @@
 using System.Diagnostics;
 using GudangPintar.Model;
 
-namespace GudangPintarGui.ServiceGui
+namespace GudangPintarGui.Models
 {
+    // Model khusus untuk keperluan GUI yang mewarisi dari model
     public class StockGuiModel : Stock
     {
-        // ini untuk menambahkan properti tambahan yang diperlukan untuk tampilan GUI, seperti ID barang, ID kategori, threshold notifikasi, dan status aktif
+        // Properti tambahan untuk keperluan UI dan pemetaan database
         public int BarangId { get; set; }
         public int CategoryId { get; set; }
         public int NotificationThreshold { get; set; }
-        public bool IsActive { get; set; } 
+        public bool IsActive { get; set; }
 
+        // Konstruktor default untuk keperluan deserialisasi atau inisialisasi awal.
         public StockGuiModel() : base(string.Empty, Category.ATK, 0, 0)
         {
             IsActive = true;
         }
 
-        // ini untuk memastikan data yang diterima valid sejak awal
+        // Konstruktor utama untuk keperluan tambah data (tanpa BarangId).
         public StockGuiModel(string nama, int categoryId, int jumlah, double harga, int threshold)
             : base(nama, Category.ATK, jumlah, harga)
         {
-            // Design by Contract: Memastikan data valid sejak lahir
             Debug.Assert(!string.IsNullOrWhiteSpace(nama), "Nama barang tidak boleh kosong!");
             Debug.Assert(categoryId > 0, "ID Kategori tidak valid!");
             Debug.Assert(jumlah >= 0, "Jumlah tidak boleh negatif!");
@@ -31,6 +32,14 @@ namespace GudangPintarGui.ServiceGui
             CategoryId = categoryId;
             NotificationThreshold = threshold;
             IsActive = true;
+        }
+
+        // Konstruktor tambahan untuk keperluan edit data (dengan BarangId).
+        public StockGuiModel(int barangId, string nama, int categoryId, int jumlah, double harga, int threshold)
+            : this(nama, categoryId, jumlah, harga, threshold)
+        {
+            Debug.Assert(barangId > 0, "ID Barang tidak valid!");
+            BarangId = barangId;
         }
     }
 }

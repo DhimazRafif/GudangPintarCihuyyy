@@ -7,13 +7,13 @@ using GudangPintarGui.Models;
 
 namespace GudangPintarGui.View
 {
-    public partial class KelolaBarangView : Form
+    public partial class KelolaBarangPegawaiView : Form
     {
         private readonly BarangGuiService _guiService;
         private readonly CommandInvoker _invoker; 
         private int _idBarangTerpilih = -1;
 
-        public KelolaBarangView()
+        public KelolaBarangPegawaiView()
         {
             InitializeComponent();
             _guiService = new BarangGuiService();

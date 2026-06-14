@@ -20,4 +20,10 @@
     <ProjectReference Include="..\GudangPintarKPL\GudangPintarKPL.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="View\KelolaBarangPegawaiView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+  </ItemGroup>
+
 </Project>

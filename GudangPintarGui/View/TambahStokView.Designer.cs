@@ -34,7 +34,7 @@
             lblSupplier = new Label();
             lblNamaBarang = new Label();
             panel1 = new Panel();
-            label6 = new Label();
+            lblHeader = new Label();
             cmbSupplier = new ComboBox();
             numJumlah = new NumericUpDown();
             panel1.SuspendLayout();
@@ -74,7 +74,7 @@
             // lblJumlah
             // 
             lblJumlah.AutoSize = true;
-            lblJumlah.Location = new Point(20, 156);
+            lblJumlah.Location = new Point(20, 119);
             lblJumlah.Name = "lblJumlah";
             lblJumlah.Size = new Size(104, 15);
             lblJumlah.TabIndex = 21;
@@ -83,7 +83,7 @@
             // lblSupplier
             // 
             lblSupplier.AutoSize = true;
-            lblSupplier.Location = new Point(20, 123);
+            lblSupplier.Location = new Point(20, 149);
             lblSupplier.Name = "lblSupplier";
             lblSupplier.Size = new Size(76, 15);
             lblSupplier.TabIndex = 19;
@@ -101,40 +101,38 @@
             // panel1
             // 
             panel1.BackColor = Color.LimeGreen;
-            panel1.Controls.Add(label6);
+            panel1.Controls.Add(lblHeader);
             panel1.Location = new Point(12, 12);
             panel1.Name = "panel1";
             panel1.Size = new Size(394, 43);
             panel1.TabIndex = 28;
             // 
-            // label6
+            // lblHeader
             // 
-            label6.AutoSize = true;
-            label6.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label6.ForeColor = Color.White;
-            label6.Location = new Point(8, 9);
-            label6.Name = "label6";
-            label6.Size = new Size(175, 21);
-            label6.TabIndex = 14;
-            label6.Text = "Tambah Stock Barang";
+            lblHeader.AutoSize = true;
+            lblHeader.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblHeader.ForeColor = Color.White;
+            lblHeader.Location = new Point(8, 9);
+            lblHeader.Name = "lblHeader";
+            lblHeader.Size = new Size(175, 21);
+            lblHeader.TabIndex = 14;
+            lblHeader.Text = "Tambah Stock Barang";
             // 
             // cmbSupplier
             // 
             cmbSupplier.FormattingEnabled = true;
-            cmbSupplier.Location = new Point(130, 120);
+            cmbSupplier.Location = new Point(130, 146);
             cmbSupplier.Name = "cmbSupplier";
             cmbSupplier.Size = new Size(152, 23);
             cmbSupplier.TabIndex = 29;
             // 
             // numJumlah
             // 
-            numJumlah.Location = new Point(130, 156);
+            numJumlah.Location = new Point(130, 117);
             numJumlah.Maximum = new decimal(new int[] { 99999, 0, 0, 0 });
-            numJumlah.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             numJumlah.Name = "numJumlah";
             numJumlah.Size = new Size(152, 23);
             numJumlah.TabIndex = 30;
-            numJumlah.Value = new decimal(new int[] { 1, 0, 0, 0 });
             // 
             // TambahStokView
             // 
@@ -171,7 +169,7 @@
         private Label lblNamaBarang;
         private TextBox txtNamaBarang;
         private Panel panel1;
-        private Label label6;
+        private Label lblHeader;
         private ComboBox cmbSupplier;
         private NumericUpDown numJumlahTambah;
     }

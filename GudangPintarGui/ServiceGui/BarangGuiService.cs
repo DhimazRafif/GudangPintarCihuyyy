@@ -7,24 +7,74 @@ using GudangPintarGui.Models;
 
 namespace GudangPintarGui.ServiceGui
 {
+    // Service untuk menangani logika bisnis terkait data barang yang akan digunakan oleh GUI.
     public class BarangGuiService
     {
         public BarangGuiService() { }
 
-        // ini untuk mengambil daftar barang yang siap ditampilkan di GUI, hanya barang yang aktif (isActive = 1) yang akan diambil dari database
-        public List<StockGuiModel> AmbilBarangSiapTampil()
+        // 1. Validasi Nama Barang Unik (untuk Tambah dan Edit)
+        public bool ApakahNamaBarangAda(string nama, int idKecuali = -1)
         {
-            List<StockGuiModel> daftarBarang = new List<StockGuiModel>();
-            string query = "SELECT barangid, name, quantity, price, notification_threshold, categoryid FROM barang WHERE isActive = 1";
-
-            // gunakan try-catch untuk menangani potensi error saat koneksi ke database atau eksekusi query
             try
             {
-                using (MySqlConnection conn = DBConnection.GetInstance().GetConnection())
+                using (var conn = DBConnection.GetInstance().GetConnection())
                 {
                     conn.Open();
-                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
-                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    string query = "SELECT COUNT(*) FROM barang WHERE name = @nama AND barangid <> @id AND isActive = 1";
+                    using (var cmd = new MySqlCommand(query, conn))
+                    {
+                        cmd.Parameters.Add("@nama", MySqlDbType.VarChar).Value = nama;
+                        cmd.Parameters.Add("@id", MySqlDbType.Int32).Value = idKecuali;
+                        return Convert.ToInt32(cmd.ExecuteScalar()) > 0;
+                    }
+                }
+            }
+            catch { return false; }
+        }
+
+        // 2. Mengambil Data Barang untuk Ditampilkan di DataGridView
+        public List<StockGuiModel> AmbilBarangSiapTampil()
+        {
+            var daftarBarang = new List<StockGuiModel>();
+            string query = "SELECT barangid, name, quantity, price, notification_threshold, categoryid FROM barang WHERE isActive = 1";
+
+            // Menggunakan koneksi database untuk mengambil data barang yang aktif dan mengisi list dengan model yang sesuai untuk GUI.
+            using (var conn = DBConnection.GetInstance().GetConnection())
+            {
+                conn.Open();
+                using (var cmd = new MySqlCommand(query, conn))
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        daftarBarang.Add(new StockGuiModel
+                        {
+                            BarangId = reader.GetInt32("barangid"),
+                            NamaBarang = reader.GetString("name"),
+                            Jumlah = reader.GetInt32("quantity"),
+                            Harga = reader.GetDouble("price"),
+                            NotificationThreshold = reader.GetInt32("notification_threshold"),
+                            CategoryId = reader.GetInt32("categoryid")
+                        });
+                    }
+                }
+            }
+            return daftarBarang;
+        }
+
+        // 3. Pencarian Barang Berdasarkan Nama
+        public List<StockGuiModel> CariBarang(string keyword)
+        {
+            var daftarBarang = new List<StockGuiModel>();
+            string query = "SELECT barangid, name, quantity, price, notification_threshold, categoryid FROM barang WHERE isActive = 1 AND name LIKE @keyword";
+
+            using (var conn = DBConnection.GetInstance().GetConnection())
+            {
+                conn.Open();
+                using (var cmd = new MySqlCommand(query, conn))
+                {
+                    cmd.Parameters.Add("@keyword", MySqlDbType.VarChar).Value = "%" + keyword + "%";
+                    using (var reader = cmd.ExecuteReader())
                     {
                         while (reader.Read())
                         {
@@ -41,135 +91,60 @@ namespace GudangPintarGui.ServiceGui
                     }
                 }
             }
-            catch (MySqlException ex)
-            {
-                System.Windows.Forms.MessageBox.Show($"Database Error: {ex.Message}", "Error", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
-            }
             return daftarBarang;
         }
 
-        // ini untuk memperbarui data master barang di database berdasarkan input dari GUI, termasuk nama, kategori, harga, dan threshold notifikasi. Metode ini juga mengembalikan pesan sukses atau error melalui parameter output.
-        public bool UpdateMasterBarang(StockGuiModel data, out string message)
-        {
-            // gunakan try-catch untuk menangani potensi error saat koneksi ke database atau eksekusi query
-            try
-            {
-                using (MySqlConnection conn = DBConnection.GetInstance().GetConnection())
-                {
-                    conn.Open();
-                    string query = @"UPDATE barang 
-                                     SET name = @nama, 
-                                         categoryid = @cat, 
-                                         price = @harga, 
-                                         notification_threshold = @threshold 
-                                     WHERE barangid = @id";
-
-                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
-                    {
-                        cmd.Parameters.Add("@id", MySqlDbType.Int32).Value = data.BarangId;
-                        cmd.Parameters.Add("@nama", MySqlDbType.VarChar).Value = data.NamaBarang;
-                        cmd.Parameters.Add("@cat", MySqlDbType.Int32).Value = data.CategoryId;
-                        cmd.Parameters.Add("@harga", MySqlDbType.Double).Value = data.Harga;
-                        cmd.Parameters.Add("@threshold", MySqlDbType.Int32).Value = data.NotificationThreshold;
-
-                        cmd.ExecuteNonQuery(); 
-                    }
-                }
-                message = "Data master barang berhasil diperbarui.";
-                return true;
-            }
-            catch (Exception ex)
-            {
-                message = "Gagal memperbarui data: " + ex.Message;
-                return false;
-            }
-        }
-
-        // metode untuk mengambil daftar kategori dari database, yang akan digunakan untuk mengisi dropdown kategori di GUI
+        // 4. Mengambil Data Kategori untuk ComboBox
         public DataTable AmbilDaftarKategori()
         {
-            DataTable dt = new DataTable();
-            try
+            var dt = new DataTable();
+            using (var conn = DBConnection.GetInstance().GetConnection())
             {
-                using (MySqlConnection conn = DBConnection.GetInstance().GetConnection())
-                {
-                    string query = "SELECT categoryid, name FROM category";
-                    using (MySqlDataAdapter adapter = new MySqlDataAdapter(query, conn))
-                    {
-                        adapter.Fill(dt);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                System.Windows.Forms.MessageBox.Show("Error memuat kategori: " + ex.Message);
+                string query = "SELECT categoryid, name FROM category";
+                using (var adapter = new MySqlDataAdapter(query, conn)) adapter.Fill(dt);
             }
             return dt;
         }
 
-        // ini untuk mengambil daftar supplier dari database, yang akan digunakan untuk mengisi dropdown supplier di GUI jika diperlukan di masa depan
+        // 5. Mengambil Data Supplier untuk ComboBox
         public DataTable AmbilDaftarSupplier()
         {
-            DataTable dt = new DataTable();
-            try
+            var dt = new DataTable();
+            using (var conn = DBConnection.GetInstance().GetConnection())
             {
-                using (MySqlConnection conn = DBConnection.GetInstance().GetConnection())
-                {
-                    string query = "SELECT supplierid, name FROM supplier";
-                    using (MySqlDataAdapter adapter = new MySqlDataAdapter(query, conn))
-                    {
-                        adapter.Fill(dt);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                System.Windows.Forms.MessageBox.Show("Error memuat supplier: " + ex.Message);
+                string query = "SELECT supplierid, name FROM supplier";
+                using (var adapter = new MySqlDataAdapter(query, conn)) adapter.Fill(dt);
             }
             return dt;
         }
 
-        // ini untuk mencari barang berdasarkan nama atau keyword tertentu, yang akan digunakan untuk fitur pencarian di GUI. Metode ini mengembalikan daftar barang yang sesuai dengan keyword yang dimasukkan.
-        public List<StockGuiModel> CariBarang(string keyword)
+        public (int totalBarang, int totalStok) AmbilRingkasanStok()
         {
-            // gunakan try-catch untuk menangani potensi error saat koneksi ke database atau eksekusi query
-            List<StockGuiModel> daftarBarang = new List<StockGuiModel>();
-            string query = "SELECT barangid, name, quantity, price, notification_threshold, categoryid " +
-                           "FROM barang WHERE isActive = 1 AND name LIKE @keyword";
+            int totalBarang = 0;
+            int totalStok = 0;
 
-            // tambahkan wildcard % untuk pencarian parsial sehingga pengguna dapat mencari dengan sebagian nama barang
+            // Menghitung jumlah baris (count) dan total quantity (sum) dalam satu query
+            string query = "SELECT COUNT(*), IFNULL(SUM(quantity), 0) FROM barang WHERE isActive = 1";
+
             try
             {
-                using (MySqlConnection conn = DBConnection.GetInstance().GetConnection())
+                using (var conn = DBConnection.GetInstance().GetConnection())
                 {
                     conn.Open();
-                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    using (var cmd = new MySqlCommand(query, conn))
+                    using (var reader = cmd.ExecuteReader())
                     {
-                        // Menambahkan wildcard % untuk pencarian parsial
-                        cmd.Parameters.AddWithValue("@keyword", "%" + keyword + "%");
-                        using (MySqlDataReader reader = cmd.ExecuteReader())
+                        if (reader.Read())
                         {
-                            while (reader.Read())
-                            {
-                                daftarBarang.Add(new StockGuiModel
-                                {
-                                    BarangId = reader.GetInt32("barangid"),
-                                    NamaBarang = reader.GetString("name"),
-                                    Jumlah = reader.GetInt32("quantity"),
-                                    Harga = reader.GetDouble("price"),
-                                    NotificationThreshold = reader.GetInt32("notification_threshold"),
-                                    CategoryId = reader.GetInt32("categoryid")
-                                });
-                            }
+                            totalBarang = reader.GetInt32(0);
+                            totalStok = reader.GetInt32(1);
                         }
                     }
                 }
             }
-            catch (MySqlException ex)
-            {
-                System.Windows.Forms.MessageBox.Show($"Error pencarian: {ex.Message}");
-            }
-            return daftarBarang;
+            catch (Exception) { }
+
+            return (totalBarang, totalStok);
         }
     }
 }

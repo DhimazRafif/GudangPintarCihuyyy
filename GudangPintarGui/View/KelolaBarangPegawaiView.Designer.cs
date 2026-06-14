@@ -1,6 +1,6 @@
 ﻿namespace GudangPintarGui.View
 {
-    partial class KelolaBarangView
+    partial class KelolaBarangPegawaiView
     {
         /// <summary>
         /// Required designer variable.
@@ -44,7 +44,6 @@
             label2 = new Label();
             btnRefresh = new Button();
             panel2 = new Panel();
-            button5 = new Button();
             button4 = new Button();
             button3 = new Button();
             button2 = new Button();
@@ -210,7 +209,6 @@
             // panel2
             // 
             panel2.BackColor = Color.LawnGreen;
-            panel2.Controls.Add(button5);
             panel2.Controls.Add(button4);
             panel2.Controls.Add(button3);
             panel2.Controls.Add(button2);
@@ -219,17 +217,6 @@
             panel2.Name = "panel2";
             panel2.Size = new Size(238, 755);
             panel2.TabIndex = 6;
-            // 
-            // button5
-            // 
-            button5.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button5.Location = new Point(49, 353);
-            button5.Margin = new Padding(3, 2, 3, 2);
-            button5.Name = "button5";
-            button5.Size = new Size(122, 35);
-            button5.TabIndex = 4;
-            button5.Text = "Akun";
-            button5.UseVisualStyleBackColor = true;
             // 
             // button4
             // 
@@ -331,7 +318,7 @@
             btnEditBarang.UseVisualStyleBackColor = false;
             btnEditBarang.Click += btnEditBarang_Click;
             // 
-            // KelolaBarangView
+            // KelolaBarangPegawaiView
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -349,7 +336,7 @@
             Controls.Add(btnTambahStok);
             Controls.Add(dgvBarang);
             Controls.Add(btnBukaTambah);
-            Name = "KelolaBarangView";
+            Name = "KelolaBarangPegawaiView";
             ShowIcon = false;
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Form1";
@@ -383,7 +370,6 @@
         private Button button2;
         private Button button3;
         private Button button4;
-        private Button button5;
         private Label lblTotalBarang;
         private Label label1;
         private Label lblTotalStok;

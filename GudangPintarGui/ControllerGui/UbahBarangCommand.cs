@@ -1,86 +1,83 @@
 ﻿using System;
 using MySql.Data.MySqlClient;
 using GudangPintarGui.ConfigDatabase;
+using GudangPintarGui.ControllerGui;
 
 namespace GudangPintarGui.ControllerGui
 {
-    // Command ini untuk menangani logika pembaruan data barang yang sudah ada di database, termasuk validasi input dan penanganan error yang lebih baik
+    // Command untuk menangani logika perubahan data barang yang sudah ada di database.
     public class UbahBarangCommand : ICommand
     {
-        private readonly int _barangId;
-        private readonly string _namaBaru;
-        private readonly int _categoryId;
+        private readonly int _id;
+        private readonly string _nama;
+        private readonly int _catId;
         private readonly double _harga;
         private readonly int _threshold;
 
-        // ini agar konstruktor command menerima data yang diperlukan untuk pembaruan barang, termasuk validasi input awal untuk memastikan data yang diterima valid sebelum mencoba menyimpan ke database
-        public UbahBarangCommand(int barangId, string namaBaru, int categoryId, double harga, int threshold)
+        public UbahBarangCommand(int id, string nama, int catId, double harga, int threshold)
         {
-            if (barangId <= 0)
-                throw new ArgumentException("Kontrak Gagal: ID Barang tidak valid!");
-            if (string.IsNullOrWhiteSpace(namaBaru))
-                throw new ArgumentException("Kontrak Gagal: Nama barang tidak boleh kosong!");
-            if (categoryId <= 0)
-                throw new ArgumentException("Kontrak Gagal: ID Kategori harus valid!");
-            if (harga < 0)
-                throw new ArgumentException("Kontrak Gagal: Harga tidak boleh negatif!");
-            if (threshold < 0)
-                throw new ArgumentException("Kontrak Gagal: Threshold tidak boleh negatif!");
+            // Validasi input dasar (Fail-Fast)
+            if (id <= 0) throw new ArgumentException("ID Barang tidak valid.");
+            if (string.IsNullOrWhiteSpace(nama)) throw new ArgumentException("Nama barang wajib diisi.");
 
-            _barangId = barangId;
-            _namaBaru = namaBaru;
-            _categoryId = categoryId;
+            _id = id;
+            _nama = nama;
+            _catId = catId;
             _harga = harga;
             _threshold = threshold;
         }
 
         public bool Execute(out string message)
         {
-            // // query yang diperbarui untuk memastikan hanya barang yang aktif yang dapat diperbarui, dan menambahkan penanganan error yang lebih spesifik 
+            // Query untuk memperbarui data barang dengan parameterized query untuk mencegah SQL Injection
             string query = @"UPDATE barang 
-                             SET name = @namaBaru, 
-                                 categoryid = @categoryId, 
-                                 price = @price, 
-                                 notification_threshold = @threshold 
-                             WHERE barangid = @barangId AND isActive = 1";
+                             SET name = @nama, 
+                                 categoryid = @cat, 
+                                 price = @harga, 
+                                 notification_threshold = @t, 
+                                 updated_at = NOW() 
+                             WHERE barangid = @id AND isActive = 1";
 
             try
             {
-                using (MySqlConnection conn = DBConnection.GetInstance().GetConnection())
+                using (var conn = DBConnection.GetInstance().GetConnection())
                 {
-                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    conn.Open();
+                    using (var cmd = new MySqlCommand(query, conn))
                     {
-                        cmd.Parameters.Add("@namaBaru", MySqlDbType.VarChar).Value = _namaBaru;
-                        cmd.Parameters.Add("@categoryId", MySqlDbType.Int32).Value = _categoryId;
-                        cmd.Parameters.Add("@price", MySqlDbType.Double).Value = _harga;
-                        cmd.Parameters.Add("@threshold", MySqlDbType.Int32).Value = _threshold;
-                        cmd.Parameters.Add("@barangId", MySqlDbType.Int32).Value = _barangId;
+                        // Menambahkan parameter dengan tipe data yang sesuai
+                        cmd.Parameters.Add("@nama", MySqlDbType.VarChar).Value = _nama;
+                        cmd.Parameters.Add("@cat", MySqlDbType.Int32).Value = _catId;
+                        cmd.Parameters.Add("@harga", MySqlDbType.Double).Value = _harga;
+                        cmd.Parameters.Add("@t", MySqlDbType.Int32).Value = _threshold;
+                        cmd.Parameters.Add("@id", MySqlDbType.Int32).Value = _id;
 
-                        conn.Open();
                         int rowsAffected = cmd.ExecuteNonQuery();
 
                         if (rowsAffected > 0)
                         {
-                            message = "Data master barang berhasil diperbarui.";
+                            message = "Data barang berhasil diperbarui.";
                             return true;
+                        }
+                        else
+                        {
+                            message = "Gagal memperbarui: Barang tidak ditemukan atau sudah tidak aktif.";
+                            return false;
                         }
                     }
                 }
             }
-            // penanganan error yang lebih spesifik untuk menangkap kesalahan database dan sistem, memberikan pesan yang lebih informatif kepada pengguna
+            // Menangani kesalahan database dan sistem secara terpisah untuk memberikan pesan yang lebih spesifik
             catch (MySqlException ex)
             {
-                message = $"[Database Error] Gagal memperbarui data: {ex.Message}";
+                message = $"Database error: {ex.Message}";
                 return false;
             }
             catch (Exception ex)
             {
-                message = $"[System Error] Terjadi kesalahan: {ex.Message}";
+                message = $"System error: {ex.Message}";
                 return false;
             }
-
-            message = "Gagal memperbarui data. Barang tidak ditemukan atau sudah tidak aktif.";
-            return false;
         }
     }
 }

@@ -9,18 +9,18 @@ namespace GudangPintarGui.View
     {
         private readonly BarangGuiService _guiService;
         private readonly int _barangId;
+        private bool _isModeKurangi = false;
 
         public int SupplierId { get; private set; }
         public int Jumlah { get; private set; }
 
+        // Konstruktor untuk inisialisasi form dengan data barang yang akan ditambah atau dikurangi stoknya.
         public TambahStokView(int barangId, string namaBarang)
         {
-            InitializeComponent(); 
-
+            InitializeComponent();
             _guiService = new BarangGuiService();
             _barangId = barangId;
 
-            // Sekarang numJumlah sudah aman untuk diakses
             lblNamaBarang.Text = $"Barang: {namaBarang}";
             numJumlah.Minimum = 1;
             numJumlah.Maximum = 9999;
@@ -33,40 +33,72 @@ namespace GudangPintarGui.View
         {
             try
             {
-                // ini untuk memuat daftar supplier dari database dan menampilkan di ComboBox dengan penanganan error yang lebih baik
+                // Mengambil daftar supplier dari database dan mengisi ComboBox. Jika terjadi error, tampilkan pesan yang jelas kepada user.
                 DataTable dtSupplier = _guiService.AmbilDaftarSupplier();
-                if (dtSupplier != null && dtSupplier.Rows.Count > 0)
+                if (dtSupplier != null)
                 {
                     cmbSupplier.DataSource = dtSupplier;
                     cmbSupplier.DisplayMember = "name";
                     cmbSupplier.ValueMember = "supplierid";
-                    cmbSupplier.SelectedIndex = -1; 
+                    cmbSupplier.SelectedIndex = -1; // Memaksa user untuk memilih
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Gagal memuat daftar supplier: {ex.Message}", "System Error",
+                MessageBox.Show($"Gagal memuat supplier: {ex.Message}", "System Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+        // Metode untuk mengubah form menjadi mode pengurangan stok. Menyesuaikan UI dan logika validasi sesuai kebutuhan.
+        public void SetModeKurangi()
+        {
+            _isModeKurangi = true;
+            this.Text = "Kurangi Stok Barang";
+
+            if (lblHeader != null) lblHeader.Text = "Kurangi Stok Barang";
+            lblJumlah.Text = "Jumlah dikurangi:";
+
+            // Menyembunyikan elemen UI yang tidak relevan untuk mode pengurangan stok (Best Practice untuk UX yang lebih baik)
+            if (lblSupplier != null) lblSupplier.Visible = false;
+            if (cmbSupplier != null) cmbSupplier.Visible = false;
+
+            // Menyesuaikan posisi elemen UI untuk menjaga tata letak yang rapi setelah menyembunyikan elemen supplier
+            if (lblSupplier != null) lblJumlah.Top = lblSupplier.Top;
+            if (cmbSupplier != null) numJumlah.Top = cmbSupplier.Top;
         }
 
         private void btnSimpan_Click(object sender, EventArgs e)
         {
             try
             {
-                // validasi input sebelum menyimpan, dengan pesan error yang lebih spesifik untuk setiap kasus
-                if (cmbSupplier.SelectedValue == null)
-                    throw new Exception("Silakan pilih supplier terlebih dahulu!");
+                if (!_isModeKurangi)
+                {
+                    if (cmbSupplier.SelectedValue == null)
+                        throw new ArgumentException("Silakan pilih supplier terlebih dahulu!");
 
+                    SupplierId = Convert.ToInt32(cmbSupplier.SelectedValue);
+                }
+                else
+                {
+                    SupplierId = 0; 
+                }
+
+                // Validasi Jumlah
                 if (numJumlah.Value <= 0)
-                    throw new Exception("Jumlah tambahan harus lebih dari 0!");
+                    throw new ArgumentException("Jumlah harus lebih dari 0!");
 
-                // ini untuk menginisialisasi properti SupplierId dan Jumlah dengan nilai yang valid sebelum menutup form dengan DialogResult.OK
-                SupplierId = Convert.ToInt32(cmbSupplier.SelectedValue);
                 Jumlah = (int)numJumlah.Value;
 
-                this.DialogResult = DialogResult.OK;
-                this.Close();
+                // Konfirmasi Aksi
+                string aksi = _isModeKurangi ? "mengurangi" : "menambah";
+                var dr = MessageBox.Show($"Apakah Anda yakin ingin {aksi} stok sebanyak {Jumlah}?",
+                    "Konfirmasi", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (dr == DialogResult.Yes)
+                {
+                    this.DialogResult = DialogResult.OK;
+                    this.Close();
+                }
             }
             catch (Exception ex)
             {
