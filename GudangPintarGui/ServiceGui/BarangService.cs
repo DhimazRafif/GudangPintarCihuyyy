@@ -17,7 +17,7 @@ namespace GudangPintarGui.ServiceGui
             {
                 connection.Open();
 
-                string query = "SELECT b.barangid,b.name,c.name AS 'Category Name',b.quantity,b.price\r\n" +
+                string query = "SELECT b.barangid,b.name,c.name AS 'category',b.quantity,b.price\r\n" +
                     "FROM barang b\r\n" +
                     "JOIN category c ON b.categoryid = c.categoryid";
 
@@ -31,6 +31,7 @@ namespace GudangPintarGui.ServiceGui
                             {
                                 Id = reader.GetInt32("barangid"),
                                 Nama = reader.GetString("name"),
+                                Category = reader.GetString("category"),
                                 Harga = reader.GetDouble("price"),
                                 Jumlah = reader.GetInt32("quantity")
                             };
