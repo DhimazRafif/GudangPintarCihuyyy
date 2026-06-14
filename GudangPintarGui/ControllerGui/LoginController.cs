@@ -2,23 +2,20 @@
 using System.Windows.Forms;
 using GudangPintar.Controllers;
 using GudangPintarGui.View;
-using GudangPintarKPL.Controllers;
-using GudangPintarKPL.Models;
+using GudangPintarGui.ConfigDatabase;
+using GudangPintarGui.ServiceGui;
+using GudangPintarGui.Models;
 using Microsoft.AspNetCore.Identity.Data;
 
 namespace GudangPintarGui.ControllerGui
 {
     public class LoginController
     {
-        private readonly UserService _userService;
-        private readonly StockService _stockService;
-        private readonly HistoryService _historyService;
+        private readonly LoginService _loginService;
 
-        public LoginController(UserService userService, StockService stockService, HistoryService historyService)
+        public LoginController()
         {
-            _userService = userService;
-            _stockService = stockService;
-            _historyService = historyService;
+            _loginService = new LoginService();
         }
 
         public void Login(string username, string password, Login loginForm)
@@ -29,32 +26,42 @@ namespace GudangPintarGui.ControllerGui
                 return;
             }
 
-            var loginResult = _userService.Login(username, password);
-
-            if (loginResult == null)
+            try
             {
-                MessageBox.Show("Login gagal! Periksa kembali kredensial Anda.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
+                var user = _loginService.ValidateLogin(username, password);
+
+                if (user == null)
+                {
+                    MessageBox.Show("Login gagal! Periksa kembali kredensial Anda.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                loginForm.Hide();
+
+                if (user.RoleUser == "Admin")
+                {
+                    Dashboard adminDashboard = new Dashboard(user);
+                    adminDashboard.ShowDialog();
+                }
+                else if (user.RoleUser == "Pegawai")
+                {
+                    DashboardPegawai pegawaiDashboard = new DashboardPegawai(user);
+                    pegawaiDashboard.ShowDialog();
+                }
+
+                loginForm.ClearInputs();
+                loginForm.Show();
             }
-
-            var (user, role) = loginResult.Value;
-
-            loginForm.Hide();
-
-            if (role == Role.Admin)
+            catch (Exception ex)
             {
-                Dashboard adminDashboard = new Dashboard(user, _stockService, _userService, _historyService);
-                adminDashboard.ShowDialog();
+                loginForm.Show();
+                MessageBox.Show($"Aplikasi Crash saat proses Login!\n\nPesan Eror: {ex.Message}",
+                                "Fatal Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            else if (role == Role.User)
-            {
-                DashboardPegawai pegawaiDashboard = new DashboardPegawai(user, _stockService, _historyService);
-                pegawaiDashboard.ShowDialog();
-            }
-
 
             loginForm.ClearInputs();
             loginForm.Show();
         }
+
     }
 }

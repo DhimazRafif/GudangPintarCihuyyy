@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
-using GudangPintarGui.Factories; // perhatikan namespace plural
+using GudangPintarGui.ControllerGui;
 using GudangPintarGui.Models;
 using GudangPintarGui.ServiceGUI;
 
@@ -47,8 +47,7 @@ namespace GudangPintarGui.ControllerGui
                     throw new ArgumentException("Role tidak valid!");
 
                 // Factory pattern
-                var factory = UserFactoryProducer.GetFactory(roleId);
-                var newUser = factory.CreateUser(name, username, password, roleId);
+                var newUser = UserFactory.CreateNewUser(name, username, password, roleId);
 
                 return _userService.Add(name, username, password, roleId);
             }

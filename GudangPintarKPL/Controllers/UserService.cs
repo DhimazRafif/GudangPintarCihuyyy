@@ -12,11 +12,7 @@ namespace GudangPintar.Controllers
         private Dictionary<string, (string password, Role role)> auth = new();
 
         private int nextId = 1;
-<<<<<<< HEAD:GudangPintarKPL/GudangPintarKPL/Controllers/UserService.cs
-
-=======
         
->>>>>>> a8b62e2d6144355e4b71cb7d24b87ec53897866e:GudangPintarKPL/Controllers/UserService.cs
         public UserService()
         {
             Add("admin", "admin@mail.com", "admin123", Role.Admin);

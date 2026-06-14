@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
 using System.Linq;
-using GudangPintarKPL.ConfigDatabase;
+using GudangPintarGui.ConfigDatabase;
 using GudangPintarGui.Models;
 using GudangPintarGui.Utils;
 using MySql.Data.MySqlClient;

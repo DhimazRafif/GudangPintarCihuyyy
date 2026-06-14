@@ -1,8 +1,7 @@
 using GudangPintar.Controllers;
 using GudangPintarGui.ControllerGui;
-using GudangPintarGui.View; // Menuju folder View tempat Login Form berada
-using GudangPintarKPL.Controllers; // Menuju namespace tempat service kamu berada
-using GudangPintarKPL.Models;
+using GudangPintarGui.View;
+using GudangPintarGui.Models;
 using System;
 using System.Windows.Forms;
 
@@ -16,18 +15,18 @@ namespace GudangPintarGui
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            // 1. Inisialisasi service dari project GudangPintarKPL
-            var stockService = new StockService();
-            var userService = new UserService();
-            var historyService = new HistoryService();
-
-            var loginController = new LoginController(userService, stockService, historyService);
-
-            userService.Add("admin", "admin@mail.com", "admin123", Role.Admin);
-            userService.Add("pegawai", "pegawai@mail.com", "pegawai123", Role.User);
-
-            // 2. Jalankan Login Form dengan menyuntikkan services
-            Application.Run(new Login(loginController));
+            try
+            {
+                // Jaring pengaman untuk mendeteksi eror di gerbang awal
+                var loginController = new LoginController();
+                Application.Run(new GudangPintarGui.View.KelolaBarangView());
+            }
+            catch (Exception ex)
+            {
+                // Jika gerbang awal crash, kotak pesan ini akan langsung muncul!
+                MessageBox.Show($"Aplikasi Gagal Start!\n\nPesan Eror: {ex.Message}\n\nDetail: {ex.StackTrace}",
+                                "Fatal Startup Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

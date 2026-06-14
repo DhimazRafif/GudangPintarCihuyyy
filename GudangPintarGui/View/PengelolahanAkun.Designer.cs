@@ -28,12 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            splitContainer1 = new SplitContainer();
-            btnLogout = new Button();
-            btnAkun = new Button();
-            btnRiwayat = new Button();
-            btnBarang = new Button();
-            btnDasboard = new Button();
             label1 = new Label();
             btnHapus = new Button();
             btnEdit = new Button();
@@ -45,106 +39,30 @@
             ClmRole = new DataGridViewTextBoxColumn();
             ClmStatus = new DataGridViewTextBoxColumn();
             backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
-            splitContainer1.Panel1.SuspendLayout();
-            splitContainer1.Panel2.SuspendLayout();
-            splitContainer1.SuspendLayout();
+            panel3 = new Panel();
+            lblTotalStok = new Label();
+            label2 = new Label();
+            panel2 = new Panel();
+            lblTotalBarang = new Label();
+            label3 = new Label();
+            panel1 = new Panel();
+            button5 = new Button();
+            btnLogout = new Button();
+            button3 = new Button();
+            button2 = new Button();
+            button1 = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvPengelolahanAkun).BeginInit();
+            panel3.SuspendLayout();
+            panel2.SuspendLayout();
+            panel1.SuspendLayout();
             SuspendLayout();
-            // 
-            // splitContainer1
-            // 
-            splitContainer1.Dock = DockStyle.Fill;
-            splitContainer1.Location = new Point(0, 0);
-            splitContainer1.Name = "splitContainer1";
-            // 
-            // splitContainer1.Panel1
-            // 
-            splitContainer1.Panel1.Controls.Add(btnLogout);
-            splitContainer1.Panel1.Controls.Add(btnAkun);
-            splitContainer1.Panel1.Controls.Add(btnRiwayat);
-            splitContainer1.Panel1.Controls.Add(btnBarang);
-            splitContainer1.Panel1.Controls.Add(btnDasboard);
-            // 
-            // splitContainer1.Panel2
-            // 
-            splitContainer1.Panel2.BackColor = Color.LimeGreen;
-            splitContainer1.Panel2.Controls.Add(label1);
-            splitContainer1.Panel2.Controls.Add(btnHapus);
-            splitContainer1.Panel2.Controls.Add(btnEdit);
-            splitContainer1.Panel2.Controls.Add(btnTambah);
-            splitContainer1.Panel2.Controls.Add(dgvPengelolahanAkun);
-            splitContainer1.Size = new Size(1264, 749);
-            splitContainer1.SplitterDistance = 285;
-            splitContainer1.TabIndex = 0;
-            // 
-            // btnLogout
-            // 
-            btnLogout.BackColor = Color.White;
-            btnLogout.Dock = DockStyle.Bottom;
-            btnLogout.FlatStyle = FlatStyle.Popup;
-            btnLogout.Location = new Point(0, 726);
-            btnLogout.Name = "btnLogout";
-            btnLogout.Size = new Size(285, 23);
-            btnLogout.TabIndex = 4;
-            btnLogout.Text = "Logout";
-            btnLogout.UseVisualStyleBackColor = false;
-            btnLogout.Click += btnLogout_Click;
-            // 
-            // btnAkun
-            // 
-            btnAkun.BackColor = Color.White;
-            btnAkun.FlatStyle = FlatStyle.Popup;
-            btnAkun.Location = new Point(54, 431);
-            btnAkun.Name = "btnAkun";
-            btnAkun.Size = new Size(169, 23);
-            btnAkun.TabIndex = 3;
-            btnAkun.Text = "Akun";
-            btnAkun.UseVisualStyleBackColor = false;
-            btnAkun.Click += btnAkun_Click;
-            // 
-            // btnRiwayat
-            // 
-            btnRiwayat.BackColor = Color.White;
-            btnRiwayat.FlatStyle = FlatStyle.Popup;
-            btnRiwayat.Location = new Point(54, 324);
-            btnRiwayat.Name = "btnRiwayat";
-            btnRiwayat.Size = new Size(169, 23);
-            btnRiwayat.TabIndex = 2;
-            btnRiwayat.Text = "Riwayat";
-            btnRiwayat.UseVisualStyleBackColor = false;
-            btnRiwayat.Click += btnRiwayat_Click;
-            // 
-            // btnBarang
-            // 
-            btnBarang.BackColor = Color.White;
-            btnBarang.FlatStyle = FlatStyle.Popup;
-            btnBarang.Location = new Point(54, 238);
-            btnBarang.Name = "btnBarang";
-            btnBarang.Size = new Size(169, 23);
-            btnBarang.TabIndex = 1;
-            btnBarang.Text = "Barang";
-            btnBarang.UseVisualStyleBackColor = false;
-            btnBarang.Click += btnBarang_Click;
-            // 
-            // btnDasboard
-            // 
-            btnDasboard.BackColor = Color.White;
-            btnDasboard.FlatStyle = FlatStyle.Popup;
-            btnDasboard.Location = new Point(54, 164);
-            btnDasboard.Name = "btnDasboard";
-            btnDasboard.Size = new Size(169, 23);
-            btnDasboard.TabIndex = 0;
-            btnDasboard.Text = "Dasboard";
-            btnDasboard.UseVisualStyleBackColor = false;
-            btnDasboard.Click += btnDasboard_Click;
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 21.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.ForeColor = Color.Transparent;
-            label1.Location = new Point(143, 0);
+            label1.ForeColor = Color.Black;
+            label1.Location = new Point(246, 118);
             label1.Name = "label1";
             label1.Size = new Size(182, 40);
             label1.TabIndex = 4;
@@ -155,7 +73,7 @@
             btnHapus.BackColor = Color.Red;
             btnHapus.FlatStyle = FlatStyle.Popup;
             btnHapus.ForeColor = Color.White;
-            btnHapus.Location = new Point(586, 68);
+            btnHapus.Location = new Point(1167, 121);
             btnHapus.Name = "btnHapus";
             btnHapus.Size = new Size(75, 23);
             btnHapus.TabIndex = 3;
@@ -168,7 +86,7 @@
             btnEdit.BackColor = Color.FromArgb(255, 128, 0);
             btnEdit.FlatStyle = FlatStyle.Popup;
             btnEdit.ForeColor = Color.White;
-            btnEdit.Location = new Point(505, 68);
+            btnEdit.Location = new Point(1086, 121);
             btnEdit.Name = "btnEdit";
             btnEdit.Size = new Size(75, 23);
             btnEdit.TabIndex = 2;
@@ -181,7 +99,7 @@
             btnTambah.BackColor = Color.SeaGreen;
             btnTambah.FlatStyle = FlatStyle.Popup;
             btnTambah.ForeColor = Color.White;
-            btnTambah.Location = new Point(424, 68);
+            btnTambah.Location = new Point(1005, 121);
             btnTambah.Name = "btnTambah";
             btnTambah.Size = new Size(75, 23);
             btnTambah.TabIndex = 1;
@@ -192,13 +110,19 @@
             // dgvPengelolahanAkun
             // 
             dgvPengelolahanAkun.AllowUserToAddRows = false;
+            dgvPengelolahanAkun.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvPengelolahanAkun.BackgroundColor = Color.DarkGray;
             dgvPengelolahanAkun.BorderStyle = BorderStyle.None;
             dgvPengelolahanAkun.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dgvPengelolahanAkun.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
             dgvPengelolahanAkun.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvPengelolahanAkun.Columns.AddRange(new DataGridViewColumn[] { ClmID, ClmNama, ClmUsername, ClmRole, ClmStatus });
-            dgvPengelolahanAkun.Location = new Point(143, 97);
+            dgvPengelolahanAkun.Location = new Point(246, 162);
+            dgvPengelolahanAkun.MultiSelect = false;
             dgvPengelolahanAkun.Name = "dgvPengelolahanAkun";
-            dgvPengelolahanAkun.Size = new Size(535, 638);
+            dgvPengelolahanAkun.RowHeadersVisible = false;
+            dgvPengelolahanAkun.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvPengelolahanAkun.Size = new Size(1017, 597);
             dgvPengelolahanAkun.TabIndex = 0;
             dgvPengelolahanAkun.CellContentClick += dgvPengelolahanAkun_CellContentClick;
             // 
@@ -227,31 +151,164 @@
             ClmStatus.HeaderText = "Status";
             ClmStatus.Name = "ClmStatus";
             // 
+            // panel3
+            // 
+            panel3.BackColor = Color.LawnGreen;
+            panel3.Controls.Add(lblTotalStok);
+            panel3.Controls.Add(label2);
+            panel3.Location = new Point(742, 3);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(521, 112);
+            panel3.TabIndex = 20;
+            // 
+            // lblTotalStok
+            // 
+            lblTotalStok.AutoSize = true;
+            lblTotalStok.Font = new Font("Segoe UI Semibold", 16F, FontStyle.Bold);
+            lblTotalStok.ForeColor = Color.White;
+            lblTotalStok.Location = new Point(193, 38);
+            lblTotalStok.Name = "lblTotalStok";
+            lblTotalStok.Size = new Size(74, 30);
+            lblTotalStok.TabIndex = 2;
+            lblTotalStok.Text = "label4";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.ForeColor = SystemColors.ActiveCaptionText;
+            label2.Location = new Point(181, 13);
+            label2.Name = "label2";
+            label2.Size = new Size(95, 25);
+            label2.TabIndex = 0;
+            label2.Text = "Total Stok";
+            // 
+            // panel2
+            // 
+            panel2.BackColor = Color.LawnGreen;
+            panel2.Controls.Add(lblTotalBarang);
+            panel2.Controls.Add(label3);
+            panel2.Location = new Point(246, 3);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(490, 112);
+            panel2.TabIndex = 19;
+            // 
+            // lblTotalBarang
+            // 
+            lblTotalBarang.AutoSize = true;
+            lblTotalBarang.Font = new Font("Segoe UI Semibold", 16F, FontStyle.Bold);
+            lblTotalBarang.ForeColor = Color.White;
+            lblTotalBarang.Location = new Point(204, 38);
+            lblTotalBarang.Name = "lblTotalBarang";
+            lblTotalBarang.Size = new Size(70, 30);
+            lblTotalBarang.TabIndex = 3;
+            lblTotalBarang.Text = "label1";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label3.ForeColor = SystemColors.ActiveCaptionText;
+            label3.Location = new Point(182, 13);
+            label3.Name = "label3";
+            label3.Size = new Size(118, 25);
+            label3.TabIndex = 1;
+            label3.Text = "Total Barang";
+            // 
+            // panel1
+            // 
+            panel1.BackColor = Color.LawnGreen;
+            panel1.Controls.Add(button5);
+            panel1.Controls.Add(btnLogout);
+            panel1.Controls.Add(button3);
+            panel1.Controls.Add(button2);
+            panel1.Controls.Add(button1);
+            panel1.Location = new Point(2, 3);
+            panel1.Margin = new Padding(3, 2, 3, 2);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(238, 755);
+            panel1.TabIndex = 18;
+            // 
+            // button5
+            // 
+            button5.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            button5.Location = new Point(51, 354);
+            button5.Margin = new Padding(3, 2, 3, 2);
+            button5.Name = "button5";
+            button5.Size = new Size(122, 35);
+            button5.TabIndex = 9;
+            button5.Text = "Akun";
+            button5.UseVisualStyleBackColor = true;
+            // 
+            // btnLogout
+            // 
+            btnLogout.BackColor = Color.DarkGray;
+            btnLogout.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnLogout.ForeColor = SystemColors.ControlText;
+            btnLogout.Location = new Point(51, 644);
+            btnLogout.Name = "btnLogout";
+            btnLogout.Size = new Size(122, 31);
+            btnLogout.TabIndex = 8;
+            btnLogout.Text = "Logout";
+            btnLogout.UseVisualStyleBackColor = false;
+            btnLogout.Click += btnLogout_Click;
+            // 
+            // button3
+            // 
+            button3.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            button3.Location = new Point(51, 289);
+            button3.Name = "button3";
+            button3.Size = new Size(122, 37);
+            button3.TabIndex = 7;
+            button3.Text = "Riwayat";
+            button3.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            button2.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            button2.Location = new Point(51, 223);
+            button2.Name = "button2";
+            button2.Size = new Size(122, 39);
+            button2.TabIndex = 6;
+            button2.Text = "Barang";
+            button2.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            button1.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            button1.Location = new Point(51, 159);
+            button1.Name = "button1";
+            button1.Size = new Size(122, 38);
+            button1.TabIndex = 5;
+            button1.Text = "Dashboard";
+            button1.UseVisualStyleBackColor = true;
+            // 
             // PengelolahanAkun
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1264, 749);
-            Controls.Add(splitContainer1);
+            ClientSize = new Size(1264, 761);
+            Controls.Add(panel3);
+            Controls.Add(panel2);
+            Controls.Add(panel1);
+            Controls.Add(label1);
+            Controls.Add(btnHapus);
+            Controls.Add(btnEdit);
+            Controls.Add(dgvPengelolahanAkun);
+            Controls.Add(btnTambah);
             Name = "PengelolahanAkun";
             Text = "PengelolahanAkun";
-            splitContainer1.Panel1.ResumeLayout(false);
-            splitContainer1.Panel2.ResumeLayout(false);
-            splitContainer1.Panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)splitContainer1).EndInit();
-            splitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgvPengelolahanAkun).EndInit();
+            panel3.ResumeLayout(false);
+            panel3.PerformLayout();
+            panel2.ResumeLayout(false);
+            panel2.PerformLayout();
+            panel1.ResumeLayout(false);
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
-
-        private SplitContainer splitContainer1;
-        private Button btnLogout;
-        private Button btnAkun;
-        private Button btnRiwayat;
-        private Button btnBarang;
-        private Button btnDasboard;
         private DataGridView dgvPengelolahanAkun;
         private DataGridViewTextBoxColumn ClmID;
         private DataGridViewTextBoxColumn ClmNama;
@@ -263,5 +320,17 @@
         private Button btnTambah;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private Label label1;
+        private Panel panel3;
+        private Label lblTotalStok;
+        private Label label2;
+        private Panel panel2;
+        private Label lblTotalBarang;
+        private Label label3;
+        private Panel panel1;
+        private Button button5;
+        private Button btnLogout;
+        private Button button3;
+        private Button button2;
+        private Button button1;
     }
 }

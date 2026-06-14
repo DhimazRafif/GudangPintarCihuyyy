@@ -12,7 +12,7 @@ namespace GudangPintarGui.Models
         public string Username { get; set; }
         public string Password { get; set; }  // Store as SHA256 hash
         public int Role { get; set; }
-        public string RoleUser {  get; set; } // Penyimpanan data nama berdasarkan foreign key role
+        public string RoleUser { get; set; } // Penyimpanan data nama berdasarkan foreign key role
         public bool IsActive { get; set; } = true;
         public DateTime CreatedAt { get; set; } = DateTime.Now;
         public DateTime UpdatedAt { get; set; } = DateTime.Now;
@@ -38,16 +38,20 @@ namespace GudangPintarGui.Models
         // Default constructor untuk GUI binding
         public User() { }
 
-        public string[] GetRowData() => new[] {
-
+        public string[] GetRowData()
+        {
+            return new[] {
             UserId.ToString(),
             Name,
             Username,
             Role == 1 ? "Admin" : "Pegawai",
             IsActive ? "Aktif" : "Nonaktif"
         };
+        }
 
-        public string[] GetHeader() => new[] { "ID", "Nama", "Username", "Role", "Status" };
-
+        public string[] GetHeader()
+        {
+            return new[] { "ID", "Nama", "Username", "Role", "Status" };
+        }
     }
 }

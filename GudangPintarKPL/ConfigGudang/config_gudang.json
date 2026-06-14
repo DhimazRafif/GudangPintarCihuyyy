@@ -1,11 +1,7 @@
 {
   "mata_uang": "IDR",
-<<<<<<< HEAD
-  "format_harga": "Rp{0:N2}"
-=======
   "format_harga": "Rp{0:N2}",
   "AmbangMenipis": 10,
   "AmbangHabis": 0,
   "PeringatanKadaluarsa": 3
->>>>>>> a8b62e2d6144355e4b71cb7d24b87ec53897866e
 }

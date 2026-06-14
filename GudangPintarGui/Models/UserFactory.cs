@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Diagnostics;
-using GudangPintarGui.Models;
 
 namespace GudangPintarGui.Models
 {

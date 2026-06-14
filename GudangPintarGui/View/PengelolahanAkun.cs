@@ -22,7 +22,7 @@ namespace GudangPintarGui.View
             _akunController = akunController;
             LoadUsers();
         }
-         private void LoadUsers()
+        private void LoadUsers()
         {
             try
             {
@@ -69,15 +69,6 @@ namespace GudangPintarGui.View
         }
 
         private void btnTambah_Click(object sender, EventArgs e)
-        {
-            var addEditForm = new AddEditAkuncs(_akunController, mode: "tambah");
-            if (addEditForm.ShowDialog() == DialogResult.OK)
-            {
-                LoadUsers(); // refresh
-            }
-        }
-
-        private void btnEdit_Click(object sender, EventArgs e)
         {
             var addEditForm = new AddEditAkuncs(_akunController, mode: "tambah");
             if (addEditForm.ShowDialog() == DialogResult.OK)

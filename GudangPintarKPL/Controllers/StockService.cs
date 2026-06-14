@@ -1,22 +1,12 @@
 ﻿using GudangPintar.Model;
-<<<<<<< HEAD:GudangPintarKPL/GudangPintarKPL/Controllers/StockService.cs
-using GudangPintarKPL.Models;
-using System;
-=======
 using System.Diagnostics;
 using System.Xml.Linq;
 using GudangPintar.Model;
 using GudangPintarKPL.Models;
->>>>>>> a8b62e2d6144355e4b71cb7d24b87ec53897866e:GudangPintarKPL/Controllers/StockService.cs
 using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
 using System.Linq;
-<<<<<<< HEAD:GudangPintarKPL/GudangPintarKPL/Controllers/StockService.cs
-using MySql.Data.MySqlClient;
-using GudangPintarKPL.ConfigDatabase;
-=======
->>>>>>> a8b62e2d6144355e4b71cb7d24b87ec53897866e:GudangPintarKPL/Controllers/StockService.cs
 
 namespace GudangPintar.Controllers
 {
@@ -24,47 +14,6 @@ namespace GudangPintar.Controllers
     {
         private List<Stock> stocks = new();
 
-<<<<<<< HEAD:GudangPintarKPL/GudangPintarKPL/Controllers/StockService.cs
-        public List<Stock> GetAll()
-        {
-            List<Stock> listBarang = new List<Stock>();
-
-            using (MySqlConnection connection = DBConnection.GetInstance().GetConnection())
-            {
-                string query = "SELECT b.barangid,b.name,c.name AS 'Category Name',b.quantity,b.price\r\n" +
-                    "FROM barang b\r\n" +
-                    "JOIN category c ON b.categoryid = c.categoryid";
-
-                using (MySqlCommand command = new MySqlCommand(query,connection))
-                {
-                    try
-                    {
-                        connection.Open();
-                        using (MySqlDataReader reader = command.ExecuteReader())
-                        {
-                            while (reader.Read())
-                            {
-                                int id = Convert.ToInt32(reader["barangid"]);
-                                string nama = reader["name"].ToString();
-                                int kuantitas = Convert.ToInt32(reader["quantity"]);
-                                double harga = Convert.ToDouble(reader["price"]);
-                                string categoryName = reader["Category Name"].ToString();
-
-                                Stock newStock = new Stock(id, nama, categoryName, harga, kuantitas); ;
-
-                                listBarang.Add(newStock);
-                            }
-                        }
-                    }
-                    catch(MySqlException ex)
-                    {
-                        System.Diagnostics.Debug.WriteLine("Database Error: " + ex.Message);
-                    }
-                }
-            }
-
-            return listBarang;
-=======
         public List<Stock> GetAll() => stocks;
 
         public StockService()
@@ -84,7 +33,6 @@ namespace GudangPintar.Controllers
             Add(new Stock("Telur Ayam 1kg", Category.Sembako, 30, 28000));
             Add(new Stock("Tepung Terigu 1kg", Category.Sembako, 80, 12000));
             Add(new Stock("Susu Kental Manis", Category.Sembako, 120, 11500));
->>>>>>> a8b62e2d6144355e4b71cb7d24b87ec53897866e:GudangPintarKPL/Controllers/StockService.cs
         }
 
         public bool Add(Stock s)
@@ -125,12 +73,7 @@ namespace GudangPintar.Controllers
             return stocks.FirstOrDefault(s => s.NamaBarang == nama);
         }
 
-<<<<<<< HEAD:GudangPintarKPL/GudangPintarKPL/Controllers/StockService.cs
-        // Update sekarang menerima tanggal kadaluarsa
-        public void Update(string nama, string newNama, Category kategori, double harga, DateTime? kadaluarsa)
-=======
         public void Update(string nama, string newNama, Category kategori, double harga)
->>>>>>> a8b62e2d6144355e4b71cb7d24b87ec53897866e:GudangPintarKPL/Controllers/StockService.cs
         {
             var s = Get(nama);
 

@@ -1,4 +1,4 @@
-﻿using GudangPintarKPL.ConfigDatabase;
+﻿using GudangPintarGui.ConfigDatabase;
 using GudangPintarGui.Models;
 using MySql.Data.MySqlClient;
 using System;
