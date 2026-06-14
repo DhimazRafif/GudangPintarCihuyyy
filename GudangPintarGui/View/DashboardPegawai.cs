@@ -1,5 +1,4 @@
 ﻿using GudangPintar.Controllers;
-using GudangPintar.Controllers;
 using GudangPintarGui.ControllerGui;
 using GudangPintarKPL.Controllers;
 using GudangPintarGui.Models;

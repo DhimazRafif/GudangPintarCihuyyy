@@ -12,7 +12,7 @@ namespace GudangPintarGui.ControllerGui
     public class LoginController
     {
         private readonly LoginService _loginService;
-        
+
         public LoginController()
         {
             _loginService = new LoginService();
@@ -62,6 +62,6 @@ namespace GudangPintarGui.ControllerGui
             loginForm.ClearInputs();
             loginForm.Show();
         }
-    
+
     }
 }

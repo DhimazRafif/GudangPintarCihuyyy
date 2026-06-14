@@ -23,12 +23,13 @@ namespace GudangPintarGui
             {
                 InitializeComponent();
                 _dashboardController = new DashboardController();
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show($"Gagal inisialisasi komponen di Constructor:\n{ex.Message}",
                             "Fatal Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-           
+
         }
 
         private void btnLogout_Click(object sender, EventArgs e)
@@ -42,12 +43,13 @@ namespace GudangPintarGui
             {
                 _dashboardController.LoadDataBarang(dgvBarang);
                 _dashboardController.UpdateSummaryCards(lblTotalBarang, lblTotalStok);
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show($"Terjadi eror saat mengambil data Barang:\n\nPesan: {ex.Message}\n\nDetail: {ex.StackTrace}",
                             "Database Error di Load Event", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            
+
         }
     }
 }

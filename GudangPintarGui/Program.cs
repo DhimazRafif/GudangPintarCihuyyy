@@ -19,7 +19,7 @@ namespace GudangPintarGui
             {
                 // Jaring pengaman untuk mendeteksi eror di gerbang awal
                 var loginController = new LoginController();
-                Application.Run(new Login(loginController));
+                Application.Run(new GudangPintarGui.View.KelolaBarangView());
             }
             catch (Exception ex)
             {

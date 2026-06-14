@@ -39,7 +39,7 @@ namespace GudangPintarGui.ControllerGui
             int totalJenis = dataBarang.Count;
             int totalStok = 0;
 
-            foreach(var barang in dataBarang)
+            foreach (var barang in dataBarang)
             {
                 totalStok += barang.Jumlah;
             }
