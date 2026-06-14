@@ -55,12 +55,6 @@ namespace GudangPintarGui.View
             if (_mode == "tambah" && cmbRole.SelectedIndex == -1)
                 cmbRole.SelectedIndex = 1; // default Pegawai
         }
-        
-
-        private void btnHakAkses_Click(object sender, EventArgs e)
-        {
-            checkedListBox1.Visible = !checkedListBox1.Visible;
-        }
 
         private void btnTambah_Click(object sender, EventArgs e)
         {
@@ -104,7 +98,7 @@ namespace GudangPintarGui.View
                 }
             }
         }
-       
+
 
         private void btnBatal_Click(object sender, EventArgs e)
         {
