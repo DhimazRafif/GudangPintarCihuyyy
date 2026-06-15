@@ -19,7 +19,8 @@ namespace GudangPintarGui.ServiceGui
 
                 string query = "SELECT b.barangid,b.name,c.name AS 'category',b.quantity,b.price\r\n" +
                     "FROM barang b\r\n" +
-                    "JOIN category c ON b.categoryid = c.categoryid";
+                    "JOIN category c ON b.categoryid = c.categoryid " +
+                    "ORDER BY b.barangid ASC";
 
                 using (var command = new MySqlCommand(query, connection))
                 {

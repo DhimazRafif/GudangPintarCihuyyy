@@ -16,6 +16,10 @@ namespace GudangPintarGui.View
     {
         private readonly AkunController _akunController;
         private User _selectedUser;
+
+        // Deklarasi Variabel timer
+        private System.Windows.Forms.Timer _refreshTimer;
+
         public PengelolahanAkun(AkunController akunController)
         {
             InitializeComponent();
@@ -24,7 +28,42 @@ namespace GudangPintarGui.View
 
             _akunController = akunController;
             LoadUsers();
+
+            InisialisasiAutoRefresh();
         }
+
+        private void InisialisasiAutoRefresh()
+        {
+            _refreshTimer = new System.Windows.Forms.Timer();
+
+            // Atur interval update (2000 milidetik = 2 detik)
+            _refreshTimer.Interval = 2000;
+
+            // Sambungkan timer ke fungsi pemicu update
+            _refreshTimer.Tick += RefreshTimer_Tick;
+
+            _refreshTimer.Start();
+        }
+
+        private void RefreshTimer_Tick(object sender, EventArgs e)
+        {
+            UpdateSummaryCard();
+        }
+
+        private void UpdateSummaryCard()
+        {
+            try
+            {
+                var dashboardController = new DashboardController();
+                dashboardController.UpdateSummaryCards(lblTotalBarang, lblTotalStok);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Gagal auto-update summary: {ex.Message}");
+            }
+        }
+
+
         private void LoadUsers()
         {
             try
@@ -122,6 +161,16 @@ namespace GudangPintarGui.View
                 {
                     MessageBox.Show("Gagal menghapus user.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+            }
+        }
+
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            base.OnFormClosing(e);
+            if (_refreshTimer != null)
+            {
+                _refreshTimer.Stop();     
+                _refreshTimer.Dispose();  
             }
         }
 

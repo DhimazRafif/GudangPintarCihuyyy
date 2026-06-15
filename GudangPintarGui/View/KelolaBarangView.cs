@@ -33,6 +33,9 @@ namespace GudangPintarGui.View
                 dgvBarang.Rows.Clear();
                 var daftarBarang = _guiService.AmbilBarangSiapTampil();
 
+                int totalJenis = daftarBarang.Count;
+                int totalStok = 0;
+
                 foreach (var barang in daftarBarang)
                 {
                     int index = dgvBarang.Rows.Add(
@@ -43,7 +46,12 @@ namespace GudangPintarGui.View
                         barang.NotificationThreshold
                     );
                     dgvBarang.Rows[index].Tag = barang.BarangId;
+
+                    totalStok += barang.Jumlah;
                 }
+
+                lblTotalBarang.Text = totalJenis.ToString();
+                lblTotalStok.Text = totalStok.ToString();
             }
             catch (Exception ex)
             {
