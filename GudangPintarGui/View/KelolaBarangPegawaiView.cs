@@ -10,12 +10,15 @@ namespace GudangPintarGui.View
     public partial class KelolaBarangPegawaiView : Form
     {
         private readonly BarangGuiService _guiService;
-        private readonly CommandInvoker _invoker; 
+        private readonly CommandInvoker _invoker;
         private int _idBarangTerpilih = -1;
 
         public KelolaBarangPegawaiView()
         {
             InitializeComponent();
+
+            this.StartPosition = FormStartPosition.CenterScreen;
+
             _guiService = new BarangGuiService();
             _invoker = new CommandInvoker();
         }
@@ -166,5 +169,25 @@ namespace GudangPintarGui.View
 
         private void ResetPilihan() => _idBarangTerpilih = -1;
         private void btnRefresh_Click(object sender, EventArgs e) => RefreshTabel();
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            // Sudah di halaman barang pegawai
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Fitur riwayat belum tersedia.");
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
