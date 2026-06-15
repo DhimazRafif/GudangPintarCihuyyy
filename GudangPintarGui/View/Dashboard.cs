@@ -60,6 +60,8 @@ namespace GudangPintarGui
         {
             KelolaBarangView kelolaBarang = new KelolaBarangView();
             kelolaBarang.ShowDialog();
+
+            _dashboardController.UpdateSummaryCards(lblTotalBarang, lblTotalStok);
         }
 
         private void button5_Click(object sender, EventArgs e)
