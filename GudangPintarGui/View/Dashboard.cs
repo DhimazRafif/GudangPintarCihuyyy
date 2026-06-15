@@ -1,7 +1,8 @@
 ﻿using GudangPintar.Controllers;
 using GudangPintarGui.ControllerGui;
-using GudangPintarKPL.Controllers;
 using GudangPintarGui.Models;
+using GudangPintarGui.View;
+using GudangPintarKPL.Controllers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -22,6 +23,9 @@ namespace GudangPintarGui
             try
             {
                 InitializeComponent();
+
+                this.StartPosition = FormStartPosition.CenterScreen;
+
                 _dashboardController = new DashboardController();
             }
             catch (Exception ex)
@@ -50,6 +54,26 @@ namespace GudangPintarGui
                             "Database Error di Load Event", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            KelolaBarangView kelolaBarang = new KelolaBarangView();
+            kelolaBarang.ShowDialog();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            var userService = new GudangPintarGui.ServiceGUI.UserService();
+            var akunController = new AkunController(userService);
+
+            PengelolahanAkun akun = new PengelolahanAkun(akunController);
+            akun.ShowDialog();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Fitur riwayat belum tersedia.");
         }
     }
 }

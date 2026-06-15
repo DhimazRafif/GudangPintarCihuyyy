@@ -106,6 +106,7 @@
             // numJumlah
             // 
             numJumlah.Location = new Point(160, 233);
+            numJumlah.Maximum = new decimal(new int[] { 999999999, 0, 0, 0 });
             numJumlah.Name = "numJumlah";
             numJumlah.Size = new Size(161, 23);
             numJumlah.TabIndex = 6;
@@ -113,7 +114,7 @@
             // numHarga
             // 
             numHarga.Location = new Point(159, 153);
-            numHarga.Maximum = new decimal(new int[] { 99999, 0, 0, 0 });
+            numHarga.Maximum = new decimal(new int[] { 999999999, 0, 0, 0 });
             numHarga.Name = "numHarga";
             numHarga.Size = new Size(161, 23);
             numHarga.TabIndex = 7;
@@ -121,6 +122,7 @@
             // numThreshold
             // 
             numThreshold.Location = new Point(160, 192);
+            numThreshold.Maximum = new decimal(new int[] { 999999999, 0, 0, 0 });
             numThreshold.Name = "numThreshold";
             numThreshold.Size = new Size(161, 23);
             numThreshold.TabIndex = 8;

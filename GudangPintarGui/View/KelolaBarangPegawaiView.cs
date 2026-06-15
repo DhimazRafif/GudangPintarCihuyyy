@@ -7,13 +7,13 @@ using GudangPintarGui.Models;
 
 namespace GudangPintarGui.View
 {
-    public partial class KelolaBarangView : Form
+    public partial class KelolaBarangPegawaiView : Form
     {
         private readonly BarangGuiService _guiService;
         private readonly CommandInvoker _invoker;
         private int _idBarangTerpilih = -1;
 
-        public KelolaBarangView()
+        public KelolaBarangPegawaiView()
         {
             InitializeComponent();
 
@@ -170,24 +170,14 @@ namespace GudangPintarGui.View
         private void ResetPilihan() => _idBarangTerpilih = -1;
         private void btnRefresh_Click(object sender, EventArgs e) => RefreshTabel();
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            // Sudah di halaman barang
-        }
-
-        private void button5_Click(object sender, EventArgs e)
-        {
-            var userService = new GudangPintarGui.ServiceGUI.UserService();
-            var akunController = new AkunController(userService);
-
-            PengelolahanAkun akun = new PengelolahanAkun(akunController);
-            akun.Show();
-            this.Close();
-        }
-
         private void button1_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            // Sudah di halaman barang pegawai
         }
 
         private void button3_Click(object sender, EventArgs e)

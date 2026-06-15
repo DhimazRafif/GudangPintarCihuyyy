@@ -19,6 +19,9 @@ namespace GudangPintarGui.View
         public PengelolahanAkun(AkunController akunController)
         {
             InitializeComponent();
+
+            this.StartPosition = FormStartPosition.CenterScreen;
+
             _akunController = akunController;
             LoadUsers();
         }
@@ -125,6 +128,28 @@ namespace GudangPintarGui.View
         private void btnLogout_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            KelolaBarangView barang = new KelolaBarangView();
+            barang.Show();
+            this.Close();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Fitur riwayat belum tersedia.");
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            // Sudah di halaman akun
         }
     }
 }

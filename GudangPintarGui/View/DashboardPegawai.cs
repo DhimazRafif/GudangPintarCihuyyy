@@ -21,6 +21,9 @@ namespace GudangPintarGui.View
             try
             {
                 InitializeComponent();
+
+                this.StartPosition = FormStartPosition.CenterScreen;
+
                 _dashboardController = new DashboardController();
             }
             catch (Exception ex)
@@ -47,6 +50,17 @@ namespace GudangPintarGui.View
         private void btnLogout_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            KelolaBarangPegawaiView kelolaBarangPegawai = new KelolaBarangPegawaiView();
+            kelolaBarangPegawai.ShowDialog();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Fitur riwayat belum tersedia.");
         }
     }
 }

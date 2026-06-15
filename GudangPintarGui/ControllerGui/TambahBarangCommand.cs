@@ -1,4 +1,5 @@
 ﻿using GudangPintarGui.ConfigDatabase;
+using GudangPintarGui.ControllerGui;
 using GudangPintarGui.Models;
 using GudangPintarGui.ServiceGui;
 using MySql.Data.MySqlClient;
@@ -6,32 +7,30 @@ using System;
 
 namespace GudangPintarGui.ControllerGui
 {
+
+    // Interface ICommand untuk konsistensi pola Command Pattern
     public class TambahBarangCommand : ICommand
     {
-        private readonly StockGuiModel _barangBaru;
-        private readonly int _currentUserId;
+        private readonly StockGuiModel _barang;
+        private readonly int _userId;
 
-        // ini untuk menginisialisasi command dengan data barang baru yang akan ditambahkan dan ID pengguna yang melakukan operasi
-        public TambahBarangCommand(StockGuiModel barangBaru, int currentUserId)
+        public TambahBarangCommand(StockGuiModel barang, int userId)
         {
-            _barangBaru = barangBaru ?? throw new ArgumentNullException(nameof(barangBaru), "Data barang tidak boleh null.");
-            _currentUserId = currentUserId;
+            // Validasi di konstruktor (Fail-Fast Principle)
+            _barang = barang ?? throw new ArgumentNullException(nameof(barang), "Data barang tidak boleh null.");
+            if (userId <= 0) throw new ArgumentException("ID User tidak valid.");
+
+            _barang = barang;
+            _userId = userId;
         }
 
-        // ini untuk mengeksekusi logika penambahan barang ke database dengan validasi input dan penanganan error yang lebih baik
         public bool Execute(out string message)
         {
-            // ini untuk memastikan bahwa nama barang tidak kosong dan kategori valid sebelum mencoba menyimpan ke database
-            if (string.IsNullOrWhiteSpace(_barangBaru.NamaBarang) || _barangBaru.CategoryId <= 0)
-            {
-                message = "Validasi Gagal: Nama barang dan Kategori wajib diisi.";
-                return false;
-            }
-
+            // Query untuk memasukkan data barang baru dengan audit kolom created_by dan created_at
             string query = @"INSERT INTO barang 
                             (name, quantity, price, notification_threshold, categoryid, isActive, created_by, created_at) 
                             VALUES 
-                            (@name, @qty, @price, @threshold, @categoryId, 1, @userId, NOW())";
+                            (@name, @qty, @price, @threshold, @catId, 1, @userId, NOW())";
 
             try
             {
@@ -40,13 +39,13 @@ namespace GudangPintarGui.ControllerGui
                     conn.Open();
                     using (var cmd = new MySqlCommand(query, conn))
                     {
-                        // ini untuk menggunakan parameterized query untuk mencegah SQL Injection dan memastikan data tersimpan dengan benar
-                        cmd.Parameters.Add("@name", MySqlDbType.VarChar).Value = _barangBaru.NamaBarang;
-                        cmd.Parameters.Add("@qty", MySqlDbType.Int32).Value = _barangBaru.Jumlah;
-                        cmd.Parameters.Add("@price", MySqlDbType.Double).Value = _barangBaru.Harga;
-                        cmd.Parameters.Add("@threshold", MySqlDbType.Int32).Value = _barangBaru.NotificationThreshold;
-                        cmd.Parameters.Add("@categoryId", MySqlDbType.Int32).Value = _barangBaru.CategoryId;
-                        cmd.Parameters.Add("@userId", MySqlDbType.Int32).Value = _currentUserId;
+                        // Parameterisasi untuk mencegah SQL Injection
+                        cmd.Parameters.Add("@name", MySqlDbType.VarChar).Value = _barang.NamaBarang;
+                        cmd.Parameters.Add("@qty", MySqlDbType.Int32).Value = _barang.Jumlah;
+                        cmd.Parameters.Add("@price", MySqlDbType.Double).Value = _barang.Harga;
+                        cmd.Parameters.Add("@threshold", MySqlDbType.Int32).Value = _barang.NotificationThreshold;
+                        cmd.Parameters.Add("@catId", MySqlDbType.Int32).Value = _barang.CategoryId;
+                        cmd.Parameters.Add("@userId", MySqlDbType.Int32).Value = _userId;
 
                         int rowsAffected = cmd.ExecuteNonQuery();
 
@@ -55,10 +54,15 @@ namespace GudangPintarGui.ControllerGui
                             message = "Barang berhasil didaftarkan ke sistem.";
                             return true;
                         }
+                        else
+                        {
+                            message = "Operasi gagal: Tidak ada data yang tersimpan.";
+                            return false;
+                        }
                     }
                 }
             }
-            // ini untuk menangani error yang mungkin terjadi saat koneksi ke database atau eksekusi query, memberikan pesan yang jelas untuk pengguna
+            // Penanganan khusus untuk MySQL exceptions untuk memberikan feedback yang lebih informatif
             catch (MySqlException ex)
             {
                 message = $"Database Error: {ex.Message}";
@@ -69,9 +73,6 @@ namespace GudangPintarGui.ControllerGui
                 message = $"System Error: {ex.Message}";
                 return false;
             }
-
-            message = "Operasi gagal: Tidak ada data yang tersimpan.";
-            return false;
         }
     }
 }

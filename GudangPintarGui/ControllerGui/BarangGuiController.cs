@@ -5,10 +5,7 @@ namespace GudangPintarGui.ControllerGui
 {
     public class BarangGuiController
     {
-        /// <summary>
-        /// Menjalankan perintah (Command) yang telah dienkapsulasi.
-        /// Controller tidak perlu tahu detail database, cukup memanggil Execute.
-        /// </summary>
+        //         private readonly CommandInvoker _commandInvoker;
         public bool JalankanPerintah(ICommand perintah, out string pesanHasil)
         {
             if (perintah == null)
@@ -30,9 +27,7 @@ namespace GudangPintarGui.ControllerGui
             }
         }
 
-        /// <summary>
-        /// Validasi input untuk form penambahan atau pengubahan barang.
-        /// </summary>
+        // Validasi input untuk operasi terkait barang, seperti tambah atau edit
         public bool ValidasiInputBarang(string nama, int jumlah, double harga, out string pesanError)
         {
             pesanError = string.Empty;
@@ -43,8 +38,7 @@ namespace GudangPintarGui.ControllerGui
                 return false;
             }
 
-            // Validasi karakter berbahaya (Defense in depth)
-            // validasi ini untuk mencegah serangan injeksi SQL atau XSS jika data ini digunakan tanpa sanitasi di tempat lain
+            // Validasi karakter ilegal untuk mencegah SQL Injection atau XSS
             if (nama.IndexOfAny(new char[] { '\'', ';', '-', '<', '>' }) >= 0)
             {
                 pesanError = "Nama barang mengandung karakter ilegal!";
