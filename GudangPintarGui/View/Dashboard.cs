@@ -11,6 +11,7 @@ using System.Drawing;
 using System.Reflection.Emit;
 using System.Text;
 using System.Windows.Forms;
+using GudangPintarGui.ServiceGui;
 
 namespace GudangPintarGui
 {
@@ -18,6 +19,7 @@ namespace GudangPintarGui
     {
         private readonly DashboardController _dashboardController;
         private readonly User _user;
+        private readonly StockNotificationService _notificationService;
 
         public Dashboard(User user)
         {
@@ -30,6 +32,8 @@ namespace GudangPintarGui
                 this.StartPosition = FormStartPosition.CenterScreen;
 
                 _dashboardController = new DashboardController();
+
+                _notificationService = new StockNotificationService();
             }
             catch (Exception ex)
             {
@@ -50,6 +54,11 @@ namespace GudangPintarGui
             {
                 _dashboardController.LoadDataBarang(dgvBarang);
                 _dashboardController.UpdateSummaryCards(lblTotalBarang, lblTotalStok);
+
+                BeginInvoke(new Action(() =>
+                {
+                    _notificationService.CekSemuaBarangSetelahLogin();
+                }));
             }
             catch (Exception ex)
             {
