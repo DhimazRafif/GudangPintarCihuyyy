@@ -77,6 +77,7 @@
             btnLogout.TabIndex = 11;
             btnLogout.Text = "Logout";
             btnLogout.UseVisualStyleBackColor = false;
+            btnLogout.Click += btnLogout_Click;
             // 
             // button3
             // 
@@ -88,6 +89,7 @@
             button3.TabIndex = 8;
             button3.Text = "Riwayat";
             button3.UseVisualStyleBackColor = true;
+            button3.Click += button3_Click;
             // 
             // button2
             // 
@@ -99,6 +101,7 @@
             button2.TabIndex = 7;
             button2.Text = "Barang";
             button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
             // 
             // button1
             // 
@@ -110,6 +113,7 @@
             button1.TabIndex = 6;
             button1.Text = "Dashboard";
             button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // panel2
             // 
@@ -247,6 +251,7 @@
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
+            AutoSize = true;
             ClientSize = new Size(1806, 1268);
             Controls.Add(label1);
             Controls.Add(dgvRiwayat);
@@ -255,6 +260,7 @@
             Controls.Add(panel1);
             Name = "RiwayatPegawaiView";
             Text = "RiwayatPegawaiView";
+            Load += RiwayatPegawaiView_Load;
             panel1.ResumeLayout(false);
             panel2.ResumeLayout(false);
             panel2.PerformLayout();

@@ -2,6 +2,7 @@
 using MySql.Data.MySqlClient;
 using GudangPintarGui.ConfigDatabase;
 using GudangPintarGui.ControllerGui;
+using GudangPintarGui.Utils;
 
 namespace GudangPintarGui.ControllerGui
 {
@@ -52,20 +53,11 @@ namespace GudangPintarGui.ControllerGui
                         }
 
                         // 2. Insert ke tabel stock_history untuk mencatat riwayat perubahan stok
-                        string queryHistory = @"INSERT INTO stock_history 
-                                              (barangid, changed_quantity, changed_by, supplierid, change_date) 
-                                              VALUES 
-                                              (@id, @qty, @user, @supp, NOW())";
+                        var subject = new StockSubject();
+                        subject.Attach(new StockHistoryObserver());
 
-                        using (var cmd = new MySqlCommand(queryHistory, conn, transaction))
-                        {
-                            cmd.Parameters.Add("@id", MySqlDbType.Int32).Value = _barangId;
-                            cmd.Parameters.Add("@qty", MySqlDbType.Int32).Value = _jumlahTambah;
-                            cmd.Parameters.Add("@user", MySqlDbType.Int32).Value = _userId;
-                            cmd.Parameters.Add("@supp", MySqlDbType.Int32).Value = _supplierId;
-
-                            cmd.ExecuteNonQuery();
-                        }
+                        // OBSERVER: Mencatat riwayat ketika tambah stok berhasil dijalankan.
+                        subject.Notify(conn, transaction, _barangId, _jumlahTambah, _userId, _supplierId);
 
                         transaction.Commit();
                         message = "Stok berhasil diperbarui dan riwayat transaksi telah dicatat.";

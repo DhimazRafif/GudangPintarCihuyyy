@@ -16,6 +16,7 @@ namespace GudangPintarGui.View
     {
         private readonly AkunController _akunController;
         private User _selectedUser;
+        private readonly User _user;
 
         // Deklarasi Variabel timer
         private System.Windows.Forms.Timer _refreshTimer;
@@ -186,14 +187,16 @@ namespace GudangPintarGui.View
 
         private void button2_Click(object sender, EventArgs e)
         {
-            KelolaBarangView barang = new KelolaBarangView();
+            KelolaBarangView barang = new KelolaBarangView(_user);
             barang.Show();
             this.Close();
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Fitur riwayat belum tersedia.");
+            RiwayatView riwayat = new RiwayatView();
+            riwayat.Show();
+            this.Close();
         }
 
         private void button5_Click(object sender, EventArgs e)

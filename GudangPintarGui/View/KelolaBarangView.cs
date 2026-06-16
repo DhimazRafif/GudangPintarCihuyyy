@@ -12,13 +12,15 @@ namespace GudangPintarGui.View
         private readonly BarangGuiService _guiService;
         private readonly CommandInvoker _invoker;
         private int _idBarangTerpilih = -1;
+        private readonly User _user;
 
-        public KelolaBarangView()
+        public KelolaBarangView(User user)
         {
             InitializeComponent();
 
             this.StartPosition = FormStartPosition.CenterScreen;
 
+            _user = user;
             _guiService = new BarangGuiService();
             _invoker = new CommandInvoker();
         }
@@ -122,7 +124,7 @@ namespace GudangPintarGui.View
             {
                 if (formStok.ShowDialog() == DialogResult.OK)
                 {
-                    ExecuteCommand(new TambahStokCommand(_idBarangTerpilih, formStok.SupplierId, formStok.Jumlah, 1));
+                    ExecuteCommand(new TambahStokCommand(_idBarangTerpilih, formStok.SupplierId, formStok.Jumlah, _user.UserId));
                 }
             }
         }
@@ -137,7 +139,7 @@ namespace GudangPintarGui.View
                 formKurang.SetModeKurangi();
                 if (formKurang.ShowDialog() == DialogResult.OK)
                 {
-                    ExecuteCommand(new KurangiStokCommand(_idBarangTerpilih, formKurang.Jumlah, 1));
+                    ExecuteCommand(new KurangiStokCommand(_idBarangTerpilih, formKurang.Jumlah, _user.UserId));
                 }
             }
         }
@@ -200,7 +202,9 @@ namespace GudangPintarGui.View
 
         private void button3_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Fitur riwayat belum tersedia.");
+            RiwayatView riwayat = new RiwayatView();
+            riwayat.Show();
+            this.Close();
         }
 
         private void button4_Click(object sender, EventArgs e)
