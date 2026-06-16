@@ -17,12 +17,15 @@ namespace GudangPintarGui
     public partial class Dashboard : Form
     {
         private readonly DashboardController _dashboardController;
+        private readonly User _user;
 
         public Dashboard(User user)
         {
             try
             {
                 InitializeComponent();
+
+                _user = user;
 
                 this.StartPosition = FormStartPosition.CenterScreen;
 
@@ -58,8 +61,8 @@ namespace GudangPintarGui
 
         private void button2_Click(object sender, EventArgs e)
         {
-            KelolaBarangView kelolaBarang = new KelolaBarangView();
-            kelolaBarang.ShowDialog();
+            KelolaBarangView kelolaBarang = new KelolaBarangView(_user);
+            kelolaBarang.Show();
 
             _dashboardController.UpdateSummaryCards(lblTotalBarang, lblTotalStok);
         }
@@ -70,12 +73,13 @@ namespace GudangPintarGui
             var akunController = new AkunController(userService);
 
             PengelolahanAkun akun = new PengelolahanAkun(akunController);
-            akun.ShowDialog();
+            akun.Show();
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Fitur riwayat belum tersedia.");
+            RiwayatView riwayat = new RiwayatView();
+            riwayat.Show();
         }
     }
 }

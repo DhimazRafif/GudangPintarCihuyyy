@@ -16,11 +16,14 @@ namespace GudangPintarGui.View
     public partial class DashboardPegawai : Form
     {
         private readonly DashboardController _dashboardController;
+        private readonly User _user;
         public DashboardPegawai(User user)
         {
             try
             {
                 InitializeComponent();
+
+                _user = user;
 
                 this.StartPosition = FormStartPosition.CenterScreen;
 
@@ -54,15 +57,16 @@ namespace GudangPintarGui.View
 
         private void button2_Click(object sender, EventArgs e)
         {
-            KelolaBarangPegawaiView kelolaBarangPegawai = new KelolaBarangPegawaiView();
-            kelolaBarangPegawai.ShowDialog();
+            KelolaBarangPegawaiView kelolaBarangPegawai = new KelolaBarangPegawaiView(_user);
+            kelolaBarangPegawai.Show();
 
             _dashboardController.UpdateSummaryCards(lblTotalBarangPegawai, lblTotalStokPegawai);
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Fitur riwayat belum tersedia.");
+            RiwayatPegawaiView riwayat = new RiwayatPegawaiView();
+            riwayat.Show();
         }
     }
 }
