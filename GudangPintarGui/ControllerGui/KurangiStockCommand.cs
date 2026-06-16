@@ -67,8 +67,9 @@ namespace GudangPintarGui.ControllerGui
                         // 3. Catat riwayat perubahan stok
                         var subject = new StockSubject();
                         subject.Attach(new StockHistoryObserver());
+                        subject.Attach(new StockNotificationObserver());
 
-                        // OBSERVER: Mencatat riwayat ketika kurangi stok berhasil dijalankan.
+                        // OBSERVER: Mencatat riwayat dan memonitor perubahan state ketika kurangi stok berhasil dijalankan.
                         subject.Notify(conn, transaction, _barangId, -_jumlahKurang, _userId, null);
 
                         // Commit transaksi jika semua operasi berhasil (data tersimpan permanen)
