@@ -11,12 +11,15 @@ using System.Drawing;
 using System.Reflection.Emit;
 using System.Text;
 using System.Windows.Forms;
+using GudangPintarGui.ServiceGui;
 
 namespace GudangPintarGui
 {
     public partial class Dashboard : Form
     {
         private readonly DashboardController _dashboardController;
+        private readonly User _user;
+        private readonly StockNotificationService _notificationService;
 
         public Dashboard(User user)
         {
@@ -24,9 +27,13 @@ namespace GudangPintarGui
             {
                 InitializeComponent();
 
+                _user = user;
+
                 this.StartPosition = FormStartPosition.CenterScreen;
 
                 _dashboardController = new DashboardController();
+
+                _notificationService = new StockNotificationService();
             }
             catch (Exception ex)
             {
@@ -47,6 +54,11 @@ namespace GudangPintarGui
             {
                 _dashboardController.LoadDataBarang(dgvBarang);
                 _dashboardController.UpdateSummaryCards(lblTotalBarang, lblTotalStok);
+
+                BeginInvoke(new Action(() =>
+                {
+                    _notificationService.CekSemuaBarangSetelahLogin();
+                }));
             }
             catch (Exception ex)
             {
@@ -58,8 +70,8 @@ namespace GudangPintarGui
 
         private void button2_Click(object sender, EventArgs e)
         {
-            KelolaBarangView kelolaBarang = new KelolaBarangView();
-            kelolaBarang.ShowDialog();
+            KelolaBarangView kelolaBarang = new KelolaBarangView(_user);
+            kelolaBarang.Show();
 
             _dashboardController.UpdateSummaryCards(lblTotalBarang, lblTotalStok);
         }
@@ -70,12 +82,13 @@ namespace GudangPintarGui
             var akunController = new AkunController(userService);
 
             PengelolahanAkun akun = new PengelolahanAkun(akunController);
-            akun.ShowDialog();
+            akun.Show();
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Fitur riwayat belum tersedia.");
+            RiwayatView riwayat = new RiwayatView();
+            riwayat.Show();
         }
     }
 }

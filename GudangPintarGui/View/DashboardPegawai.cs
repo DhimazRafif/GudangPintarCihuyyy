@@ -10,21 +10,28 @@ using System.Drawing;
 using System.Reflection.Emit;
 using System.Text;
 using System.Windows.Forms;
+using GudangPintarGui.ServiceGui;
 
 namespace GudangPintarGui.View
 {
     public partial class DashboardPegawai : Form
     {
         private readonly DashboardController _dashboardController;
+        private readonly User _user;
+        private readonly StockNotificationService _notificationService;
         public DashboardPegawai(User user)
         {
             try
             {
                 InitializeComponent();
 
+                _user = user;
+
                 this.StartPosition = FormStartPosition.CenterScreen;
 
                 _dashboardController = new DashboardController();
+
+                _notificationService = new StockNotificationService();
             }
             catch (Exception ex)
             {
@@ -39,6 +46,11 @@ namespace GudangPintarGui.View
             {
                 _dashboardController.LoadDataBarang(dgvBarangPegawai);
                 _dashboardController.UpdateSummaryCards(lblTotalBarangPegawai, lblTotalStokPegawai);
+
+                BeginInvoke(new Action(() =>
+                {
+                    _notificationService.CekSemuaBarangSetelahLogin();
+                }));
             }
             catch (Exception ex)
             {
@@ -54,15 +66,16 @@ namespace GudangPintarGui.View
 
         private void button2_Click(object sender, EventArgs e)
         {
-            KelolaBarangPegawaiView kelolaBarangPegawai = new KelolaBarangPegawaiView();
-            kelolaBarangPegawai.ShowDialog();
+            KelolaBarangPegawaiView kelolaBarangPegawai = new KelolaBarangPegawaiView(_user);
+            kelolaBarangPegawai.Show();
 
             _dashboardController.UpdateSummaryCards(lblTotalBarangPegawai, lblTotalStokPegawai);
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Fitur riwayat belum tersedia.");
+            RiwayatPegawaiView riwayat = new RiwayatPegawaiView();
+            riwayat.Show();
         }
     }
 }

@@ -19,12 +19,12 @@ namespace GudangPintarGui.ServiceGui
             {
                 connection.Open();
 
-                string query = "SELECT u.userid, u.username, u.password, r.name AS nama_role " +
+                string query = "SELECT u.userid, u.name, u.username, u.password, r.name AS nama_role " +
                                "FROM user u " +
                                "JOIN role r ON u.role = r.roleid " +
                                "WHERE u.isActive = 1 AND u.username = @username";
 
-                using(var command = new MySqlCommand(query, connection))
+                using (var command = new MySqlCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@username", username);
 
@@ -40,6 +40,7 @@ namespace GudangPintarGui.ServiceGui
                                 return new User
                                 {
                                     UserId = reader.GetInt32("userid"),
+                                    Name = reader.GetString("name"),
                                     Username = reader.GetString("username"),
                                     Password = dbPasswordHash,
                                     RoleUser = reader.GetString("nama_role")

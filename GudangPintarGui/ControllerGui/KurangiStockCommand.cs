@@ -2,6 +2,7 @@
 using MySql.Data.MySqlClient;
 using GudangPintarGui.ConfigDatabase;
 using GudangPintarGui.ControllerGui;
+using GudangPintarGui.Utils;
 
 namespace GudangPintarGui.ControllerGui
 {
@@ -11,7 +12,6 @@ namespace GudangPintarGui.ControllerGui
         private readonly int _barangId;
         private readonly int _jumlahKurang;
         private readonly int _userId;
-        private const int INTERNAL_SUPPLIER_ID = 1; // ID supplier internal untuk mencatat riwayat pengurangan stok (bisa disesuaikan)
 
         // Validasi data di konstruktor (Fail-Fast Principle)
         public KurangiStokCommand(int barangId, int jumlahKurang, int userId)
@@ -65,18 +65,12 @@ namespace GudangPintarGui.ControllerGui
                         }
 
                         // 3. Catat riwayat perubahan stok
-                        string queryHistory = @"INSERT INTO stock_history 
-                                              (barangid, changed_quantity, changed_by, change_date, supplierid) 
-                                              VALUES (@id, @qty, @user, NOW(), @sid)";
+                        var subject = new StockSubject();
+                        subject.Attach(new StockHistoryObserver());
+                        subject.Attach(new StockNotificationObserver());
 
-                        using (var cmdHistory = new MySqlCommand(queryHistory, conn, transaction))
-                        {
-                            cmdHistory.Parameters.Add("@id", MySqlDbType.Int32).Value = _barangId;
-                            cmdHistory.Parameters.Add("@qty", MySqlDbType.Int32).Value = -_jumlahKurang;
-                            cmdHistory.Parameters.Add("@user", MySqlDbType.Int32).Value = _userId;
-                            cmdHistory.Parameters.Add("@sid", MySqlDbType.Int32).Value = INTERNAL_SUPPLIER_ID;
-                            cmdHistory.ExecuteNonQuery();
-                        }
+                        // OBSERVER: Mencatat riwayat dan memonitor perubahan state ketika kurangi stok berhasil dijalankan.
+                        subject.Notify(conn, transaction, _barangId, -_jumlahKurang, _userId, null);
 
                         // Commit transaksi jika semua operasi berhasil (data tersimpan permanen)
                         transaction.Commit();
