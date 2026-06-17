@@ -2,11 +2,13 @@
 using System.Windows.Forms;
 using GudangPintarGui.ServiceGui;
 using GudangPintarGui.Models;
+using GudangPintarGui.ControllerGui;
 
 namespace GudangPintarGui.View
 {
     public partial class RiwayatPegawaiView : Form
     {
+        private readonly DashboardController _dashboardController;
         private readonly StockHistoryService _historyService;
         private readonly User _user;
 
@@ -15,11 +17,26 @@ namespace GudangPintarGui.View
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
             _historyService = new StockHistoryService();
+
+            _dashboardController = new DashboardController();
         }
 
         private void RiwayatPegawaiView_Load(object sender, EventArgs e)
         {
+            RefreshSummaryCards();
             LoadRiwayat();
+        }
+
+        private void RefreshSummaryCards()
+        {
+            try
+            {
+                _dashboardController.UpdateSummaryCards(lblTotalBarang, lblTotalStok);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Gagal memuat statistik di halaman riwayat: {ex.Message}");
+            }
         }
 
         private void LoadRiwayat()

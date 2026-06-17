@@ -37,8 +37,8 @@ namespace GudangPintarGui.View
         {
             _refreshTimer = new System.Windows.Forms.Timer();
 
-            // Atur interval update (2000 milidetik = 2 detik)
-            _refreshTimer.Interval = 2000;
+            // Atur interval update (1000 milidetik = 1 detik)
+            _refreshTimer.Interval = 1000;
 
             // Sambungkan timer ke fungsi pemicu update
             _refreshTimer.Tick += RefreshTimer_Tick;

@@ -1,8 +1,10 @@
-﻿using System;
-using System.Data;
-using GudangPintarGui.ConfigDatabase;
-using MySql.Data.MySqlClient;
+﻿using GudangPintarGui.ConfigDatabase;
 using GudangPintarGui.Models;
+using MySql.Data.MySqlClient;
+using Mysqlx.Crud;
+using System;
+using System.Data;
+using static System.ComponentModel.Design.ObjectSelectorEditor;
 
 namespace GudangPintarGui.ServiceGui
 {
@@ -17,10 +19,12 @@ namespace GudangPintarGui.ServiceGui
             {
                 connection.Open();
 
-                string query = "SELECT b.barangid,b.name,c.name AS 'category',b.quantity,b.price\r\n" +
-                    "FROM barang b\r\n" +
-                    "JOIN category c ON b.categoryid = c.categoryid " +
-                    "ORDER BY b.barangid ASC";
+                string query = "SELECT b.barangid,b.name,c.name AS 'category',b.quantity,b.price " +
+                                "FROM barang b " +
+                                "JOIN category c ON b.categoryid = c.categoryid " +
+                                "WHERE b.isActive = 1 " +
+                                "ORDER BY b.barangid ASC "
+                                ;
 
                 using (var command = new MySqlCommand(query, connection))
                 {

@@ -9,6 +9,7 @@ namespace GudangPintarGui.View
     public partial class RiwayatView : Form
     {
         private readonly StockHistoryService _historyService;
+        private readonly DashboardController _dashboardController;
         User _user;
 
         public RiwayatView()
@@ -16,11 +17,26 @@ namespace GudangPintarGui.View
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
             _historyService = new StockHistoryService();
+
+            _dashboardController = new DashboardController();
         }
 
         private void RiwayatView_Load(object sender, EventArgs e)
         {
+            RefreshSummaryCards();
             LoadRiwayat();
+        }
+
+        private void RefreshSummaryCards()
+        {
+            try
+            {
+                _dashboardController.UpdateSummaryCards(lblTotalBarang, lblTotalStok);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Gagal memuat statistik di halaman riwayat: {ex.Message}");
+            }
         }
 
         private void LoadRiwayat()
