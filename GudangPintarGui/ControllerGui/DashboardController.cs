@@ -37,7 +37,18 @@ namespace GudangPintarGui.ControllerGui
             dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgv.AllowUserToAddRows = false;
             dgv.ReadOnly = true;
+
+            //  Matikan tema bawaan windows
+            dgv.EnableHeadersVisualStyles = false;
+
+            // Ganti warna Header
+            dgv.ColumnHeadersDefaultCellStyle.BackColor = Color.LightGray;
+
+            dgv.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+
+            dgv.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
         }
+        
 
         // Fungsi untuk memperbarui Summary Card
         public void UpdateSummaryCards(Label lblTotalBarang, Label lblTotalStok, List<Barang> dataBarang)
