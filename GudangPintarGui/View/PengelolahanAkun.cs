@@ -56,7 +56,8 @@ namespace GudangPintarGui.View
             try
             {
                 var dashboardController = new DashboardController();
-                dashboardController.UpdateSummaryCards(lblTotalBarang, lblTotalStok);
+                var dataGudang = dashboardController.AmbilSemuaDataBarang();
+                dashboardController.UpdateSummaryCards(lblTotalBarang, lblTotalStok, dataGudang);
             }
             catch (Exception ex)
             {

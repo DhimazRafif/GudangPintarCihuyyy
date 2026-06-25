@@ -21,6 +21,8 @@ namespace GudangPintarGui
         private readonly User _user;
         private readonly StockNotificationService _notificationService;
 
+       
+
         public Dashboard(User user)
         {
             try
@@ -43,6 +45,24 @@ namespace GudangPintarGui
 
         }
 
+        // Fungsi terpusat DRY : proses pengupdatean layar menggunakan fungsi ini
+        private void RefreshDashboard()
+        {
+            try
+            {
+                List<Barang> dataGudang = _dashboardController.AmbilSemuaDataBarang();
+
+                // Daur ulang dataGudang untuk tabel dan summary card
+                _dashboardController.LoadDataBarang(dgvBarang, dataGudang);
+                _dashboardController.UpdateSummaryCards(lblTotalBarang, lblTotalStok, dataGudang);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Terjadi eror saat mengambil data Barang:\n\nPesan: {ex.Message}",
+                            "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
         private void btnLogout_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -50,30 +70,20 @@ namespace GudangPintarGui
 
         private void Dashboard_Load(object sender, EventArgs e)
         {
-            try
-            {
-                _dashboardController.LoadDataBarang(dgvBarang);
-                _dashboardController.UpdateSummaryCards(lblTotalBarang, lblTotalStok);
+            RefreshDashboard();
 
-                BeginInvoke(new Action(() =>
-                {
-                    _notificationService.CekSemuaBarangSetelahLogin();
-                }));
-            }
-            catch (Exception ex)
+            BeginInvoke(new Action(() =>
             {
-                MessageBox.Show($"Terjadi eror saat mengambil data Barang:\n\nPesan: {ex.Message}\n\nDetail: {ex.StackTrace}",
-                            "Database Error di Load Event", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
+                _notificationService.CekSemuaBarangSetelahLogin();
+            }));
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             KelolaBarangView kelolaBarang = new KelolaBarangView(_user);
-            kelolaBarang.Show();
+            kelolaBarang.ShowDialog();
 
-            _dashboardController.UpdateSummaryCards(lblTotalBarang, lblTotalStok);
+            RefreshDashboard();
         }
 
         private void button5_Click(object sender, EventArgs e)
@@ -82,13 +92,13 @@ namespace GudangPintarGui
             var akunController = new AkunController(userService);
 
             PengelolahanAkun akun = new PengelolahanAkun(akunController);
-            akun.Show();
+            akun.ShowDialog();
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
             RiwayatView riwayat = new RiwayatView();
-            riwayat.Show();
+            riwayat.ShowDialog();
         }
     }
 }

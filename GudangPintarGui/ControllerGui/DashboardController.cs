@@ -16,11 +16,18 @@ namespace GudangPintarGui.ControllerGui
             _barangService = new BarangService();
         }
 
-        public void LoadDataBarang(DataGridView dgv)
+        // Fungsi untuk mengambil Data Barang
+        public List<Barang> AmbilSemuaDataBarang()
+        {
+            return _barangService.GetDaftarBarang();
+        }
+
+        // Fungsi untuk mengisi data tabel
+        public void LoadDataBarang(DataGridView dgv, List<Barang> dataBarang)
         {
             dgv.DataSource = null;
 
-            dgv.DataSource = _barangService.GetDaftarBarang();
+            dgv.DataSource = dataBarang;
 
             FormatTable(dgv);
         }
@@ -32,9 +39,9 @@ namespace GudangPintarGui.ControllerGui
             dgv.ReadOnly = true;
         }
 
-        public void UpdateSummaryCards(Label lblTotalBarang, Label lblTotalStok)
+        // Fungsi untuk memperbarui Summary Card
+        public void UpdateSummaryCards(Label lblTotalBarang, Label lblTotalStok, List<Barang> dataBarang)
         {
-            List<Barang> dataBarang = _barangService.GetDaftarBarang();
 
             int totalJenis = dataBarang.Count;
             int totalStok = 0;
@@ -46,7 +53,6 @@ namespace GudangPintarGui.ControllerGui
 
             lblTotalBarang.Text = totalJenis.ToString();
             lblTotalStok.Text = totalStok.ToString();
-
         }
     }
 }
