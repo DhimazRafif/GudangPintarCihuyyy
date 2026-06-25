@@ -40,11 +40,10 @@
             // 
             btnLogin.BackColor = Color.LawnGreen;
             btnLogin.Font = new Font("Segoe UI", 12F, FontStyle.Italic, GraphicsUnit.Point, 0);
-            btnLogin.ForeColor = Color.White;
-            btnLogin.Location = new Point(986, 388);
-            btnLogin.Margin = new Padding(3, 2, 3, 2);
+            btnLogin.ForeColor = Color.Black;
+            btnLogin.Location = new Point(1127, 517);
             btnLogin.Name = "btnLogin";
-            btnLogin.Size = new Size(125, 51);
+            btnLogin.Size = new Size(143, 68);
             btnLogin.TabIndex = 0;
             btnLogin.Text = "Login";
             btnLogin.UseVisualStyleBackColor = false;
@@ -54,28 +53,26 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI Semibold", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(948, 127);
+            label1.Location = new Point(1083, 169);
             label1.Name = "label1";
-            label1.Size = new Size(194, 37);
+            label1.Size = new Size(243, 46);
             label1.TabIndex = 1;
             label1.Text = "Gudang Pintar";
             // 
             // tbUsername
             // 
-            tbUsername.Location = new Point(950, 249);
-            tbUsername.Margin = new Padding(3, 2, 3, 2);
+            tbUsername.Location = new Point(1086, 332);
             tbUsername.Name = "tbUsername";
             tbUsername.PlaceholderText = "User Name . . .";
-            tbUsername.Size = new Size(197, 23);
+            tbUsername.Size = new Size(225, 27);
             tbUsername.TabIndex = 4;
             // 
             // tbPassword
             // 
-            tbPassword.Location = new Point(950, 292);
-            tbPassword.Margin = new Padding(3, 2, 3, 2);
+            tbPassword.Location = new Point(1086, 389);
             tbPassword.Name = "tbPassword";
             tbPassword.PlaceholderText = "Password . . .";
-            tbPassword.Size = new Size(197, 23);
+            tbPassword.Size = new Size(225, 27);
             tbPassword.TabIndex = 5;
             tbPassword.UseSystemPasswordChar = true;
             // 
@@ -83,34 +80,32 @@
             // 
             panel1.BackColor = Color.LawnGreen;
             panel1.Location = new Point(1, 1);
-            panel1.Margin = new Padding(3, 2, 3, 2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(814, 759);
+            panel1.Size = new Size(930, 1012);
             panel1.TabIndex = 6;
             // 
             // label4
             // 
             label4.AutoSize = true;
             label4.ForeColor = SystemColors.AppWorkspace;
-            label4.Location = new Point(950, 219);
+            label4.Location = new Point(1086, 292);
             label4.Name = "label4";
-            label4.Size = new Size(192, 15);
+            label4.Size = new Size(238, 20);
             label4.TabIndex = 7;
             label4.Text = "Masukkan username dan password";
             // 
             // Login
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(1264, 761);
+            ClientSize = new Size(1445, 1015);
             Controls.Add(label4);
             Controls.Add(panel1);
             Controls.Add(tbPassword);
             Controls.Add(tbUsername);
             Controls.Add(label1);
             Controls.Add(btnLogin);
-            Margin = new Padding(3, 2, 3, 2);
             Name = "Login";
             Text = "Form1";
             ResumeLayout(false);
