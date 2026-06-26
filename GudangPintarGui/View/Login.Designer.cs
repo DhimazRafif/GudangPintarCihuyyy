@@ -56,7 +56,7 @@
             // 
             // btnLogin
             // 
-            btnLogin.BackColor = Color.LawnGreen;
+            btnLogin.BackColor = Color.Ivory;
             btnLogin.Font = new Font("Segoe UI", 12F, FontStyle.Italic, GraphicsUnit.Point, 0);
             btnLogin.ForeColor = Color.Black;
             btnLogin.Location = new Point(208, 438);

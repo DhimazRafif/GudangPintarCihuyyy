@@ -60,12 +60,12 @@
             // 
             dgvBarangPegawai.BackgroundColor = SystemColors.ControlLightLight;
             dgvBarangPegawai.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvBarangPegawai.Location = new Point(0, 0);
+            dgvBarangPegawai.Location = new Point(-6, 0);
             dgvBarangPegawai.Margin = new Padding(3, 4, 3, 4);
             dgvBarangPegawai.Name = "dgvBarangPegawai";
             dgvBarangPegawai.RowHeadersVisible = false;
             dgvBarangPegawai.RowHeadersWidth = 51;
-            dgvBarangPegawai.Size = new Size(1158, 853);
+            dgvBarangPegawai.Size = new Size(1164, 853);
             dgvBarangPegawai.TabIndex = 0;
             // 
             // panel3
