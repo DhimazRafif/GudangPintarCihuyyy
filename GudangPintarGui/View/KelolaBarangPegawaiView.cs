@@ -14,6 +14,9 @@ namespace GudangPintarGui.View
         private int _idBarangTerpilih = -1;
         private readonly User _user;
 
+        // Event alarm
+        public event Action DataTelahDiubah;
+
         public KelolaBarangPegawaiView(User user)
         {
             InitializeComponent();
@@ -70,6 +73,9 @@ namespace GudangPintarGui.View
             {
                 MessageBox.Show(pesan, "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 RefreshTabel();
+
+                // Memberi tahu page dashboard bahwa database diupdate
+                DataTelahDiubah?.Invoke();
             }
             else
             {
@@ -201,6 +207,11 @@ namespace GudangPintarGui.View
         private void button4_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void KelolaBarangPegawaiView_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            DataTelahDiubah?.Invoke();
         }
     }
 }

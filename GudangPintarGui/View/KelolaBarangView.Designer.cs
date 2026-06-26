@@ -382,6 +382,7 @@
             ShowIcon = false;
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Form1";
+            FormClosed += KelolaBarangView_FormClosed;
             ((System.ComponentModel.ISupportInitialize)dgvBarang).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
