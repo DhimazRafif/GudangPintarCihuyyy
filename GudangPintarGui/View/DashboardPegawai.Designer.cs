@@ -83,7 +83,7 @@
             // 
             lblTotalStokPegawai.AutoSize = true;
             lblTotalStokPegawai.Font = new Font("Segoe UI Semibold", 16F, FontStyle.Bold);
-            lblTotalStokPegawai.ForeColor = Color.White;
+            lblTotalStokPegawai.ForeColor = Color.Black;
             lblTotalStokPegawai.Location = new Point(221, 51);
             lblTotalStokPegawai.Name = "lblTotalStokPegawai";
             lblTotalStokPegawai.Size = new Size(91, 37);
@@ -116,7 +116,7 @@
             // 
             lblTotalBarangPegawai.AutoSize = true;
             lblTotalBarangPegawai.Font = new Font("Segoe UI Semibold", 16F, FontStyle.Bold);
-            lblTotalBarangPegawai.ForeColor = Color.White;
+            lblTotalBarangPegawai.ForeColor = Color.Black;
             lblTotalBarangPegawai.Location = new Point(234, 55);
             lblTotalBarangPegawai.Name = "lblTotalBarangPegawai";
             lblTotalBarangPegawai.Size = new Size(86, 37);
