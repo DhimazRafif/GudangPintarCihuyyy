@@ -76,15 +76,14 @@ namespace GudangPintarGui.View
         private void button2_Click(object sender, EventArgs e)
         {
             KelolaBarangPegawaiView kelolaBarangPegawai = new KelolaBarangPegawaiView(_user);
-            kelolaBarangPegawai.ShowDialog();
-
-            RefreshDashboardPegawai();
+            kelolaBarangPegawai.DataTelahDiubah += () => RefreshDashboardPegawai();
+            kelolaBarangPegawai.Show();
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
             RiwayatPegawaiView riwayat = new RiwayatPegawaiView();
-            riwayat.ShowDialog();
+            riwayat.Show();
         }
     }
 }

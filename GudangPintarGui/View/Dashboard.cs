@@ -81,9 +81,8 @@ namespace GudangPintarGui
         private void button2_Click(object sender, EventArgs e)
         {
             KelolaBarangView kelolaBarang = new KelolaBarangView(_user);
-            kelolaBarang.ShowDialog();
-
-            RefreshDashboard();
+            kelolaBarang.DataTelahDiubah += () => RefreshDashboard();
+            kelolaBarang.Show();
         }
 
         private void button5_Click(object sender, EventArgs e)
@@ -92,13 +91,13 @@ namespace GudangPintarGui
             var akunController = new AkunController(userService);
 
             PengelolahanAkun akun = new PengelolahanAkun(akunController);
-            akun.ShowDialog();
+            akun.Show();
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
             RiwayatView riwayat = new RiwayatView();
-            riwayat.ShowDialog();
+            riwayat.Show();
         }
     }
 }

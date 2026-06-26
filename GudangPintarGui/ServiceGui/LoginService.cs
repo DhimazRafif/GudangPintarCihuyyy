@@ -15,7 +15,7 @@ namespace GudangPintarGui.ServiceGui
     {
         public User ValidateLogin(string username, string password)
         {
-            // Tambahan clean code : Guard Clause
+            // Clean code : Guard Clause
             // Memblokir input kosong di awal (Fail Fast)
             if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
             {
