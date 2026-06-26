@@ -159,7 +159,7 @@
             // 
             // panel1
             // 
-            panel1.BackColor = Color.LawnGreen;
+            panel1.BackColor = Color.LimeGreen;
             panel1.Controls.Add(label1);
             panel1.Controls.Add(lblTotalBarang);
             panel1.Location = new Point(281, 4);
@@ -222,7 +222,7 @@
             // 
             // panel2
             // 
-            panel2.BackColor = Color.LawnGreen;
+            panel2.BackColor = Color.LimeGreen;
             panel2.Controls.Add(button4);
             panel2.Controls.Add(button3);
             panel2.Controls.Add(button2);
@@ -285,7 +285,7 @@
             // 
             // panel3
             // 
-            panel3.BackColor = Color.LawnGreen;
+            panel3.BackColor = Color.LimeGreen;
             panel3.Controls.Add(lblTotalStok);
             panel3.Controls.Add(label3);
             panel3.Location = new Point(848, 4);

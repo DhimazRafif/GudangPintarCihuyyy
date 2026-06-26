@@ -51,7 +51,7 @@
             // 
             // panel1
             // 
-            panel1.BackColor = Color.LawnGreen;
+            panel1.BackColor = Color.LimeGreen;
             panel1.Controls.Add(button5);
             panel1.Controls.Add(btnLogout);
             panel1.Controls.Add(button3);
@@ -60,12 +60,14 @@
             panel1.Location = new Point(2, 2);
             panel1.Margin = new Padding(3, 2, 3, 2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(272, 1006);
+            panel1.Size = new Size(238, 755);
+
             panel1.TabIndex = 0;
             // 
             // button5
             // 
             button5.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+
             button5.Location = new Point(58, 472);
             button5.Margin = new Padding(3, 2, 3, 2);
             button5.Name = "button5";
@@ -126,7 +128,7 @@
             // 
             // panel3
             // 
-            panel3.BackColor = Color.LawnGreen;
+            panel3.BackColor = Color.LimeGreen;
             panel3.Controls.Add(lblTotalStok);
             panel3.Controls.Add(label1);
             panel3.Location = new Point(848, 2);
@@ -159,7 +161,7 @@
             // 
             // panel2
             // 
-            panel2.BackColor = Color.LawnGreen;
+            panel2.BackColor = Color.LimeGreen;
             panel2.Controls.Add(lblTotalBarang);
             panel2.Controls.Add(label2);
             panel2.Location = new Point(281, 2);

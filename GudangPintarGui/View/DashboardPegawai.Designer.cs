@@ -70,7 +70,7 @@
             // 
             // panel3
             // 
-            panel3.BackColor = Color.LawnGreen;
+            panel3.BackColor = Color.LimeGreen;
             panel3.Controls.Add(lblTotalStokPegawai);
             panel3.Controls.Add(label1);
             panel3.Location = new Point(848, 4);
@@ -103,7 +103,7 @@
             // 
             // panel2
             // 
-            panel2.BackColor = Color.LawnGreen;
+            panel2.BackColor = Color.LimeGreen;
             panel2.Controls.Add(lblTotalBarangPegawai);
             panel2.Controls.Add(label2);
             panel2.Location = new Point(281, 4);
@@ -136,7 +136,7 @@
             // 
             // panel1
             // 
-            panel1.BackColor = Color.LawnGreen;
+            panel1.BackColor = Color.LimeGreen;
             panel1.Controls.Add(btnLogout);
             panel1.Controls.Add(button3);
             panel1.Controls.Add(button2);

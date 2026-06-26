@@ -54,15 +54,15 @@
             // 
             // panel1
             // 
-            panel1.BackColor = Color.LawnGreen;
+            panel1.BackColor = Color.LimeGreen;
             panel1.Controls.Add(btnLogout);
             panel1.Controls.Add(button3);
             panel1.Controls.Add(button2);
             panel1.Controls.Add(button1);
-            panel1.Location = new Point(3, 5);
-            panel1.Margin = new Padding(4, 3, 4, 3);
+            panel1.Location = new Point(2, 3);
+            panel1.Margin = new Padding(3, 2, 3, 2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(340, 1258);
+            panel1.Size = new Size(238, 755);
             panel1.TabIndex = 1;
             // 
             // btnLogout
@@ -70,10 +70,9 @@
             btnLogout.BackColor = Color.DarkGray;
             btnLogout.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnLogout.ForeColor = SystemColors.ControlText;
-            btnLogout.Location = new Point(73, 1073);
-            btnLogout.Margin = new Padding(4, 5, 4, 5);
+            btnLogout.Location = new Point(51, 644);
             btnLogout.Name = "btnLogout";
-            btnLogout.Size = new Size(174, 52);
+            btnLogout.Size = new Size(122, 31);
             btnLogout.TabIndex = 11;
             btnLogout.Text = "Logout";
             btnLogout.UseVisualStyleBackColor = false;
@@ -82,10 +81,9 @@
             // button3
             // 
             button3.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button3.Location = new Point(73, 482);
-            button3.Margin = new Padding(4, 5, 4, 5);
+            button3.Location = new Point(51, 289);
             button3.Name = "button3";
-            button3.Size = new Size(174, 62);
+            button3.Size = new Size(122, 37);
             button3.TabIndex = 8;
             button3.Text = "Riwayat";
             button3.UseVisualStyleBackColor = true;
@@ -94,10 +92,9 @@
             // button2
             // 
             button2.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button2.Location = new Point(73, 372);
-            button2.Margin = new Padding(4, 5, 4, 5);
+            button2.Location = new Point(51, 223);
             button2.Name = "button2";
-            button2.Size = new Size(174, 65);
+            button2.Size = new Size(122, 39);
             button2.TabIndex = 7;
             button2.Text = "Barang";
             button2.UseVisualStyleBackColor = true;
@@ -106,10 +103,9 @@
             // button1
             // 
             button1.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button1.Location = new Point(73, 265);
-            button1.Margin = new Padding(4, 5, 4, 5);
+            button1.Location = new Point(51, 159);
             button1.Name = "button1";
-            button1.Size = new Size(174, 63);
+            button1.Size = new Size(122, 38);
             button1.TabIndex = 6;
             button1.Text = "Dashboard";
             button1.UseVisualStyleBackColor = true;
@@ -117,13 +113,12 @@
             // 
             // panel2
             // 
-            panel2.BackColor = Color.LawnGreen;
+            panel2.BackColor = Color.LimeGreen;
             panel2.Controls.Add(lblTotalBarang);
             panel2.Controls.Add(label3);
-            panel2.Location = new Point(351, 5);
-            panel2.Margin = new Padding(4, 5, 4, 5);
+            panel2.Location = new Point(246, 3);
             panel2.Name = "panel2";
-            panel2.Size = new Size(700, 187);
+            panel2.Size = new Size(490, 112);
             panel2.TabIndex = 21;
             // 
             // lblTotalBarang
@@ -131,10 +126,9 @@
             lblTotalBarang.AutoSize = true;
             lblTotalBarang.Font = new Font("Segoe UI Semibold", 16F, FontStyle.Bold);
             lblTotalBarang.ForeColor = Color.White;
-            lblTotalBarang.Location = new Point(291, 63);
-            lblTotalBarang.Margin = new Padding(4, 0, 4, 0);
+            lblTotalBarang.Location = new Point(204, 38);
             lblTotalBarang.Name = "lblTotalBarang";
-            lblTotalBarang.Size = new Size(102, 45);
+            lblTotalBarang.Size = new Size(70, 30);
             lblTotalBarang.TabIndex = 3;
             lblTotalBarang.Text = "label1";
             // 
@@ -143,22 +137,20 @@
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label3.ForeColor = SystemColors.ActiveCaptionText;
-            label3.Location = new Point(260, 22);
-            label3.Margin = new Padding(4, 0, 4, 0);
+            label3.Location = new Point(182, 13);
             label3.Name = "label3";
-            label3.Size = new Size(181, 40);
+            label3.Size = new Size(118, 25);
             label3.TabIndex = 1;
             label3.Text = "Total Barang";
             // 
             // panel3
             // 
-            panel3.BackColor = Color.LawnGreen;
+            panel3.BackColor = Color.LimeGreen;
             panel3.Controls.Add(lblTotalStok);
             panel3.Controls.Add(label2);
-            panel3.Location = new Point(1060, 5);
-            panel3.Margin = new Padding(4, 5, 4, 5);
+            panel3.Location = new Point(742, 3);
             panel3.Name = "panel3";
-            panel3.Size = new Size(744, 187);
+            panel3.Size = new Size(521, 112);
             panel3.TabIndex = 22;
             // 
             // lblTotalStok
@@ -166,10 +158,9 @@
             lblTotalStok.AutoSize = true;
             lblTotalStok.Font = new Font("Segoe UI Semibold", 16F, FontStyle.Bold);
             lblTotalStok.ForeColor = Color.White;
-            lblTotalStok.Location = new Point(276, 63);
-            lblTotalStok.Margin = new Padding(4, 0, 4, 0);
+            lblTotalStok.Location = new Point(193, 38);
             lblTotalStok.Name = "lblTotalStok";
-            lblTotalStok.Size = new Size(107, 45);
+            lblTotalStok.Size = new Size(74, 30);
             lblTotalStok.TabIndex = 2;
             lblTotalStok.Text = "label4";
             // 
@@ -178,10 +169,9 @@
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label2.ForeColor = SystemColors.ActiveCaptionText;
-            label2.Location = new Point(259, 22);
-            label2.Margin = new Padding(4, 0, 4, 0);
+            label2.Location = new Point(181, 13);
             label2.Name = "label2";
-            label2.Size = new Size(145, 40);
+            label2.Size = new Size(95, 25);
             label2.TabIndex = 0;
             label2.Text = "Total Stok";
             // 
@@ -195,14 +185,13 @@
             dgvRiwayat.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
             dgvRiwayat.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvRiwayat.Columns.AddRange(new DataGridViewColumn[] { ClmID, ClmBarang, ClmQuantity, ClmUser, ClmSupplier });
-            dgvRiwayat.Location = new Point(351, 270);
-            dgvRiwayat.Margin = new Padding(4, 5, 4, 5);
+            dgvRiwayat.Location = new Point(246, 162);
             dgvRiwayat.MultiSelect = false;
             dgvRiwayat.Name = "dgvRiwayat";
             dgvRiwayat.RowHeadersVisible = false;
             dgvRiwayat.RowHeadersWidth = 62;
             dgvRiwayat.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvRiwayat.Size = new Size(1453, 995);
+            dgvRiwayat.Size = new Size(1017, 478);
             dgvRiwayat.TabIndex = 23;
             // 
             // ClmID
@@ -240,24 +229,24 @@
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 21.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.Black;
-            label1.Location = new Point(351, 197);
-            label1.Margin = new Padding(4, 0, 4, 0);
+            label1.Location = new Point(246, 118);
             label1.Name = "label1";
-            label1.Size = new Size(191, 60);
+            label1.Size = new Size(126, 40);
             label1.TabIndex = 24;
             label1.Text = "Riwayat";
             // 
             // RiwayatPegawaiView
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoSize = true;
-            ClientSize = new Size(1806, 1268);
+            ClientSize = new Size(1264, 637);
             Controls.Add(label1);
             Controls.Add(dgvRiwayat);
             Controls.Add(panel3);
             Controls.Add(panel2);
             Controls.Add(panel1);
+            Margin = new Padding(2);
             Name = "RiwayatPegawaiView";
             Text = "RiwayatPegawaiView";
             Load += RiwayatPegawaiView_Load;
