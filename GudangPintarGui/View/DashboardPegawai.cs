@@ -40,23 +40,32 @@ namespace GudangPintarGui.View
             }
         }
 
-        private void DashboardPegawai_Load(object sender, EventArgs e)
+        // FUNGSI TERPUSAT DRY: proses pengupdatean layar menggunakan fungsi ini
+        private void RefreshDashboardPegawai()
         {
             try
             {
-                _dashboardController.LoadDataBarang(dgvBarangPegawai);
-                _dashboardController.UpdateSummaryCards(lblTotalBarangPegawai, lblTotalStokPegawai);
+                var dataGudang = _dashboardController.AmbilSemuaDataBarang();
 
-                BeginInvoke(new Action(() =>
-                {
-                    _notificationService.CekSemuaBarangSetelahLogin();
-                }));
+                // Daur ulang dataGudang untuk tabel dan kartu statistik
+                _dashboardController.LoadDataBarang(dgvBarangPegawai, dataGudang);
+                _dashboardController.UpdateSummaryCards(lblTotalBarangPegawai, lblTotalStokPegawai, dataGudang);
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Terjadi eror saat mengambil data Barang:\n\nPesan: {ex.Message}\n\nDetail: {ex.StackTrace}",
-                            "Database Error di Load Event", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Terjadi eror saat memperbarui data Barang:\n\nPesan: {ex.Message}",
+                            "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void DashboardPegawai_Load(object sender, EventArgs e)
+        {
+            RefreshDashboardPegawai();
+
+            BeginInvoke(new Action(() =>
+            {
+                _notificationService.CekSemuaBarangSetelahLogin();
+            }));
         }
 
         private void btnLogout_Click(object sender, EventArgs e)
@@ -67,9 +76,8 @@ namespace GudangPintarGui.View
         private void button2_Click(object sender, EventArgs e)
         {
             KelolaBarangPegawaiView kelolaBarangPegawai = new KelolaBarangPegawaiView(_user);
+            kelolaBarangPegawai.DataTelahDiubah += () => RefreshDashboardPegawai();
             kelolaBarangPegawai.Show();
-
-            _dashboardController.UpdateSummaryCards(lblTotalBarangPegawai, lblTotalStokPegawai);
         }
 
         private void button3_Click(object sender, EventArgs e)

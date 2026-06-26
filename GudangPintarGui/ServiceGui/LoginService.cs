@@ -15,6 +15,13 @@ namespace GudangPintarGui.ServiceGui
     {
         public User ValidateLogin(string username, string password)
         {
+            // Clean code : Guard Clause
+            // Memblokir input kosong di awal (Fail Fast)
+            if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
+            {
+                return null; // Langsung keluar dari fungsi
+            }
+
             using (var connection = DBConnection.GetInstance().GetConnection())
             {
                 connection.Open();
@@ -50,7 +57,7 @@ namespace GudangPintarGui.ServiceGui
                     }
                 }
             }
-            return null;
+            return null; // Return salah kredensial
         }
     }
 }

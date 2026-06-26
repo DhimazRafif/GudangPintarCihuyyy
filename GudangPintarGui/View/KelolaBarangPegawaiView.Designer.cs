@@ -64,9 +64,10 @@
             btnBukaTambah.BackColor = Color.Lime;
             btnBukaTambah.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnBukaTambah.ForeColor = Color.White;
-            btnBukaTambah.Location = new Point(691, 136);
+            btnBukaTambah.Location = new Point(790, 182);
+            btnBukaTambah.Margin = new Padding(3, 4, 3, 4);
             btnBukaTambah.Name = "btnBukaTambah";
-            btnBukaTambah.Size = new Size(75, 23);
+            btnBukaTambah.Size = new Size(86, 30);
             btnBukaTambah.TabIndex = 1;
             btnBukaTambah.Text = "Tambah Barang";
             btnBukaTambah.UseVisualStyleBackColor = false;
@@ -80,13 +81,14 @@
             dgvBarang.BorderStyle = BorderStyle.None;
             dgvBarang.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvBarang.Columns.AddRange(new DataGridViewColumn[] { colNamaBarang, colKategori, colStock, colHarga, colThreshold });
-            dgvBarang.Location = new Point(246, 161);
+            dgvBarang.Location = new Point(281, 214);
+            dgvBarang.Margin = new Padding(3, 4, 3, 4);
             dgvBarang.Name = "dgvBarang";
             dgvBarang.ReadOnly = true;
             dgvBarang.RowHeadersVisible = false;
             dgvBarang.RowHeadersWidth = 62;
             dgvBarang.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvBarang.Size = new Size(1017, 478);
+            dgvBarang.Size = new Size(1162, 796);
             dgvBarang.TabIndex = 2;
             dgvBarang.CellClick += dgvBarang_CellClick;
             dgvBarang.CellContentClick += dgvBarang_CellClick;
@@ -132,9 +134,10 @@
             btnTambahStok.BackColor = Color.DarkOrange;
             btnTambahStok.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnTambahStok.ForeColor = Color.White;
-            btnTambahStok.Location = new Point(772, 136);
+            btnTambahStok.Location = new Point(882, 182);
+            btnTambahStok.Margin = new Padding(3, 4, 3, 4);
             btnTambahStok.Name = "btnTambahStok";
-            btnTambahStok.Size = new Size(102, 23);
+            btnTambahStok.Size = new Size(117, 30);
             btnTambahStok.TabIndex = 3;
             btnTambahStok.Text = "Tambah Stock";
             btnTambahStok.UseVisualStyleBackColor = false;
@@ -145,9 +148,10 @@
             btnHapus.BackColor = Color.IndianRed;
             btnHapus.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnHapus.ForeColor = Color.White;
-            btnHapus.Location = new Point(1096, 136);
+            btnHapus.Location = new Point(1253, 182);
+            btnHapus.Margin = new Padding(3, 4, 3, 4);
             btnHapus.Name = "btnHapus";
-            btnHapus.Size = new Size(75, 23);
+            btnHapus.Size = new Size(86, 30);
             btnHapus.TabIndex = 4;
             btnHapus.Text = "Hapus Barang";
             btnHapus.UseVisualStyleBackColor = false;
@@ -158,9 +162,10 @@
             panel1.BackColor = Color.LimeGreen;
             panel1.Controls.Add(label1);
             panel1.Controls.Add(lblTotalBarang);
-            panel1.Location = new Point(246, 3);
+            panel1.Location = new Point(281, 4);
+            panel1.Margin = new Padding(3, 4, 3, 4);
             panel1.Name = "panel1";
-            panel1.Size = new Size(490, 112);
+            panel1.Size = new Size(560, 150);
             panel1.TabIndex = 5;
             // 
             // label1
@@ -168,9 +173,9 @@
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = SystemColors.ActiveCaptionText;
-            label1.Location = new Point(182, 13);
+            label1.Location = new Point(208, 18);
             label1.Name = "label1";
-            label1.Size = new Size(118, 25);
+            label1.Size = new Size(152, 32);
             label1.TabIndex = 1;
             label1.Text = "Total Barang";
             // 
@@ -179,35 +184,37 @@
             lblTotalBarang.AutoSize = true;
             lblTotalBarang.Font = new Font("Segoe UI Semibold", 16F, FontStyle.Bold);
             lblTotalBarang.ForeColor = Color.White;
-            lblTotalBarang.Location = new Point(203, 38);
+            lblTotalBarang.Location = new Point(232, 50);
             lblTotalBarang.Name = "lblTotalBarang";
-            lblTotalBarang.Size = new Size(70, 30);
+            lblTotalBarang.Size = new Size(86, 37);
             lblTotalBarang.TabIndex = 0;
             lblTotalBarang.Text = "label1";
             // 
             // txtCariNama
             // 
-            txtCariNama.Location = new Point(368, 132);
+            txtCariNama.Location = new Point(421, 176);
+            txtCariNama.Margin = new Padding(3, 4, 3, 4);
             txtCariNama.Name = "txtCariNama";
             txtCariNama.PlaceholderText = "Cari Barang . . .";
-            txtCariNama.Size = new Size(278, 23);
+            txtCariNama.Size = new Size(317, 27);
             txtCariNama.TabIndex = 6;
             txtCariNama.TextChanged += txtCariNama_TextChanged;
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(259, 136);
+            label2.Location = new Point(296, 182);
             label2.Name = "label2";
-            label2.Size = new Size(103, 15);
+            label2.Size = new Size(130, 20);
             label2.TabIndex = 7;
             label2.Text = "Cari Nama Barang";
             // 
             // btnRefresh
             // 
-            btnRefresh.Location = new Point(1188, 136);
+            btnRefresh.Location = new Point(1358, 182);
+            btnRefresh.Margin = new Padding(3, 4, 3, 4);
             btnRefresh.Name = "btnRefresh";
-            btnRefresh.Size = new Size(75, 23);
+            btnRefresh.Size = new Size(86, 30);
             btnRefresh.TabIndex = 8;
             btnRefresh.Text = "Refresh";
             btnRefresh.UseVisualStyleBackColor = true;
@@ -220,9 +227,10 @@
             panel2.Controls.Add(button3);
             panel2.Controls.Add(button2);
             panel2.Controls.Add(button1);
-            panel2.Location = new Point(2, 3);
+            panel2.Location = new Point(2, 4);
+            panel2.Margin = new Padding(3, 4, 3, 4);
             panel2.Name = "panel2";
-            panel2.Size = new Size(238, 755);
+            panel2.Size = new Size(272, 1006);
             panel2.TabIndex = 6;
             // 
             // button4
@@ -230,9 +238,10 @@
             button4.BackColor = Color.DarkGray;
             button4.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             button4.ForeColor = SystemColors.ControlText;
-            button4.Location = new Point(49, 643);
+            button4.Location = new Point(56, 858);
+            button4.Margin = new Padding(3, 4, 3, 4);
             button4.Name = "button4";
-            button4.Size = new Size(122, 31);
+            button4.Size = new Size(139, 42);
             button4.TabIndex = 3;
             button4.Text = "Logout";
             button4.UseVisualStyleBackColor = false;
@@ -241,9 +250,10 @@
             // button3
             // 
             button3.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button3.Location = new Point(49, 288);
+            button3.Location = new Point(56, 384);
+            button3.Margin = new Padding(3, 4, 3, 4);
             button3.Name = "button3";
-            button3.Size = new Size(122, 37);
+            button3.Size = new Size(139, 50);
             button3.TabIndex = 2;
             button3.Text = "Riwayat";
             button3.UseVisualStyleBackColor = true;
@@ -252,9 +262,10 @@
             // button2
             // 
             button2.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button2.Location = new Point(49, 222);
+            button2.Location = new Point(56, 296);
+            button2.Margin = new Padding(3, 4, 3, 4);
             button2.Name = "button2";
-            button2.Size = new Size(122, 39);
+            button2.Size = new Size(139, 52);
             button2.TabIndex = 1;
             button2.Text = "Barang";
             button2.UseVisualStyleBackColor = true;
@@ -263,9 +274,10 @@
             // button1
             // 
             button1.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button1.Location = new Point(49, 158);
+            button1.Location = new Point(56, 210);
+            button1.Margin = new Padding(3, 4, 3, 4);
             button1.Name = "button1";
-            button1.Size = new Size(122, 38);
+            button1.Size = new Size(139, 50);
             button1.TabIndex = 0;
             button1.Text = "Dashboard";
             button1.UseVisualStyleBackColor = true;
@@ -276,9 +288,10 @@
             panel3.BackColor = Color.LimeGreen;
             panel3.Controls.Add(lblTotalStok);
             panel3.Controls.Add(label3);
-            panel3.Location = new Point(742, 3);
+            panel3.Location = new Point(848, 4);
+            panel3.Margin = new Padding(3, 4, 3, 4);
             panel3.Name = "panel3";
-            panel3.Size = new Size(521, 112);
+            panel3.Size = new Size(595, 150);
             panel3.TabIndex = 6;
             // 
             // lblTotalStok
@@ -286,9 +299,9 @@
             lblTotalStok.AutoSize = true;
             lblTotalStok.Font = new Font("Segoe UI Semibold", 16F, FontStyle.Bold);
             lblTotalStok.ForeColor = Color.White;
-            lblTotalStok.Location = new Point(194, 38);
+            lblTotalStok.Location = new Point(222, 50);
             lblTotalStok.Name = "lblTotalStok";
-            lblTotalStok.Size = new Size(74, 30);
+            lblTotalStok.Size = new Size(91, 37);
             lblTotalStok.TabIndex = 1;
             lblTotalStok.Text = "label4";
             // 
@@ -297,9 +310,9 @@
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label3.ForeColor = SystemColors.ActiveCaptionText;
-            label3.Location = new Point(183, 13);
+            label3.Location = new Point(209, 18);
             label3.Name = "label3";
-            label3.Size = new Size(95, 25);
+            label3.Size = new Size(122, 32);
             label3.TabIndex = 0;
             label3.Text = "Total Stok";
             // 
@@ -308,9 +321,10 @@
             btnKurangStock.BackColor = Color.DarkOrange;
             btnKurangStock.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnKurangStock.ForeColor = Color.White;
-            btnKurangStock.Location = new Point(880, 136);
+            btnKurangStock.Location = new Point(1006, 182);
+            btnKurangStock.Margin = new Padding(3, 4, 3, 4);
             btnKurangStock.Name = "btnKurangStock";
-            btnKurangStock.Size = new Size(102, 23);
+            btnKurangStock.Size = new Size(117, 30);
             btnKurangStock.TabIndex = 9;
             btnKurangStock.Text = "Kurang Stock";
             btnKurangStock.UseVisualStyleBackColor = false;
@@ -321,9 +335,10 @@
             btnEditBarang.BackColor = Color.RoyalBlue;
             btnEditBarang.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnEditBarang.ForeColor = Color.White;
-            btnEditBarang.Location = new Point(988, 136);
+            btnEditBarang.Location = new Point(1129, 182);
+            btnEditBarang.Margin = new Padding(3, 4, 3, 4);
             btnEditBarang.Name = "btnEditBarang";
-            btnEditBarang.Size = new Size(102, 23);
+            btnEditBarang.Size = new Size(117, 30);
             btnEditBarang.TabIndex = 10;
             btnEditBarang.Text = "Edit Barang";
             btnEditBarang.UseVisualStyleBackColor = false;
@@ -331,11 +346,11 @@
             // 
             // KelolaBarangPegawaiView
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoSize = true;
             BackColor = Color.White;
-            ClientSize = new Size(1264, 637);
+            ClientSize = new Size(1445, 844);
             Controls.Add(btnEditBarang);
             Controls.Add(btnKurangStock);
             Controls.Add(panel3);
@@ -348,10 +363,12 @@
             Controls.Add(btnTambahStok);
             Controls.Add(dgvBarang);
             Controls.Add(btnBukaTambah);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "KelolaBarangPegawaiView";
             ShowIcon = false;
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Form1";
+            FormClosed += KelolaBarangPegawaiView_FormClosed;
             ((System.ComponentModel.ISupportInitialize)dgvBarang).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();

@@ -16,25 +16,25 @@ namespace GudangPintarGui.ControllerGui
             _barangService = new BarangService();
         }
 
-        public void LoadDataBarang(DataGridView dgv)
+        // Fungsi untuk mengambil Data Barang
+        public List<Barang> AmbilSemuaDataBarang()
+        {
+            return _barangService.GetDaftarBarang();
+        }
+
+        // Fungsi untuk mengisi data tabel
+        public void LoadDataBarang(DataGridView dgv, List<Barang> dataBarang)
         {
             dgv.DataSource = null;
 
-            dgv.DataSource = _barangService.GetDaftarBarang();
+            dgv.DataSource = dataBarang;
 
             FormatTable(dgv);
         }
 
-        private void FormatTable(DataGridView dgv)
+        // Fungsi untuk memperbarui Summary Card
+        public void UpdateSummaryCards(Label lblTotalBarang, Label lblTotalStok, List<Barang> dataBarang)
         {
-            dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dgv.AllowUserToAddRows = false;
-            dgv.ReadOnly = true;
-        }
-
-        public void UpdateSummaryCards(Label lblTotalBarang, Label lblTotalStok)
-        {
-            List<Barang> dataBarang = _barangService.GetDaftarBarang();
 
             int totalJenis = dataBarang.Count;
             int totalStok = 0;
@@ -46,7 +46,23 @@ namespace GudangPintarGui.ControllerGui
 
             lblTotalBarang.Text = totalJenis.ToString();
             lblTotalStok.Text = totalStok.ToString();
-
         }
+
+        private void FormatTable(DataGridView dgv)
+        {
+            dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgv.AllowUserToAddRows = false;
+            dgv.ReadOnly = true;
+
+            //  Matikan tema bawaan windows
+            dgv.EnableHeadersVisualStyles = false;
+
+            // Ganti warna Header
+            dgv.ColumnHeadersDefaultCellStyle.BackColor = Color.LightGray;
+
+            dgv.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+
+            dgv.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+        } 
     }
 }
