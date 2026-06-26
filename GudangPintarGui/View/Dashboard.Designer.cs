@@ -60,7 +60,7 @@
             panel1.Location = new Point(2, 2);
             panel1.Margin = new Padding(3, 2, 3, 2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(273, 755);
+            panel1.Size = new Size(273, 1008);
             panel1.TabIndex = 0;
             // 
             // button5
@@ -217,7 +217,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             AutoSize = true;
             BackColor = Color.White;
-            ClientSize = new Size(1445, 844);
+            ClientSize = new Size(1445, 1016);
             Controls.Add(panel4);
             Controls.Add(panel3);
             Controls.Add(panel2);
