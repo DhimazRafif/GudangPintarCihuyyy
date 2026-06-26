@@ -184,7 +184,7 @@
             // 
             lblTotalBarang.AutoSize = true;
             lblTotalBarang.Font = new Font("Segoe UI Semibold", 16F, FontStyle.Bold);
-            lblTotalBarang.ForeColor = Color.White;
+            lblTotalBarang.ForeColor = Color.Black;
             lblTotalBarang.Location = new Point(232, 50);
             lblTotalBarang.Name = "lblTotalBarang";
             lblTotalBarang.Size = new Size(86, 37);
@@ -312,7 +312,7 @@
             // 
             lblTotalStok.AutoSize = true;
             lblTotalStok.Font = new Font("Segoe UI Semibold", 16F, FontStyle.Bold);
-            lblTotalStok.ForeColor = Color.White;
+            lblTotalStok.ForeColor = Color.Black;
             lblTotalStok.Location = new Point(222, 50);
             lblTotalStok.Name = "lblTotalStok";
             lblTotalStok.Size = new Size(91, 37);

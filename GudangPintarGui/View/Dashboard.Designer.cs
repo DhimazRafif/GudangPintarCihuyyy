@@ -60,14 +60,12 @@
             panel1.Location = new Point(2, 2);
             panel1.Margin = new Padding(3, 2, 3, 2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(238, 755);
-
+            panel1.Size = new Size(273, 755);
             panel1.TabIndex = 0;
             // 
             // button5
             // 
             button5.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-
             button5.Location = new Point(58, 472);
             button5.Margin = new Padding(3, 2, 3, 2);
             button5.Name = "button5";
@@ -141,7 +139,7 @@
             // 
             lblTotalStok.AutoSize = true;
             lblTotalStok.Font = new Font("Segoe UI Semibold", 16F, FontStyle.Bold);
-            lblTotalStok.ForeColor = Color.White;
+            lblTotalStok.ForeColor = Color.Black;
             lblTotalStok.Location = new Point(221, 50);
             lblTotalStok.Name = "lblTotalStok";
             lblTotalStok.Size = new Size(91, 37);
@@ -174,7 +172,7 @@
             // 
             lblTotalBarang.AutoSize = true;
             lblTotalBarang.Font = new Font("Segoe UI Semibold", 16F, FontStyle.Bold);
-            lblTotalBarang.ForeColor = Color.White;
+            lblTotalBarang.ForeColor = Color.Black;
             lblTotalBarang.Location = new Point(233, 50);
             lblTotalBarang.Name = "lblTotalBarang";
             lblTotalBarang.Size = new Size(86, 37);

@@ -60,12 +60,12 @@
             // 
             dgvBarangPegawai.BackgroundColor = SystemColors.ControlLightLight;
             dgvBarangPegawai.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvBarangPegawai.Location = new Point(0, 0);
+            dgvBarangPegawai.Location = new Point(-6, 0);
             dgvBarangPegawai.Margin = new Padding(3, 4, 3, 4);
             dgvBarangPegawai.Name = "dgvBarangPegawai";
             dgvBarangPegawai.RowHeadersVisible = false;
             dgvBarangPegawai.RowHeadersWidth = 51;
-            dgvBarangPegawai.Size = new Size(1158, 853);
+            dgvBarangPegawai.Size = new Size(1164, 853);
             dgvBarangPegawai.TabIndex = 0;
             // 
             // panel3
@@ -83,7 +83,7 @@
             // 
             lblTotalStokPegawai.AutoSize = true;
             lblTotalStokPegawai.Font = new Font("Segoe UI Semibold", 16F, FontStyle.Bold);
-            lblTotalStokPegawai.ForeColor = Color.White;
+            lblTotalStokPegawai.ForeColor = Color.Black;
             lblTotalStokPegawai.Location = new Point(221, 51);
             lblTotalStokPegawai.Name = "lblTotalStokPegawai";
             lblTotalStokPegawai.Size = new Size(91, 37);
@@ -116,7 +116,7 @@
             // 
             lblTotalBarangPegawai.AutoSize = true;
             lblTotalBarangPegawai.Font = new Font("Segoe UI Semibold", 16F, FontStyle.Bold);
-            lblTotalBarangPegawai.ForeColor = Color.White;
+            lblTotalBarangPegawai.ForeColor = Color.Black;
             lblTotalBarangPegawai.Location = new Point(234, 55);
             lblTotalBarangPegawai.Name = "lblTotalBarangPegawai";
             lblTotalBarangPegawai.Size = new Size(86, 37);
